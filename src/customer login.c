@@ -7,7 +7,7 @@ void customerLogin()
     printf("\nEnter Customer ID: ");
     int custID;
     scanf("%d",&custID);
-    if(check_custID(custID)){
+    if(1){
             //code
     }
     else

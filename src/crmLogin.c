@@ -1,16 +1,14 @@
-#include<stdio.h>>
-#include<stdlib.h>
 #include<macros.h>
 #include<validate.h>
 #include<functions.h>
 
-crmLogin()
+void crmLogin()
 {    
     printf("---CRM Login---");
     printf("\nEnter Password: ");
     char pass[SIZE];
-    fgets(pass,MAX,stdin);
-    if(validate(pass)){
+    fgets(pass,SIZE,stdin);
+    if(validatePass(pass)){
         while(1){
             printf("\n1. Manage Customer\n2. Manage request\n3. Reports\n4. Exit\nEnter Choice... ");
             int choice;
@@ -20,7 +18,7 @@ crmLogin()
             {
                 case 1: manageCustomer();
                     break;
-                case 2: manageReport();
+                case 2: manageRequest();
                     break;
                 case 3: reports();
                     break;

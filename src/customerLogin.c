@@ -1,5 +1,7 @@
-#include<stdio.h>>
-#include<stdlib.h>
+#include<macros.h>
+#include<validate.h>
+#include<functions.h>
+
 
 void customerLogin()
 {    

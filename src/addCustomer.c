@@ -1,9 +1,8 @@
-#include<stdio.h>
-#include<stdlib.h>
 #include<macros.h>
 #include<struct.h>
+#include<functions.h>
 
-void main(){
+void addCustomer(){
     //FILE *fp; 
 	//fp = fopen("Customer.txt","wb+");
 

@@ -1,14 +1,19 @@
-#include<stdio.h>>
+#include<functions.h>
 
 void manageRequest()
 {
     char ch;
     do{    
-        printf("\n1. Add Request\n2.Update Request\n3.Delete request\nChoice- ");
+        printf("\n1. Add Request");
+        printf("\n2. Update Request");
+        printf("\n3. Delete request");
+        printf("\nChoice- ");
+
         int choice;
         scanf("%d",&choice);
+        
         switch(choice){
-            case 1: addRquest();
+            case 1: addRequest();
                 break;
             case 2: updateRequest();
                 break;
@@ -22,6 +27,6 @@ void manageRequest()
         printf("\nwant to continue Y/N");
         
         scanf("%c",ch);
-    }while(ch=="Y"||ch=='y');
+    }while(ch=='Y'||ch=='y');
 
 }

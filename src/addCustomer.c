@@ -2,7 +2,7 @@
 #include<struct.h>
 #include<functions.h>
 
-void addCustomer(){
+void add_customer(){
 
     customer c;
     printf("\nEnter Customer Details : ");

@@ -2,7 +2,7 @@
 #include<validate.h>
 #include<functions.h>
 
-void crmLogin()
+void crm_login()
 {    
     printf("---CRM Login---");
     printf("\nEnter Password: ");
@@ -21,9 +21,9 @@ void crmLogin()
 
             switch (choice)
             {
-                case 1: manageCustomer();
+                case 1: manage_customer();
                     break;
-                case 2: manageRequest();
+                case 2: manage_request();
                     break;
                 case 3: reports();
                     break;

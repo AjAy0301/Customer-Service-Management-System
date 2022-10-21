@@ -14,9 +14,9 @@ int main()
     
     switch (choice)
     {
-    case 1: crmLogin();
+    case 1: crm_login();
         break;
-    case 2: customerLogin();
+    case 2: customer_login();
         break;
     case 3: exit(0);   
     default: printf("\nInvalid Choice\n");        

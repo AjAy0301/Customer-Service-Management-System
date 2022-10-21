@@ -1,7 +1,7 @@
 #include<macros.h>
 #include<struct.h>
 
-void deleteCustomer(){
+void delete_customer(){
     
 }
 	

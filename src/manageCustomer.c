@@ -1,6 +1,6 @@
 #include<functions.h>
 
-void manageCustomer( )
+void manage_customer( )
 {
 	char ch;
     do{  
@@ -15,11 +15,11 @@ void manageCustomer( )
 
 		switch (choice)
 		{
-			case 1: addCustomer();
+			case 1: add_customer();
 				break;
-			case 2:	updateCustomer();
+			case 2:	update_customer();
 				break;
-			case 3: deleteCustomer();
+			case 3: delete_customer();
 				break;
 			case 4: exit(0);
 				break;

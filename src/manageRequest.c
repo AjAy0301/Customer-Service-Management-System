@@ -1,6 +1,6 @@
 #include<functions.h>
 
-void manageRequest()
+void manage_request()
 {
     char ch;
     do{    
@@ -13,11 +13,11 @@ void manageRequest()
         scanf("%d",&choice);
         
         switch(choice){
-            case 1: addRequest();
+            case 1: add_request();
                 break;
-            case 2: updateRequest();
+            case 2: update_request();
                 break;
-            case 3: deleteRequest(); 
+            case 3: delete_request(); 
                 break;
             case 4: exit(0);
                 break;

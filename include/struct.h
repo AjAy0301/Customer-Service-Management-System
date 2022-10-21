@@ -1,9 +1,9 @@
 #include<macros.h>
 
 typedef struct Date{
-    int day;
-    int month;
-    int year;
+    int d;         //date
+    int m;         //month
+    int y;        //year
 }date;
 
 typedef struct Requests{

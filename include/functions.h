@@ -1,18 +1,20 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-extern void crmLogin();
-extern void customerLogin();
-extern void manageCustomer();
-extern void manageRequest();
+
+extern void crm_login();
+extern void customer_login();
+
+extern void manage_customer();
+extern void add_customer();
+extern void update_customer();
+extern void delete_customer();
+
+extern void manage_request();
+extern void add_request();
+extern void update_request();
+extern void delete_request();
+
 extern void reports();
-extern void addCustomer();
-extern void updateCustomer();
-extern void deleteCustomer();
-extern void checkCustomerID();
-extern void searchCustomer();
-extern void addRequest();
-extern void updateRequest();
-extern void deleteRequest();
 
 

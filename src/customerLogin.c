@@ -3,7 +3,7 @@
 #include<functions.h>
 
 
-void customerLogin()
+void customer_login()
 {    
     printf("---Customer Login---");
     printf("\nEnter Customer ID: ");

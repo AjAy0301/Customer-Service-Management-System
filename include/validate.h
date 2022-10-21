@@ -5,11 +5,8 @@ int validatePass(char *str){
 }
 
  
-int isValidDate(request r.date)
+int isValidDate(int dd, int mm, int yy)
 {
-    int dd=r.date.d;
-    int mm=r.date.m;
-    int yy=r.date.y;
     if(yy>=1900 && yy<=9999)
     {
         if(mm>=1 && mm<=12)

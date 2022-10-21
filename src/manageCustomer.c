@@ -5,10 +5,10 @@ void manage_customer( )
 	char ch;
     do{  
 		printf("----Customer Database----");
-		printf("\n1.Add New Customer");
-		printf("\n2.Update Customer Details");
-		printf("\n3.Remove Customer");
-		printf("\n4.Exit");
+		printf("\n1. Add New Customer");
+		printf("\n2. Update Customer Details");
+		printf("\n3. Remove Customer");
+		printf("\n4. Go Back");
 		printf("\nChoice- ");
 		int choice;
 		scanf("%d",&choice);
@@ -21,7 +21,7 @@ void manage_customer( )
 				break;
 			case 3: delete_customer();
 				break;
-			case 4: exit(0);
+			case 4: crm_login();
 				break;
 			default: printf("Invalid Choice...");
 		}

@@ -7,6 +7,7 @@ void manage_request()
         printf("\n1. Add Request");
         printf("\n2. Update Request");
         printf("\n3. Delete request");
+        printf("\n4. Go Back");
         printf("\nChoice- ");
 
         int choice;
@@ -19,7 +20,7 @@ void manage_request()
                 break;
             case 3: delete_request(); 
                 break;
-            case 4: exit(0);
+            case 4: crm_login();
                 break;
             default: printf("Invalid Choice:");           
         }

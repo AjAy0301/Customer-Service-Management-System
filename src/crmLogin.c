@@ -25,7 +25,7 @@ void crm_login()
                     break;
                 case 2: manage_request();
                     break;
-                case 3: reports();
+                case 3: view_reports();
                     break;
                 case 4: exit(0);
                 default: printf("\nInvalid choice");            

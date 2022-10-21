@@ -2,17 +2,10 @@
 #include<struct.h>
 #include<functions.h>
 
-<<<<<<< HEAD:src/add customer.c
-void main(){
-=======
 void addCustomer(){
-    //FILE *fp; 
-	//fp = fopen("Customer.txt","wb+");
-
->>>>>>> b8f34eb4da5dce90343756c30525d1a66b81dfb1:src/addCustomer.c
-    customer c;
-    printf("\nEnter Customer Details : ");
-   	printf("\nCustomer Id: ");
+	customer c;
+	printf("\nEnter Customer Details : ");
+	printf("\nCustomer Id: ");
 	scanf("%d",&c.custID); 
 	printf("\nMobile Number : ");
 	scanf("%ld",&c.phoneNum);
@@ -34,8 +27,7 @@ void addCustomer(){
 	c.custType[strlen(c.custType)-1] = '\0';
 
 
-    FILE *fp; 
-	fp = fopen("Customer.txt","ab+");
+	FILE *fp = fopen("Customer.txt","ab+");
 
 	fwrite(&c, sizeof(customer), 1, fp);
 	fprintf(fp, " |\n");

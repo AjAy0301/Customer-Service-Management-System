@@ -1,19 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
 #include<functions.h>
 
 int main()
-{    
-    printf("---CUSTOMER SERVICE MANAGEMENT SYSTEM---");
-    printf("\n\nSelect Login Mode\n1. CRM Login \n2. Customer Login 3. Exit Application\nChoice- ");
+{   
+    start:
+    system("clear");  
+    printf("----CUSTOMER SERVICE MANAGEMENT SYSTEM----");
+    printf("\n\nSelect Login Mode");
+    printf("\n1. CRM Login");
+    printf("\n2. Customer Login");
+    printf("\n3. Exit Application");
+
+    enter_choice:
+    printf("\nChoice- ");
     int choice;
-    scanf("%d",choice);
+    scanf("%d",&choice);
+    
     switch (choice)
     {
-    case 1: crmLogin();
-        break;
-    case 2: customerLogin();
-        break;
-    case 3: exit(0);   
-    default: printf("\nInvalid Choice\n");        
+        case 1: CRM_login();
+            break;
+        case 2: customer_login();
+            break;
+        case 3: return EXIT_SUCCESS;   
+        default: printf("\nInvalid Choice\n");
+            goto enter_choice;        
     }
-
+    printf("\nContinue to Login Mode selection....(Y/N)");
+    char ch;
+    getchar();
+    if(ch=='Y')
+        goto start;
+   
+    return EXIT_SUCCESS;
 }

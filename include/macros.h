@@ -5,6 +5,8 @@
 #define FOUND 1
 #define NOT_FOUND 0
 #define OPEN 1
-#define Close 0
+#define CLOSE 0
+#define VALID 1
+#define INVALID 0
 
 

@@ -1,18 +1,56 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-extern void crmLogin();
-extern void customerLogin();
-extern void manageCustomer();
-extern void manageRequest();
-extern void reports();
-extern void addCustomer();
-extern void updateCustomer();
-extern void deleteCustomer();
-extern void checkCustomerID();
-extern void searchCustomer();
-extern void addRequest();
-extern void updateRequest();
-extern void deleteRequest();
+
+extern void CRM_login();
+extern void customer_login();
+
+void manage_customer();
+int generate_custID();
+void add_customer();
+void update_customer();
+void delete_customer();
+int find_customer(int);
+
+void manage_request();
+int generate_requestID();
+void add_request();
+void update_request();
+void delete_request();
+
+void service_request();
+void demo_request();
+void complaint_request();
+
+void report1();
+void report2();
+void report3();
+void report4();
+void totalreports();
+void view_reports();
+
+int isValidDate(int,int,int);
 
 
+
+
+
+
+
+
+
+
+
+// Functions to update Customer Details
+int changeNumber(int num){
+
+}
+
+int changeName(char* firstName, char* lastName){
+
+}
+
+int changeAddress(char* address){
+
+}
+
+int changeCustType(char* custType){
+
+}

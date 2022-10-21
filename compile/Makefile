@@ -4,32 +4,28 @@ BINDIR = ../bin
 OBJDIR = ../obj
 CFLAGS = gcc -c -g -I${INCDIR}
 
-all:	main.o addCustomer.o updateCustomer.o deleteCustomer.o manageCustomer.o addRequest.o updateRequest.o  deleteRequest.o manageRequest.o
+all:	main.o generate_ID.o customers.o requests.o reports.o requests_desc.o 
+
 main.o:
 	${CFLAGS} ${SRCDIR}/main.c -o ${OBJDIR}/main.o
-crmLogin.o:
-	${CFLAGS} ${SRCDIR}/crmLogin.c -o ${OBJDIR}/crmLogin.o
-customerLogin.o:
-	${CFLAGS} ${SRCDIR}/customerLogin.c -o ${OBJDIR}/customerLogin.o	
-addCustomer.o:
-	${CFLAGS} ${SRCDIR}/addCustomer.c -o ${OBJDIR}/addCustomer.o
-updateCustomer.o:	
-	${CFLAGS} ${SRCDIR}/updateCustomer.c -o ${OBJDIR}/updateCustomer.o
-deleteCustomer.o:	
-	${CFLAGS} ${SRCDIR}/deleteCustomer.c -o ${OBJDIR}/deleteCustomer.o	
-manageCustomer.o:
-	${CFLAGS} ${SRCDIR}/manageCustomer.c -o ${OBJDIR}/manageCustomer.o
-addRequest.o:	
-	${CFLAGS} ${SRCDIR}/addRequest.c -o ${OBJDIR}/addRequest.o	
-updateRequest.o:	
-	${CFLAGS} ${SRCDIR}/updateRequest.c -o ${OBJDIR}/updateRequest.o
-deleteRequest.o:	
-	${CFLAGS} ${SRCDIR}/deleteRequest.c -o ${OBJDIR}/deleteRequest.o
-manageRequest.o:
-	${CFLAGS} ${SRCDIR}/manageRequest.c -o ${OBJDIR}/manageRequest.o
+CRM_login.o:
+	${CFLAGS} ${SRCDIR}/CRM_login.c -o ${OBJDIR}/CRM_login.o
+customer_login.o:
+	${CFLAGS} ${SRCDIR}/customer_login.c -o ${OBJDIR}/customer_login.o	
+generate_ID.o:
+	${CFLAGS} ${SRCDIR}/generate_ID.c -o ${OBJDIR}/generate_ID.o
+customers.o:	
+	${CFLAGS} ${SRCDIR}/customers.c -o ${OBJDIR}/customers.o
+requests.o:	
+	${CFLAGS} ${SRCDIR}/requests.c -o ${OBJDIR}/requests.o	
+reports.o:
+	${CFLAGS} ${SRCDIR}/reports.c -o ${OBJDIR}/reports.o
+requests_desc.o:	
+	${CFLAGS} ${SRCDIR}/requests_desc.c -o ${OBJDIR}/requests_desc.o	
+
 
 finalexe: 
-	gcc ${OBJDIR}/main.o ${OBJDIR}/addCustomer.o ${OBJDIR}/updateCustomer.o ${OBJDIR}/deleteCustomer.o ${OBJDIR}/manageCustomer.o ${OBJDIR}/addRequest.o ${OBJDIR}/updateRequest.o ${OBJDIR}/deleteRequest.o ${OBJDIR}/manageRequest.o -o ${BINDIR}/main.exe
-clean:
-	rm ${OBJDIR}/main.o ${OBJDIR}/addCustomer.o ${OBJDIR}/updateCustomer.o ${OBJDIR}/deleteCustomer.o ${OBJDIR}/manageCustomer.o ${OBJDIR}/addRequest.o ${OBJDIR}/updateRequest.o ${OBJDIR}/deleteRequest.o ${OBJDIR}/manageRequest.o
+	gcc ${OBJDIR}/main.o -o ${BINDIR}/application.exe
 
+clean:
+	rm ${OBJDIR}/main.o ${OBJDIR}/generate_ID.o ${OBJDIR}/customers.o ${OBJDIR}/requests.o ${OBJDIR}/reports.o ${OBJDIR}/requests_desc.o 

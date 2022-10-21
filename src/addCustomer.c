@@ -3,7 +3,7 @@
 #include<functions.h>
 
 void add_customer(){
-
+/*
 	customer c;
 	printf("\nEnter Customer Details : ");
 
@@ -39,4 +39,6 @@ void add_customer(){
 	fwrite(&c, sizeof(customer), 1, fp);
 	fprintf(fp, " |\n");
 	fclose(fp);
+*/
+
 }

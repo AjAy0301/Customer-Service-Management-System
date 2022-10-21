@@ -1,5 +1,4 @@
-#include<macros.h>
-#include<struct.h>
+#include<functions.h>
 
 void delete_request()
 {

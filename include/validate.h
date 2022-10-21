@@ -1,10 +1,7 @@
-#include<struct.h>
+#include<stdio.h>
+#include<stdlib.h>
 
-int validatePass(char *str){
-    return TRUE;
-}
-
- 
+/*----------------DATE VALIDATION FUNCTION-------------------*/ 
 int isValidDate(int dd, int mm, int yy)
 {
     if(yy>=1900 && yy<=9999)
@@ -27,4 +24,40 @@ int isValidDate(int dd, int mm, int yy)
     }        
     else
         return INVALID;
+   
 }
+
+/*-------------PASSWORD VALIDATION FUNCTION-----------------*/
+int validatePass(char *str)
+{
+    FILE *fp; 
+	fp = fopen("../data/password.txt","r");
+	if(fp == NULL)
+	{
+		printf("\nPASSWORD FILE MISSING...");
+		main();
+	}
+	else
+	{
+        char ch;
+        int i=0, flag=1;
+		while(ch = fgetc(fp))
+		{
+			if(ch == EOF)
+				break;
+			if(ch!=str[i++])
+                flag=0;
+
+		}
+        if(str[i]!='\0')
+            flag=0;      
+		fclose(fp);
+
+        if(flag)
+            return VALID;
+        else
+            return INVALID;        
+}
+
+
+

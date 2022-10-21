@@ -1,3 +1,5 @@
+#include<functions.h>
+
 void report1(){
 
 }

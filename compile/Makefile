@@ -27,6 +27,11 @@ deleteRequest.o:
 	${CFLAGS} ${SRCDIR}/deleteRequest.c -o ${OBJDIR}/deleteRequest.o
 manageRequest.o:
 	${CFLAGS} ${SRCDIR}/manageRequest.c -o ${OBJDIR}/manageRequest.o
+reports.o:
+	${CFLAGS} ${SRCDIR}/reports.c -o ${OBJDIR}/reports.o
+demo.o:
+	${CFLAGS} ${SRCDIR}/demo.c -o ${OBJDIR}/demo.o		
+	
 
 finalexe: 
 	gcc ${OBJDIR}/main.o ${OBJDIR}/addCustomer.o ${OBJDIR}/updateCustomer.o ${OBJDIR}/deleteCustomer.o ${OBJDIR}/manageCustomer.o ${OBJDIR}/addRequest.o ${OBJDIR}/updateRequest.o ${OBJDIR}/deleteRequest.o ${OBJDIR}/manageRequest.o -o ${BINDIR}/main.exe

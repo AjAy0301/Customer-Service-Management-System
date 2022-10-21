@@ -1,5 +1,5 @@
 #include<functions.h>
 
-void complaint(){
+void service(){
     
 }

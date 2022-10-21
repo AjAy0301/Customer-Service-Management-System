@@ -2,10 +2,9 @@
 #include<struct.h>
 #include<functions.h>
 
-
 void add_request(){
 
-    request r;
+    /*request r;
     while (1)
     {    
         printf("\nRequest Date:");
@@ -15,10 +14,6 @@ void add_request(){
         else
             printf("Invalid Date...Enter again");
     }
-
-            
-
-   
-   
+    */
     
 }

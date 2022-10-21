@@ -2,17 +2,27 @@
 #include<validate.h>
 #include<functions.h>
 
-
 void customer_login()
-{    
-    printf("---Customer Login---");
+{   
+    system("clear");     
+    printf("------REQUEST PORTAL-----");
+
+    enter_custid:
     printf("\nEnter Customer ID: ");
     int custID;
     scanf("%d",&custID);
-    if(1){
-            //code
-    }
-    else
-        printf("\nInvalid Customer ID");
 
+    if(find_custID(custID)){
+            
+    }
+    else{
+        printf("\nCustomer NOT FOUND!!!");
+        printf("Try Again?...(Y/N)");
+        char ch;
+        scanf("%c",&ch);
+        if(ch=='Y'||ch=='y')
+                goto enter_custid;
+        else
+              main();
+    }
 }

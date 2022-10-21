@@ -4,8 +4,8 @@
 
 void addCustomer(){
 
-    customer c;
-    printf("\nEnter Customer Details : ");
+	customer c;
+	printf("\nEnter Customer Details : ");
 
    	printf("\nCustomer Id: ");
 	scanf("%d",&c.custID); 
@@ -33,8 +33,7 @@ void addCustomer(){
 	fgets(c.custType,SIZE,stdin);
 	c.custType[strlen(c.custType)-1] = '\0';
 
-
-    FILE *fp; 
+	FILE *fp; 
 	fp = fopen("Customer.txt","ab+");
 
 	fwrite(&c, sizeof(customer), 1, fp);

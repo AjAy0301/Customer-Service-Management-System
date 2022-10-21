@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<macros.h>
 
 /*----------------DATE VALIDATION FUNCTION-------------------*/ 
 int isValidDate(int dd, int mm, int yy)
@@ -35,7 +36,7 @@ int validatePass(char *str)
 	if(fp == NULL)
 	{
 		printf("\nPASSWORD FILE MISSING...");
-		main();
+		exit(0);
 	}
 	else
 	{
@@ -56,7 +57,8 @@ int validatePass(char *str)
         if(flag)
             return VALID;
         else
-            return INVALID;        
+            return INVALID;
+    }                
 }
 
 

@@ -4,6 +4,7 @@
 
 int main()
 {   
+    start:
     system("clear");  
     printf("----CUSTOMER SERVICE MANAGEMENT SYSTEM----");
     printf("\n\nSelect Login Mode");
@@ -18,7 +19,7 @@ int main()
     
     switch (choice)
     {
-        case 1: crm_login();
+        case 1: CRM_login();
             break;
         case 2: customer_login();
             break;
@@ -26,5 +27,11 @@ int main()
         default: printf("\nInvalid Choice\n");
             goto enter_choice;        
     }
+    printf("\nContinue to Login Mode selection....(Y/N)");
+    char ch;
+    getchar();
+    if(ch=='Y')
+        goto start;
+   
     return EXIT_SUCCESS;
 }

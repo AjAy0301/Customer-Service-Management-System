@@ -5,7 +5,7 @@
 #include<validate.h>
 #include<functions.h>
 
-void crm_login()
+void CRM_login()
 {   
     system("clear");  
     printf("------CRM Login------");
@@ -38,21 +38,23 @@ void crm_login()
                 break;
             case 3: view_reports();
                 break;
-            case 4: main();
+            case 4: return;
             case 5: exit(0);
             default: printf("\nInvalid choice");
                 goto enter_choice;            
         }             
 
     }
-    else{
+    else
+    {
         printf("Incorrect Password....\nTry Again");
         attempt++;
-        if(attempt>3){
+        if(attempt>3)
+        {
             printf("\n Max Attempts Reached !!!");
-            return EXIT_SUCCESS;
+            return;
         }            
         goto enter_pass;  
-    } 
+    }
 
 }

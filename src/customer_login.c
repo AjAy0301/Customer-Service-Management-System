@@ -14,6 +14,8 @@ void customer_login()
     scanf("%d",&custID);
 
     if(find_custID(custID)){
+
+        printf("\nhello");
             
     }
     else{
@@ -24,6 +26,6 @@ void customer_login()
         if(ch=='Y'||ch=='y')
                 goto enter_custid;
         else
-              main();
+              return;
     }
 }

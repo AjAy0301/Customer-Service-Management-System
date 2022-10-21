@@ -25,7 +25,7 @@ requests_desc.o:
 
 
 finalexe: 
-	gcc ${OBJDIR}/main.o ${OBJDIR}/generate_ID.o ${OBJDIR}/customers.o ${OBJDIR}/requests.o ${OBJDIR}/reports.o ${OBJDIR}/requests_desc.o -o ${BINDIR}/main.exe
+	gcc ${OBJDIR}/main.o -o ${BINDIR}/application.exe
 
 clean:
 	rm ${OBJDIR}/main.o ${OBJDIR}/generate_ID.o ${OBJDIR}/customers.o ${OBJDIR}/requests.o ${OBJDIR}/reports.o ${OBJDIR}/requests_desc.o 

@@ -1,7 +1,6 @@
-int main();
 
-void crm_login();
-void customer_login();
+extern void CRM_login();
+extern void customer_login();
 
 void manage_customer();
 int generate_custID();

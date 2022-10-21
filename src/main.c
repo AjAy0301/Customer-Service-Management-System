@@ -3,9 +3,15 @@
 int main()
 {    
     printf("---CUSTOMER SERVICE MANAGEMENT SYSTEM---");
-    printf("\n\nSelect Login Mode\n1. CRM Login \n2. Customer Login 3. Exit Application\nChoice- ");
+    printf("\n\nSelect Login Mode");
+    printf("\n1. CRM Login");
+    printf("\n2. Customer Login");
+    printf("\n3. Exit Application");
+    printf("\nChoice- ");
+
     int choice;
     scanf("%d",choice);
+    
     switch (choice)
     {
     case 1: crmLogin();

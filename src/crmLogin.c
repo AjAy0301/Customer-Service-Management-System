@@ -10,7 +10,12 @@ void crmLogin()
     fgets(pass,SIZE,stdin);
     if(validatePass(pass)){
         while(1){
-            printf("\n1. Manage Customer\n2. Manage request\n3. Reports\n4. Exit\nEnter Choice... ");
+            printf("\n1. Manage Customer");
+            printf("\n2. Manage request");
+            printf("\n3. Reports");
+            printf("\n4. Logout");
+            printf("\nEnter Choice... ");
+
             int choice;
             scanf("%d",choice);
 

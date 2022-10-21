@@ -2,36 +2,36 @@
 #include<stdlib.h>
 #include<string.h>
 
-extern int main();
+int main();
 
-extern void crm_login();
-extern void customer_login();
+void crm_login();
+void customer_login();
 
-extern void manage_customer();
-extern int generate_custID();
-extern void add_customer();
-extern void update_customer();
-extern void delete_customer();
-extern int find_customer(int);
+void manage_customer();
+int generate_custID();
+void add_customer();
+void update_customer();
+void delete_customer();
+int find_customer(int);
 
-extern void manage_request();
-extern int generate_requestID();
-extern void add_request();
-extern void update_request();
-extern void delete_request();
+void manage_request();
+int generate_requestID();
+void add_request();
+void update_request();
+void delete_request();
 
-extern void service_request();
-extern void demo_request();
-extern void complaint_request();
+void service_request();
+void demo_request();
+void complaint_request();
 
-extern void report1();
-extern void report2();
-extern void report3();
-extern void report4();
-extern void totalreports();
-extern void view_reports();
+void report1();
+void report2();
+void report3();
+void report4();
+void totalreports();
+void view_reports();
 
-extern int isValidDate(int,int,int);
+int isValidDate(int,int,int);
 
 
 

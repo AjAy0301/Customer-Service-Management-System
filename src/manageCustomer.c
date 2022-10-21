@@ -1,12 +1,9 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<macros.h>
+#include<functions.h>
 
 void manageCustomer( )
 {
-	while (1)
-	{
+	char ch;
+    do{  
 		printf("----Customer Database----");
 		printf("\n1.Add New Customer");
 		printf("\n2.Update Customer Details");
@@ -28,7 +25,10 @@ void manageCustomer( )
 				break;
 			default: printf("Invalid Choice...");
 		}
-	}
+
+		printf("\nwant to continue Y/N");
+        scanf("%c",ch);
+    }while(ch=='Y'||ch=='y');
 	
 	
 }

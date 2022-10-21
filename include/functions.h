@@ -1,9 +1,12 @@
-extern void cmsLogin();
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+extern void crmLogin();
 extern void customerLogin();
 extern void manageCustomer();
 extern void manageRequest();
 extern void reports();
-extern void addCutomer();
+extern void addCustomer();
 extern void updateCustomer();
 extern void deleteCustomer();
 extern void checkCustomerID();

@@ -1,9 +1,15 @@
-#include<stdio.h>
-#include<stdlib.h>
 #include<macros.h>
 #include<struct.h>
+#include<functions.h>
 
+<<<<<<< HEAD:src/add customer.c
 void main(){
+=======
+void addCustomer(){
+    //FILE *fp; 
+	//fp = fopen("Customer.txt","wb+");
+
+>>>>>>> b8f34eb4da5dce90343756c30525d1a66b81dfb1:src/addCustomer.c
     customer c;
     printf("\nEnter Customer Details : ");
    	printf("\nCustomer Id: ");

@@ -2,8 +2,12 @@
 #include<struct.h>
 #include<functions.h>
 
+<<<<<<< HEAD:src/add customer.c
+void main(){
+=======
 void addCustomer(){
 
+>>>>>>> b8f34eb4da5dce90343756c30525d1a66b81dfb1:src/addCustomer.c
     customer c;
     printf("\nEnter Customer Details : ");
 

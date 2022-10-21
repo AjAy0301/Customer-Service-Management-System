@@ -4,9 +4,6 @@
 #include<struct.h>
 
 void main(){
-    //FILE *fp; 
-	//fp = fopen("Customer.txt","wb+");
-
     customer c;
     printf("\nEnter Customer Details : ");
    	printf("\nCustomer Id: ");
@@ -29,6 +26,12 @@ void main(){
 	printf("\nCustomer Type (New/Existing) : ");
 	fgets(c.custType,SIZE,stdin);
 	c.custType[strlen(c.custType)-1] = '\0';
-}
-	
 
+
+    FILE *fp; 
+	fp = fopen("Customer.txt","ab+");
+
+	fwrite(&c, sizeof(customer), 1, fp);
+	fprintf(fp, " |\n");
+	fclose(fp);
+}

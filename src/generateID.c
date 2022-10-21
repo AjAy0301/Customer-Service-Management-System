@@ -1,3 +1,5 @@
+#include<macros.h>
+#include<struct.h>
 #include<functions.h>
 
 int generate_custID(){

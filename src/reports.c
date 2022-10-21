@@ -1,4 +1,7 @@
+#include<macros.h>
+#include<struct.h>
 #include<functions.h>
+
 
 void report1(){
 

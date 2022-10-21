@@ -19,7 +19,7 @@ void customer_login()
         printf("\nCustomer NOT FOUND!!!");
         printf("Try Again?...(Y/N)");
         char ch;
-        scanf("%c",&ch);
+        getch();
         if(ch=='Y'||ch=='y')
                 goto enter_custid;
         else

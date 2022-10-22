@@ -61,5 +61,7 @@ int validatePass(char *str)
     }                
 }
 
-
-
+/*-------------CUTSOMER ID VALIDATION FUNCTION-----------------*/
+int validateCustID(int custID){
+    //code for validating custID.
+}

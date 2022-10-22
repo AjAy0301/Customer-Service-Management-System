@@ -4,7 +4,7 @@ BINDIR = ../bin
 OBJDIR = ../obj
 CFLAGS = gcc -c -g -I${INCDIR}
 
-all:	main.o generate_ID.o customers.o requests.o reports.o requests_desc.o 
+all:	main.o CRM_login.o customer_login.o 
 
 main.o:
 	${CFLAGS} ${SRCDIR}/main.c -o ${OBJDIR}/main.o
@@ -21,11 +21,12 @@ requests.o:
 reports.o:
 	${CFLAGS} ${SRCDIR}/reports.c -o ${OBJDIR}/reports.o
 requests_desc.o:	
-	${CFLAGS} ${SRCDIR}/requests_desc.c -o ${OBJDIR}/requests_desc.o	
+	${CFLAGS} ${SRCDIR}/requests_desc.c -o ${OBJDIR}/requests_desc.o
+
 
 
 finalexe: 
-	gcc ${OBJDIR}/main.o -o ${BINDIR}/application.exe
+	gcc ${OBJDIR}/main.o ${OBJDIR}/CRM_login.o ${OBJDIR}/customer_login.o -o ${BINDIR}/application.exe
 
 clean:
 	rm ${OBJDIR}/main.o ${OBJDIR}/generate_ID.o ${OBJDIR}/customers.o ${OBJDIR}/requests.o ${OBJDIR}/reports.o ${OBJDIR}/requests_desc.o 

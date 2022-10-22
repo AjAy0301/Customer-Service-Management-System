@@ -33,3 +33,24 @@ int isValidDate(int,int,int);
 
 
 
+
+
+
+
+
+// Functions to update Customer Details
+int changeNumber(int num){
+
+}
+
+int changeName(char* firstName, char* lastName){
+
+}
+
+int changeAddress(char* address){
+
+}
+
+int changeCustType(char* custType){
+
+}

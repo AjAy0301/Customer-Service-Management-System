@@ -13,7 +13,7 @@ void customer_login()
     int custID;
     scanf("%d",&custID);
 
-    if(find_custID(custID)){
+    if(find_customer(custID)){
 
         printf("\nhello");
             
@@ -22,7 +22,7 @@ void customer_login()
         printf("\nCustomer NOT FOUND!!!");
         printf("Try Again?...(Y/N)");
         char ch;
-        getch();
+        getchar();
         if(ch=='Y'||ch=='y')
                 goto enter_custid;
         else

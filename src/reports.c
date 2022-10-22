@@ -22,7 +22,7 @@ void report4(){
     
 }
 
-void totalreports(){
+void total_reports(){
 
 }
 

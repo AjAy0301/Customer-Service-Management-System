@@ -17,7 +17,7 @@ void CRM_login()
     char *pass=(char*)calloc(sizeof(char),SIZE);
     scanf("%s",pass);
 
-    if(validatePass(pass))
+    if(check_pass(pass))
     {
         printf("\n1. Manage Customer");
         printf("\n2. Manage Requests");
@@ -32,11 +32,11 @@ void CRM_login()
 
         switch (choice)
         {
-            case 1: manage_customer();
+            case 1: //manage_customer();
                 break;
-            case 2: manage_request();
+            case 2: //manage_request();
                 break;
-            case 3: view_reports();
+            case 3: //view_reports();
                 break;
             case 4: return;
             case 5: exit(0);

@@ -2,6 +2,9 @@
 #include<stdlib.h>
 #include<string.h>
 #include<header.h>
+#include"customers.c"
+#include"validate.c"
+#include"reports.c"
 
 void CRM_login()
 {   
@@ -16,7 +19,7 @@ void CRM_login()
         char *pass=(char*)calloc(sizeof(char),SIZE);
         scanf("%s",pass);
 
-        if(validatePass(pass))
+        if(isValidPass(pass))
         {
             char ch;
             while (1)
@@ -27,24 +30,24 @@ void CRM_login()
                 printf("\n4. Logout");
                 printf("\n5. Exit");
                    
-                printf("\nEnter Choice- ");
+                printf("\nEnter your choice- ");
                 int choice;
                 scanf("%d",&choice);
 
                 switch (choice)
                 {
-                    case 1: //manage_customer();
+                    case 1: manage_customer();
                         break;
-                    case 2: //manage_request();
+                    case 2: manage_request();
                         break;
-                    case 3: //view_reports();
+                    case 3: view_reports();
                         break;
                     case 4: return;
                     case 5: exit(0);
                     default: printf("\nInvalid choice\n");
                         continue;            
                 }  
-                printf("\nContinue...(Y/N");
+                printf("\nwant to continue...(Y/N");
                 getchar();
                 ch=getchar(); 
             }while (ch=='Y'||ch=='y');
@@ -61,7 +64,8 @@ void CRM_login()
             }            
             continue;  
         }
-    }    
+    }  
+     
 
 }
 

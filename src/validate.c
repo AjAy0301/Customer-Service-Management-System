@@ -64,4 +64,38 @@ int isValidPass(char *str)
 /*-------------CUTSOMER ID VALIDATION FUNCTION-----------------*/
 int isValidCustID(int custID){
     //code for validating custID.
+    return 1;
 }
+
+/*-------------NAME VALIDATION FUNCTION-----------------*/
+
+int isNameValid(char *name)
+{
+    long len=strlen(name);
+
+	for(int i=0;i<len;i++)
+	{
+		if(!isalpha(name[i]))
+			return INVALID;
+	}
+
+    return VALID;
+}
+
+/*-------------MOBILE NUMBER VALIDATION FUNCTION-----------------*/
+
+int isPhoneValid(char *pnum)
+{
+    long len=strlen(pnum);
+   
+    if(len!=10)
+        return INVALID;
+        
+	for(int i=0;i<len;i++)
+	{
+		if( pnum[i]<48 && pnum[i]>57 )
+			return INVALID;
+	}
+	return VALID; 
+}
+

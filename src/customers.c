@@ -48,21 +48,40 @@ void add_customer()
 	customer c;
 	printf("\nEnter Customer Details : ");
 
+	//c.custID = generate_custID;
    	printf("\nCustomer Id: ");
 	scanf("%d",&c.custID); 
 
 	printf("\nMobile Number : ");
-	scanf("%ld",&c.phoneNum);
+	while(scanf("%ld",&c.phoneNum))
+	{
+		if(isPhoneValid(c.phoneNum))
+			break;
+		else
+			printf("\nInvalid Phone Number");
+
+	}
 	getchar( );
 
+	first_name:
 	printf("\nFirst Name : ");
 	fgets(c.firstName,SIZE,stdin);
 	c.firstName[strlen(c.firstName)-1] = '\0';
+
+	if(!isNameValid(c.firstName)){
+		printf("\nInvalid name format enter again");
+		goto first_name;
+	}
 	getchar( );
 
+	second_name:
 	printf("\nLast Lame : ");
 	fgets(c.lastName,SIZE,stdin);
 	c.lastName[strlen(c.lastName)-1] = '\0';
+	if(!isNameValid(c.firstName)){
+		printf("\nInvalid name format enter again");
+		goto second_name;
+	}
 	getchar( );
 
 	printf("\nPermanent Address :");
@@ -70,9 +89,19 @@ void add_customer()
 	c.address[strlen(c.address)-1] = '\0';
 	getchar( );
 
-	printf("\nCustomer Type (New/Existing) : ");
-	fgets(c.custType,SIZE,stdin);
-	c.custType[strlen(c.custType)-1] = '\0';
+	int cust_type;
+	choose_type:
+	printf("\nCustomer Type (1-New or 2-Existing): ");
+	scanf("%d",cust_type);
+	if(cust_type==1)
+		strcpy(c.custType,"new");
+	else if(cust_type==2)
+		strcpy(c.custType,"existing");
+	else
+		printf("\nInvalid type");
+		goto choose_type; 	
+
+	
 
 	FILE *fp; 
 	fp = fopen("../data/Customer.txt","a+");
@@ -108,6 +137,7 @@ void delete_customer()
 	
 void update_customer()
 {
+	
     int custIDToUpdate;
 	printf("\nEnter Customer ID to delete the customer : ");
 	scanf(" %d", &custIDToUpdate);
@@ -178,6 +208,8 @@ void update_customer()
 	// }
 	// fclose(fp);
 	// fclose(tempFile);
+
+	
 }
 	
 

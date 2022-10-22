@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<header.h>
+#include"CRM_login.c"
+#include"customer_login.c"
 
 int main()
 {   
@@ -13,7 +15,7 @@ int main()
         printf("\n2. Customer Login");
         printf("\n3. Exit Application");
 
-        printf("\nChoice- ");
+        printf("\nEnter yout choice- ");
         int choice;
         scanf("%d",&choice);
             
@@ -28,7 +30,7 @@ int main()
         }
         getchar();
         printf("\nContinue to Login Mode....(Y/N) ");
-        scanf("%c",&ch);
+        ch=getchar();
     } while(ch=='Y'||ch=='y');    
      
     return EXIT_SUCCESS;

@@ -58,9 +58,9 @@ extern void totalreports();
 extern void view_reports();
 
 //funtions to validate
-extern int isValidDate(int,int,int);
-extern int isValidPass(char*);
-extern int isValidCustID(int);
+//extern int isValidDate(int,int,int);
+//extern int isValidPass(char*);
+//extern int isValidCustID(int);
 
 
 // Functions to update Customer Details

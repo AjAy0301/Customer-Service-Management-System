@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include<stdbool.h>
 #include<macros.h>
 #include<struct.h>
 #include<functions.h>
@@ -49,6 +48,7 @@ int find_customer(int custID)
 
 void add_customer()
 {
+/*
 	customer c;
 	printf("\nEnter Customer Details : ");
 
@@ -79,109 +79,23 @@ void add_customer()
 	c.custType[strlen(c.custType)-1] = '\0';
 
 	FILE *fp; 
-	fp = fopen("../data/Customer.txt","a+");
-	
-	fprintf(fp, "%d\t%d\t%s\t%s\t%s\t%s\t|\n", c.custID, c.phoneNum, c.firstName, c.lastName, c.custType);
+	fp = fopen("Customer.txt","ab+");
+
+	fwrite(&c, sizeof(customer), 1, fp);
+	fprintf(fp, " |\n");
 	fclose(fp);
+*/
 
 }
 
 void delete_customer()
 {
-	int custIDToDelete;
-	printf("\nEnter Customer ID to delete the customer : ");
-	scanf(" %d", &custIDToDelete);
-	customer cust;
-	FILE *tempFile = fopen("../data/TempCust.txt", "w+");
-	FILE *fp = fopen("../data/Customer.txt", "w+");
-	while(fscanf(fp, "%d\t%d\t%s\t%s\t%s\t%s", &cust.custID, &cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType)==4){
-		if(!(cust.custID==custIDToDelete)){
-			fprintf(tempFile, "%d\t%d\t%s\t%s\t%s\t%s|\n", cust.custID,cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType);
-		}
-	}
-	rewind(fp);
-	rewind(tempFile);
-	while (fscanf(tempFile, "%d\t%d\t%s\t%s\t%s\t%s", &cust.custID, &cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType)==4){
-		fprintf(fp, "%d\t%d\t%s\t%s\t%s\t%s|\n", cust.custID, cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType);
-	}
-	fclose(fp);
-	fclose(tempFile);
-	remove("../data/tempCust.txt");
-
+    
 }
 	
 void update_customer()
 {
-    int custIDToUpdate;
-	printf("\nEnter Customer ID to delete the customer : ");
-	scanf(" %d", &custIDToUpdate);
-	printf("Which of the following data you want to change? :\n");
-	printf("1.Phone Number\n2.Name\n3.Address4.\nCustomer Type");
-	int opt;
-	switch (opt)
-	{
-	case 1:
-		int newNumber;
-		printf("Please enter the new phone number:");
-		scanf(" %d", &newNumber);
-		break;
-	case 2:
-		char firstName[SIZE], lastName[SIZE];
-		printf("Please enter your First Name and Last Name with space in between:");
-		scanf(" %s %s", firstName, lastName);
-		int changed = changeName(firstName, lastName);
-		if(changed){
-			printf("Name updated successfully!\n");
-		}else{
-			printf("Name could not be updated ):\n");
-		}
-		break;
-	case 3:
-		char address[BIGSIZE];
-		printf("Please enter the new address:");
-		scanf("%[^\n]s", address);
-		int changed = changeAddress(address);
-		if(changed){
-			printf("Address updated successfully!\n");
-		}else{
-			printf("Address could not be updated ):\n");
-		}
-		break;
-	case 4:
-		char custType[SIZE];
-		tryAgain:
-		printf("Please enter the new custType:");
-		scanf(" %[^\n]s", custType);
-		int changed = changeCustType(custType);
-		if(changed){
-			printf("Customer Type updated successfully!\n");
-		}else{
-			printf("Customer Type could not be updated ):\n");
-		}
-		break;
-	default:
-		printf("You entered an invalid input. Would you like to try again? :\n");
-		printf("Press \"Y/y\" if you want to try again, and \"N/n\" if you don't want to do that.");
-		char choice;
-		scanf(" %c", &choice);
-		if(choice=='y' || choice=='Y')
-			goto tryAgain;
-		break;
-	}
-
-	// customer cust;
-	// FILE *tempFile = fopen("TempCust.txt", "w+");
-	// FILE *fp = fopen("Customer.txt", "w+");
-	// while(fscanf(fp, "%d\t%d\t%s\t%s\t%s\t%s", &cust.custID, &cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType)==4){
-	// 	if(!(cust.custID==custIDToUpdate)){
-	// 		fprintf(tempFile, "%d\t%d\t%s\t%s\t%s\t%s|\n", cust.custID,cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType);
-	// 	}
-	// }
-	// while (fscanf(tempFile, "%d\t%d\t%s\t%s\t%s\t%s", &cust.custID, &cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType)==4){
-	// 	fprintf(fp, "%d\t%d\t%s\t%s\t%s\t%s|\n", cust.custID, cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType);
-	// }
-	// fclose(fp);
-	// fclose(tempFile);
+    
 }
 	
 

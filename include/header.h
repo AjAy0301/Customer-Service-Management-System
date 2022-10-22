@@ -1,6 +1,8 @@
 #ifndef HEADER_H
 #define HEADER_H
 
+#pragma once
+
 /*-----macros declaration-----*/
 
 #define SIZE 30
@@ -58,9 +60,12 @@ extern void totalreports();
 extern void view_reports();
 
 //funtions to validate
-//extern int isValidDate(int,int,int);
-//extern int isValidPass(char*);
-//extern int isValidCustID(int);
+extern int isValidDate(int,int,int);
+extern int isValidPass(char*);
+extern int isValidCustID(int);
+extern int isPhoneValid(char*);
+extern int isNameValid(char*);
+
 
 
 // Functions to update Customer Details

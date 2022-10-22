@@ -89,7 +89,7 @@ void add_request()
 
         switch (choice)
         {
-            case 1:strcpy(req_type,"demo");
+            case 1: strcpy(req_type,"demo");
                 demo(r.requestID);
                 break;
             case 2:strcpy(req_type,"service");

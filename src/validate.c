@@ -1,6 +1,9 @@
+#pragma once
 #include<stdio.h>
 #include<stdlib.h>
+#include<ctype.h>
 #include<header.h>
+
 
 /*----------------DATE VALIDATION FUNCTION-------------------*/ 
 int isValidDate(int dd, int mm, int yy)
@@ -40,21 +43,10 @@ int isValidPass(char *str)
 	}
 	else
 	{
-        char ch;
-        int i=0, flag=1;
-		while(ch = fgetc(fp))
-		{
-			if(ch == EOF)
-				break;
-			if(ch!=str[i++])
-                flag=0;
-
-		}
-        if(str[i]!='\0')
-            flag=0;      
-		fclose(fp);
-
-        if(flag)
+        char pass[SIZE];
+        fscanf(fp,"%s",pass);
+       		
+        if( strcmp(pass,str) == 0 )
             return VALID;
         else
             return INVALID;

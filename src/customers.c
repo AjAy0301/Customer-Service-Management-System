@@ -52,13 +52,13 @@ void add_customer()
    	printf("\nCustomer Id: ");
 	scanf("%d",&c.custID); 
 
+	enter_phoneNum:
 	printf("\nMobile Number : ");
-	while(scanf("%ld",&c.phoneNum))
+	scanf("%ld",&c.phoneNum);
+	if(!isPhoneValid(c.phoneNum))
 	{
-		if(isPhoneValid(c.phoneNum))
-			break;
-		else
-			printf("\nInvalid Phone Number");
+		printf("\nInvalid Phone Number");
+		goto enter_phoneNum;
 
 	}
 	getchar( );
@@ -155,8 +155,8 @@ void update_customer()
 		char firstName[SIZE], lastName[SIZE];
 		printf("Please enter your First Name and Last Name with space in between:");
 		scanf(" %s %s", firstName, lastName);
-		int changed = changeName(firstName, lastName);
-		if(changed){
+		int changed1 = changeName(firstName, lastName);
+		if(changed1){
 			printf("Name updated successfully!\n");
 		}else{
 			printf("Name could not be updated ):\n");
@@ -166,8 +166,8 @@ void update_customer()
 		char address[BIGSIZE];
 		printf("Please enter the new address:");
 		scanf(" %[^\n]s", address);
-		int changed = changeAddress(address);
-		if(changed){
+		int changed2 = changeAddress(address);
+		if(changed2){
 			printf("Address updated successfully!\n");
 		}else{
 			printf("Address could not be updated ):\n");
@@ -178,8 +178,8 @@ void update_customer()
 		tryAgain:
 		printf("Please enter the new custType:");
 		scanf(" %[^\n]s", custType);
-		int changed = changeCustType(custType);
-		if(changed){
+		int changed3 = changeCustType(custType);
+		if(changed3){
 			printf("Customer Type updated successfully!\n");
 		}else{
 			printf("Customer Type could not be updated ):\n");

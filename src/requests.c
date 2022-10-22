@@ -32,6 +32,7 @@ void manage_request()
 	}
 }
 
+
 int generate_requestID(){
     
     return 101;
@@ -41,8 +42,23 @@ int generate_requestID(){
 
 void add_request()
 {
+    printf("\nEnter the details for creating new request :- ");
 
-    /*request r;
+    request r;
+
+    r.requestID=generate_requestID;
+
+    printf("\nEnter Customer ID:");
+    while(scanf("%d",&r.customerID))
+    {
+        if(isValidCustID(r.customerID))
+            break;
+        else
+            printf("\nInvalid Customer ID \nEnter Customer ID: "); 
+
+    }    
+    
+
     while (1)
     {    
         printf("\nRequest Date:");
@@ -51,8 +67,49 @@ void add_request()
             break;
         else
             printf("Invalid Date...Enter again");
+           
     }
-    */
+
+    char *req_type = (char*)calloc(sizeof(char),SIZE);
+
+    while(1)
+    {
+        
+
+        printf("\nPlease select the type of Request you have -");
+        printf("\n1. Demo Request");
+        printf("\n2. Service Request");
+        printf("\n3. Complaint");
+
+        enter_choice:
+        printf("\nEnter your choice: ");
+        getchar();
+        int choice;
+        scanf("%d",&choice);
+
+        switch (choice)
+        {
+            case 1:strcpy(req_type,"demo");
+                demo(r.requestID);
+                break;
+            case 2:strcpy(req_type,"service");
+                service(r.requestID);
+                break;
+            case 3:strcpy(req_type,"complaint");
+                complaint(r.requestID);
+                break;        
+                
+            default: printf("\nInvalid Choice..");
+                goto enter_choice;
+        }
+
+    }
+
+    strcpy(r.description,req_type);
+    strcpy(r.requestStatus,"OPEN");
+
+
+    //add to database    
     
 }
 

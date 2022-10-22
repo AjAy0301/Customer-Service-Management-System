@@ -52,22 +52,18 @@ void add_customer()
    	printf("\nCustomer Id: ");
 	scanf("%d",&c.custID); 
 
-	enter_phoneNum:
-	printf("\nMobile Number : ");
-	scanf("%ld",&c.phoneNum);
-	if(!isPhoneValid(c.phoneNum))
-	{
-		printf("\nInvalid Phone Number");
-		goto enter_phoneNum;
-
+	phone_num:
+	printf("\nPhone Number: ");
+	scanf("%s",c.phoneNum);
+	if(!isNameValid(c.phoneNum)){
+		printf("\nInvalid name format enter again");
+		goto phone_num;
 	}
 	getchar( );
 
 	first_name:
 	printf("\nFirst Name : ");
-	fgets(c.firstName,SIZE,stdin);
-	c.firstName[strlen(c.firstName)-1] = '\0';
-
+	scanf("%s",c.firstName);
 	if(!isNameValid(c.firstName)){
 		printf("\nInvalid name format enter again");
 		goto first_name;
@@ -76,8 +72,7 @@ void add_customer()
 
 	second_name:
 	printf("\nLast Lame : ");
-	fgets(c.lastName,SIZE,stdin);
-	c.lastName[strlen(c.lastName)-1] = '\0';
+	scanf("%s",c.firstName);
 	if(!isNameValid(c.firstName)){
 		printf("\nInvalid name format enter again");
 		goto second_name;
@@ -147,9 +142,9 @@ void update_customer()
 	switch (opt)
 	{
 	case 1:
-		int newNumber;
+		char newNumber[SIZE];
 		printf("Please enter the new phone number:");
-		scanf(" %d", &newNumber);
+		scanf(" %s",newNumber);
 		break;
 	case 2:
 		char firstName[SIZE], lastName[SIZE];

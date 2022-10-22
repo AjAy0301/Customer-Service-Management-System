@@ -27,7 +27,7 @@ typedef struct Requests{
 
 typedef struct Customer {
 	int custID;
-	int phoneNum;
+	char phoneNum[SIZE];
 	char firstName[SIZE];
     char lastName[SIZE];
     char address[BIGSIZE];

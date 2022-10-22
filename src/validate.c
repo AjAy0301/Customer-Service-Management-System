@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<macros.h>
+#include<header.h>
 
 /*----------------DATE VALIDATION FUNCTION-------------------*/ 
 int isValidDate(int dd, int mm, int yy)
@@ -29,7 +29,7 @@ int isValidDate(int dd, int mm, int yy)
 }
 
 /*-------------PASSWORD VALIDATION FUNCTION-----------------*/
-int validatePass(char *str)
+int isValidPass(char *str)
 {
     FILE *fp; 
 	fp = fopen("../data/password.txt","r");
@@ -62,6 +62,6 @@ int validatePass(char *str)
 }
 
 /*-------------CUTSOMER ID VALIDATION FUNCTION-----------------*/
-int validateCustID(int custID){
+int isValidCustID(int custID){
     //code for validating custID.
 }

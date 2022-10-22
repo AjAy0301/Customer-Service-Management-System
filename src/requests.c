@@ -1,9 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include<macros.h>
-#include<struct.h>
-#include<functions.h>
+#include<header.h>
 
 void manage_request()
 {
@@ -32,6 +30,11 @@ void manage_request()
 		default: printf("Invalid Choice...");
 			goto enter_choice;
 	}
+}
+
+int generate_requestID(){
+    
+    return 101;
 }
 
 

@@ -2,9 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<stdbool.h>
-#include<macros.h>
-#include<struct.h>
-#include<functions.h>
+#include<header.h>
 
 void manage_customer( )
 {
@@ -29,7 +27,7 @@ void manage_customer( )
 			break;
 		case 3: delete_customer();
 			break;
-		case 4: crm_login();
+		case 4: return;
 			break;
 		case 5: exit(0);	
 		default: printf("Invalid Choice...");
@@ -39,11 +37,9 @@ void manage_customer( )
 }
 
 
-int find_customer(int custID)
-{
-
+int generate_custID(){
     
-    return FOUND;
+    return 111;
 }
 
 
@@ -81,7 +77,7 @@ void add_customer()
 	FILE *fp; 
 	fp = fopen("../data/Customer.txt","a+");
 	
-	fprintf(fp, "%d\t%d\t%s\t%s\t%s\t%s\t|\n", c.custID, c.phoneNum, c.firstName, c.lastName, c.custType);
+	fprintf(fp, "%d\t%ld\t%s\t%s\t%s\t%s\t|\n", c.custID, c.phoneNum, c.firstName, c.lastName, c.custType);
 	fclose(fp);
 
 }

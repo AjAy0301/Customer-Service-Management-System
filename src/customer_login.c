@@ -1,31 +1,30 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<validate.h>
-#include<functions.h>
+#include<header.h>
 
 void customer_login()
 {   
-    system("clear");     
-    printf("------REQUEST PORTAL-----");
+    while(1){
+        system("clear");
+        printf("------REQUEST PORTAL-----");
+        printf("\nEnter Customer ID: ");
+        int custID;
+        scanf("%d",&custID);
 
-    enter_custid:
-    printf("\nEnter Customer ID: ");
-    int custID;
-    scanf("%d",&custID);
+        if(validateCustID(custID)){
 
-    if(find_customer(custID)){
-
-        printf("\nhello");
             
-    }
-    else{
-        printf("\nCustomer NOT FOUND!!!");
-        printf("Try Again?...(Y/N)");
-        char ch;
-        getchar();
-        if(ch=='Y'||ch=='y')
-                goto enter_custid;
-        else
-              return;
+                
+        }
+        else{
+            printf("\nCustomer NOT FOUND!!!");
+            printf("Try Again?...(Y/N)");
+            char ch;
+            getchar();
+            if(ch=='Y'||ch=='y')
+                continue;
+            else
+                return;
+        }
     }
 }

@@ -24,7 +24,7 @@ requests_desc.o:
 	${CFLAGS} ${SRCDIR}/requests_desc.c -o ${OBJDIR}/requests_desc.o
 
 finalexe: 
-	gcc ${OBJDIR}/main.o ${OBJDIR}/CRM_login.o ${OBJDIR}/customer_login.o ${OBJDIR}/requests.o ${OBJDIR}/reports.o ${OBJDIR}/requests_desc.o ${OBJDIR}/validate.o -o ${BINDIR}/application.exe
+	gcc ${OBJDIR}/main.o ${OBJDIR}/CRM_login.o ${OBJDIR}/customer_login.o ${OBJDIR}/customers.o ${OBJDIR}/requests.o ${OBJDIR}/reports.o ${OBJDIR}/requests_desc.o ${OBJDIR}/validate.o -o ${BINDIR}/application.exe
 
 clean:
-	rm ${OBJDIR}/main.o ${OBJDIR}/CRM_login.o ${OBJDIR}/customer_login.o ${OBJDIR}/requests.o ${OBJDIR}/reports.o ${OBJDIR}/requests_desc.o ${OBJDIR}/validate.o
+	${OBJDIR}/main.o ${OBJDIR}/CRM_login.o ${OBJDIR}/customer_login.o ${OBJDIR}/customers.o ${OBJDIR}/requests.o ${OBJDIR}/reports.o ${OBJDIR}/requests_desc.o ${OBJDIR}/validate.o

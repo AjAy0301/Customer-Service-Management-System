@@ -59,6 +59,11 @@ int isValidCustID(int custID){
     return 1;
 }
 
+extern int isValidRequestID(int requestID){
+    //code for validating requestID
+    return 1;
+}
+
 /*-------------NAME VALIDATION FUNCTION-----------------*/
 
 int isNameValid(char *name)
@@ -90,4 +95,5 @@ int isPhoneValid(char *pnum)
 	}
 	return VALID; 
 }
+
 

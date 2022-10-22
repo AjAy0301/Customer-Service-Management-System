@@ -11,18 +11,20 @@
 #define INVALID 0
 
 /*------structures defination----------*/
-typedef struct Date{
+typedef struct Date
+{
     int d;        
     int m;        
     int y;        
 }date;
 
-typedef struct Requests{
+typedef struct Requests
+{
 	int requestID;
     int customerID;
     date requestDate;
     char description[SIZE];
-    char requestStatus[SIZE];         
+    char requestStatus[SIZE];                 
 }request;
 
 typedef struct Customer {
@@ -63,6 +65,7 @@ extern void view_reports();
 extern int isValidDate(int,int,int);
 extern int isValidPass(char*);
 extern int isValidCustID(int);
+extern int isValidRequestID(int);
 extern int isPhoneValid(char*);
 extern int isNameValid(char*);
 

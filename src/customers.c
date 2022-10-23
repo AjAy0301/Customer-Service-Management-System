@@ -115,8 +115,8 @@ void delete_customer()
 	int custIDToDelete;
 	printf("\nEnter Customer ID to delete the customer : ");
 	scanf(" %d", &custIDToDelete);
-	FILE *fp = fopen("../data/customers.txt", "r");
-	FILE *tp = fopen("../data/temp.txt", "a");
+	FILE *fp = fopen("../data/customers.txt", "a+");
+	FILE *tp = fopen("../data/temp.txt", "a+");
 
 	while (fscanf(fp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType))
 	{
@@ -142,8 +142,8 @@ void update_customer()
 	int custIDToUpdate;
 	printf("\nEnter Customer ID to update the customer : ");
 	scanf(" %d", &custIDToUpdate);
-	FILE *fp = fopen("../data/customers.txt", "r");
-	FILE *tp = fopen("../data/temp.txt", "a");
+	FILE *fp = fopen("../data/customers.txt", "a+");
+	FILE *tp = fopen("../data/temp.txt", "a+");
 
 	while (fscanf(fp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType))
 	{

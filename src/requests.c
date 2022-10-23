@@ -127,8 +127,8 @@ void delete_request()
         scanf("%c", ch);
     } while (ch == 'y' || ch == 'Y');
 
-    FILE *fp = fopen("../data/requests.txt", "r");
-    FILE *tp = fopen("../data/temp.txt", "a");
+    FILE *fp = fopen("../data/requests.txt", "a+");
+    FILE *tp = fopen("../data/temp.txt", "a+");
 
     while (fscanf(fp, "%d|%d|%d-%d-%d|%s|%s\n", &r->requestID, &r->customerID, &r->requestDate.d, &r->requestDate.m, &r->requestDate.y, r->description, r->requestStatus) != EOF)
     {
@@ -154,8 +154,8 @@ void update_request()
     {
         system("clear");
 
-        FILE *fp = fopen("../data/requests.txt", "r");
-        FILE *tp = fopen("../data/temp.txt", "a");
+        FILE *fp = fopen("../data/requests.txt", "a+");
+        FILE *tp = fopen("../data/temp.txt", "a+");
 
         request *r = (request *)calloc(1, sizeof(request));
 

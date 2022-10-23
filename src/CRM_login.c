@@ -6,7 +6,7 @@
 #include "validate.c"
 #include "reports.c"
 
-void CRM_login()
+int CRM_login()
 {
     system("clear");
     printf("------CRM Login------");
@@ -22,7 +22,7 @@ void CRM_login()
         if (isValidPass(pass))
         {
             char ch;
-            while (1)
+            do
             {
                 printf("\n1. Manage Customer");
                 printf("\n2. Manage Requests");
@@ -56,9 +56,7 @@ void CRM_login()
                 printf("\nwant to continue...(Y/N");
                 getchar();
                 ch = getchar();
-            }
-            while (ch == 'Y' || ch == 'y')
-                ;
+            } while (ch == 'Y' || ch == 'y');
         }
 
         else
@@ -73,4 +71,5 @@ void CRM_login()
             continue;
         }
     }
+    return EXIT_SUCCESS;
 }

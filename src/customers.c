@@ -1,17 +1,29 @@
+/*******************************************************************************************************************
+ * * FILE NAME : customers.c
+ *
+ * * DESCRIPTION : .
+ *
+ * * Revision History:
+ * 	DATE				NAME 				REASON
+ *-----------------------------------------------------------------------------------------------------------------
+ *  23/10/2022			Ajay Kumar		Creation of file
+ * 
+*******************************************************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 #include <header.h>
 
-void manage_customer()
+int manage_customer()
 {
 	system("clear");
 	printf("----Customer Database----");
 	printf("\n1. Add New Customer");
 	printf("\n2. Update Customer Details");
 	printf("\n3. Remove Customer");
-	printf("\n4. Back to Main Menu");
+	printf("\n4. Go Back");
 	printf("\n5. Exit Application");
 
 enter_choice:
@@ -39,7 +51,11 @@ enter_choice:
 		printf("Invalid Choice...");
 		goto enter_choice;
 	}
+	return EXIT_SUCCESS;
 }
+
+
+/***********************Funtion to auto generate Customer ID*************************/
 
 int generate_custID()
 {
@@ -47,21 +63,25 @@ int generate_custID()
 	return 111;
 }
 
-void add_customer()
+
+
+/***********************Funtion for adding a customer to the database*************************/
+
+int add_customer()
 {
 	customer *c = (customer *)calloc(1, sizeof(customer));
 	printf("\nEnter Customer Details : ");
 
-	// c->custID = generate_custID;
+	// c->custID = generate_custID();
 	printf("\nCustomer Id: ");
 	scanf("%d", &c->custID);
 
 phone_num:
 	printf("\nPhone Number: ");
 	scanf("%s", c->phoneNum);
-	if (!isNameValid(c->phoneNum))
+	if (!isPhoneValid(c->phoneNum))
 	{
-		printf("\nInvalid name format enter again");
+		printf("\nInvalid phone number enter again");
 		goto phone_num;
 	}
 	getchar();
@@ -107,9 +127,15 @@ choose_type:
 	fp = fopen("../data/Customers.txt", "a");
 	fprintf(fp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 	fclose(fp);
+
+	return EXIT_SUCCESS;
 }
 
-void delete_customer()
+
+
+/***********************Funtion for deleting a customer from the database*************************/
+
+int delete_customer()
 {
 	customer *c = (customer *)calloc(1, sizeof(customer));
 	int custIDToDelete;
@@ -134,9 +160,15 @@ void delete_customer()
 	fclose(fp);
 	fclose(tp);
 	remove("../data/temp.txt");
+
+	return EXIT_SUCCESS;
 }
 
-void update_customer()
+
+
+/***********************Funtion for updating the details of existing customer in the database*************************/
+
+int update_customer()
 {
 	customer *c = (customer *)calloc(1, sizeof(customer));
 	int custIDToUpdate;
@@ -213,4 +245,6 @@ void update_customer()
 	fclose(fp);
 	fclose(tp);
 	remove("../data/temp.txt");
+
+	return EXIT_SUCCESS;
 }

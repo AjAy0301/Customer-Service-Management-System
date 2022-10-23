@@ -1,3 +1,15 @@
+/*******************************************************************************************************************
+ * * FILE NAME : main.c
+ *
+ * * DESCRIPTION : This is the main menu file which through which different login mode can be accessed.
+ *
+ * * Revision History:
+ * 	DATE				NAME 				REASON
+ *-----------------------------------------------------------------------------------------------------------------
+ *  23/10/2022			Ajay Kumar		Creation of file
+ * 
+*******************************************************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <header.h>

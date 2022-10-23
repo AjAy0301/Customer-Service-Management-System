@@ -3,7 +3,7 @@
 #include <header.h>
 #include "validate.c"
 
-void customer_login()
+int customer_login()
 {
     while (1)
     {
@@ -38,4 +38,5 @@ void customer_login()
                 return;
         }
     }
+    return EXIT_SUCCESS;
 }

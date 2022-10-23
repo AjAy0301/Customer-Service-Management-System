@@ -1,9 +1,21 @@
+/*******************************************************************************************************************
+ * * FILE NAME : customers.c
+ *
+ * * DESCRIPTION : .
+ *
+ * * Revision History:
+ * 	DATE				NAME 				REASON
+ *-----------------------------------------------------------------------------------------------------------------
+ *  23/10/2022			Ajay Kumar		Creation of file
+ * 
+*******************************************************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <header.h>
 
-void manage_request()
+int manage_request()
 {
     system("clear");
     printf("\n1. Add Request");
@@ -37,7 +49,12 @@ enter_choice:
         printf("Invalid Choice...");
         goto enter_choice;
     }
+    return EXIT_SUCCESS;
 }
+
+
+
+/***********************Funtion to generate Request ID*************************/
 
 int generate_requestID()
 {
@@ -45,7 +62,11 @@ int generate_requestID()
     return 101;
 }
 
-void add_request()
+
+
+/***********************Funtion to add a request*************************/
+
+int add_request()
 {
     printf("\nEnter the details for creating new request :- ");
 
@@ -106,9 +127,14 @@ enter_choice:
     FILE *fp = fopen("../data/requests.txt", "a");
     fprintf(fp, "%d|%d|%d-%d-%d|%s|%s\n", r->requestID, r->customerID, r->requestDate.d, r->requestDate.m, r->requestDate.y, r->description, r->requestStatus);
     fclose(fp);
+    return EXIT_SUCCESS;
 }
 
-void delete_request()
+
+
+/***********************Funtion to delete a request*************************/
+
+int delete_request()
 {
     request *r = (request *)calloc(1, sizeof(request));
 
@@ -145,9 +171,15 @@ void delete_request()
     fclose(fp);
     fclose(tp);
     remove("../data/temp.txt");
+
+    return EXIT_SUCCESS;
 }
 
-void update_request()
+
+
+/***********************Funtion to update details of existing request*************************/
+
+int update_request()
 {
     char ch;
     do
@@ -291,4 +323,6 @@ void update_request()
         fclose(tp);
         remove("../data/temp.txt");
     } while (ch == 'y' || ch == 'Y');
+
+    return EXIT_SUCCESS;
 }

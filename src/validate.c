@@ -4,7 +4,8 @@
 #include <ctype.h>
 #include <header.h>
 
-/*----------------DATE VALIDATION FUNCTION-------------------*/
+/***********************Date validation funtion**************************/
+
 int isValidDate(int dd, int mm, int yy)
 {
     if (yy >= 1900 && yy <= 9999)
@@ -29,7 +30,9 @@ int isValidDate(int dd, int mm, int yy)
         return INVALID;
 }
 
-/*-------------PASSWORD VALIDATION FUNCTION-----------------*/
+
+/***********************Password validation function**************************/
+
 int isValidPass(char *str)
 {
     FILE *fp;
@@ -51,20 +54,8 @@ int isValidPass(char *str)
     }
 }
 
-/*-------------CUTSOMER ID VALIDATION FUNCTION-----------------*/
-int isValidCustID(int custID)
-{
-    // code for validating custID.
-    return 1;
-}
 
-extern int isValidRequestID(int requestID)
-{
-    // code for validating requestID
-    return 1;
-}
-
-/*-------------NAME VALIDATION FUNCTION-----------------*/
+/***********************Name validation function**************************/
 
 int isNameValid(char *name)
 {
@@ -79,7 +70,8 @@ int isNameValid(char *name)
     return VALID;
 }
 
-/*-------------MOBILE NUMBER VALIDATION FUNCTION-----------------*/
+
+/***********************Phone Number validation funtion**************************/
 
 int isPhoneValid(char *pnum)
 {
@@ -95,3 +87,22 @@ int isPhoneValid(char *pnum)
     }
     return VALID;
 }
+
+
+/***********************Customer ID validation function**************************/
+
+int isValidCustID(int custID)
+{
+    // code for validating custID.
+    return VALID;
+}
+
+
+/***********************Request ID validation function**************************/
+
+extern int isValidRequestID(int requestID)
+{
+    // code for validating requestID
+    return VALID;
+}
+

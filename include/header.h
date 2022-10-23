@@ -3,14 +3,14 @@
 
 #pragma once
 
-/*-----macros declaration-----*/
+/*-----Macros-----*/
 
 #define SIZE 30
 #define BIGSIZE 80
 #define VALID 1
 #define INVALID 0
 
-/*------structures defination----------*/
+/*-----Structures Defination-----*/
 
 typedef struct Customer
 {
@@ -58,48 +58,46 @@ typedef struct Service_requests
 typedef struct Complaint_requests
 {
     int requestID;
-    int AMCduration;
-    date AMCdate;
-    date purchasedDate;
-    char productName[SIZE];
+    char category[SIZE];
+    char sub_category[SIZE];
+    char description[SIZE];
 } complaint_req;
 
-/*-----funtions------*/
+/*-----Funtions Declaration-----*/
 
-extern void CRM_login();
-extern void customer_login();
-extern void manage_customer();
+extern int CRM_login();
+extern int customer_login();
+
+// funtions to manage customers
+extern int manage_customer();
 extern int generate_custID();
-extern void add_customer();
-extern void update_customer();
-extern void delete_customer();
-extern void manage_request();
-extern int generate_requestID();
-extern void add_request();
-extern void update_request();
-extern void delete_request();
-extern void service(int);
-extern void demo(int);
-extern void complaint(int);
-extern void report1();
-extern void report2();
-extern void report3();
-extern void report4();
-extern void totalreports();
-extern void view_reports();
+extern int add_customer();
+extern int update_customer();
+extern int delete_customer();
 
-// funtions to validate
+// funtions to manage requests
+extern int manage_request();
+extern int generate_requestID();
+extern int add_request();
+extern int update_request();
+extern int delete_request();
+
+// funtions for managing demo, service and complaints
+extern int service(int);
+extern int demo(int);
+extern int complaint(int);
+extern int del_req_desc(int, char);
+
+// funtions to view and generate reports
+extern int totalreports();
+extern int view_reports();
+
+// funtions for validations
 extern int isValidDate(int, int, int);
 extern int isValidPass(char *);
 extern int isValidCustID(int);
 extern int isValidRequestID(int);
 extern int isPhoneValid(char *);
 extern int isNameValid(char *);
-
-// Functions to update Customer Details
-extern int changeNumber(int num);
-extern int changeName(char *firstName, char *lastName);
-extern int changeAddress(char *address);
-extern int changeCustType(char *custType);
 
 #endif

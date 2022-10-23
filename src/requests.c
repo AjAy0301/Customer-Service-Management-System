@@ -67,37 +67,33 @@ void add_request()
 
     char *req_type = (char*)calloc(sizeof(char),SIZE);
 
-    while(1)
-    {  
-        printf("\nPlease select the type of Request you have -");
-        printf("\n1. Demo Request");
-        printf("\n2. Service Request");
-        printf("\n3. Complaint");
+    printf("\nPlease select the type of Request you have -");
+    printf("\n1. Demo Request");
+    printf("\n2. Service Request");
+    printf("\n3. Complaint");
 
-        enter_choice:
-        printf("\nEnter your choice: ");
-        getchar();
-        int choice;
-        scanf("%d",&choice);
-
-        switch (choice)
-        {
-            case 1: strcpy(r->description,"demo");
-                demo(r->requestID);
-                break;
-            case 2:strcpy(r->description,"service");
-                service(r->requestID);
-                break;
-            case 3:strcpy(r->description,"complaint");
-                complaint(r->requestID);
-                break;        
+    enter_choice:
+    printf("\nEnter your choice: ");
+    getchar();
+    int choice;
+    scanf("%d",&choice);
+    switch (choice)
+    {
+        case 1: strcpy(r->description,"demo");
+             demo(r->requestID);
+             break;
+        case 2:strcpy(r->description,"service");
+             service(r->requestID);
+             break;
+        case 3:strcpy(r->description,"complaint");
+             complaint(r->requestID);
+             break;        
                 
-            default: printf("\nInvalid Choice..");
-                goto enter_choice;
-        }
-
+        default: printf("\nInvalid Choice..");
+             goto enter_choice;
     }
 
+    
     strcpy(r->requestStatus,"open");
 
     FILE *fp = fopen("../data/requests.txt","a");
@@ -136,7 +132,7 @@ void delete_request()
 	rewind(tp);
 
     while(fscanf(tp,"%d|%d|%d-%d-%d|%s|%s\n",&r->requestID,&r->customerID,&r->requestDate.d,&r->requestDate.m,&r->requestDate.y,r->description,r->requestStatus)!=EOF)
-        fprintf(fp,"%d|%d|%d-%d-%d|%s|%s\n",r->requestID,r->customerID,r->requestDate.d,r->requestDate.m,r->requestDate.y,r->description,r->requestStatus)!=EOF){
+        fprintf(fp,"%d|%d|%d-%d-%d|%s|%s\n",r->requestID,r->customerID,r->requestDate.d,r->requestDate.m,r->requestDate.y,r->description,r->requestStatus);
 
     fclose(fp);
 	fclose(tp);
@@ -145,14 +141,17 @@ void delete_request()
 
 void update_request()
 {
-    system("clear");
-
-    FILE *fp = fopen("../data/requests.txt","r");
-    FILE *tp = fopen("../data/temp.txt","a");
-
-    int reqID;
-    char ch;
+    char ch;       
     do{
+        system("clear");
+
+        FILE *fp = fopen("../data/requests.txt","r");
+        FILE *tp = fopen("../data/temp.txt","a");
+        
+        request *r=(request*)calloc(1,sizeof(request)); 
+
+        int reqID;
+    
         system("clear");
         printf("Enter the Request ID for the request to be update");
         scanf("%d",&reqID);
@@ -160,52 +159,116 @@ void update_request()
         {
             printf("\nSelect what you want update in the request: ");
             printf("\n1. Update request description");
-            printf("\n2. Request Status")
-            printf("\n3. Return Back")
+            printf("\n2. Request Status");
+            printf("\n3. Return Back");
 
             enter_choice:
-            printf("Enter your choice");
-            int choice;
-            scanf("%d",&choice);
-            switch(choice);
+            printf("\nEnter your choice");
+            int opt;
+            scanf("%d",&opt);
+            switch(opt)
             {
-                case 1: while(fscanf(fp,"%d|%d|%d-%d-%d|%s|%s\n",&r->requestID,&r->customerID,&r->requestDate.d,&r->requestDate.m,&r->requestDate.y,r->description,r->requestStatus)!=EOF)
-                        {                            
-                            if(r->requestID==reqID)
-                            {
-                                if(strcmp(r->requestStatus,"open"))
-                                    strcpy(r->requestStatus,"closed");
-                                else
-                                    strcpy(r->requestStatus,"open");
+                 case 1: printf("\nwhat you want update in description: ");
+                         printf("\n1. Change Request Type");
+                         printf("\n2. Update the current request type description only");
+                        
+                         sel_opt:
+                         printf("Enter your choice: ");
+                         int c;
+                         scanf("%d",c);
+                         switch (c)
+                         {
+                            case 1: printf("\nPlease select the type of Request you have -");
+                                    printf("\n1. Demo Request");
+                                    printf("\n2. Service Request");
+                                    printf("\n3. Complaint");
 
-                            }
-                            fprintf(tp,"%d|%d|%d-%d-%d|%s|%s\n",r->requestID,r->customerID,r->requestDate.d,r->requestDate.m,r->requestDate.y,r->description,r->requestStatus);
-                        }
-                        rewind(fp);
-	                    rewind(tp);
+                                    entr_choice:
+                                    printf("\nEnter your choice: ");
+                                    getchar();
+                                    int choice;
+                                    scanf("%d",&choice);
 
-                        while(fscanf(tp,"%d|%d|%d-%d-%d|%s|%s\n",&r->requestID,&r->customerID,&r->requestDate.d,&r->requestDate.m,&r->requestDate.y,r->description,r->requestStatus)!=EOF)
-                            fprintf(fp,"%d|%d|%d-%d-%d|%s|%s\n",r->requestID,r->customerID,r->requestDate.d,r->requestDate.m,r->requestDate.y,r->description,r->requestStatus)!=EOF){
+                                    char *desc = (char*)calloc(sizeof(char),SIZE);
 
-                        fclose(fp);
-	                    fclose(tp);
-	                    remove("../data/temp.txt");   
+                                    switch (choice)
+                                    {
+                                        case 1: strcpy(desc,"demo");
+                                            demo(reqID);
+                                            break;
+                                        case 2:strcpy(desc,"service");
+                                            service(reqID);
+                                            break;
+                                        case 3:strcpy(desc,"complaint");
+                                            complaint(reqID);
+                                            break;                                               
+                                        default: printf("\nInvalid Choice..");
+                                            goto enter_choice;
+                                    }
+                                    while(fscanf(fp,"%d|%d|%d-%d-%d|%s|%s\n",&r->requestID,&r->customerID,&r->requestDate.d,&r->requestDate.m,&r->requestDate.y,r->description,r->requestStatus)!=EOF)
+                                    {                            
+                                        if(r->requestID==reqID){
+                                            del_req_desc(r->requestID,r->description);
+                                            strcpy(r->description,desc);
+                                        }
+                                            
+                                        fprintf(tp,"%d|%d|%d-%d-%d|%s|%s\n",r->requestID,r->customerID,r->requestDate.d,r->requestDate.m,r->requestDate.y,r->description,r->requestStatus);
+                                    }
+                                    rewind(fp);
+                                    rewind(tp);
+
+                                    while(fscanf(tp,"%d|%d|%d-%d-%d|%s|%s\n",&r->requestID,&r->customerID,&r->requestDate.d,&r->requestDate.m,&r->requestDate.y,r->description,r->requestStatus)!=EOF)
+                                        fprintf(fp,"%d|%d|%d-%d-%d|%s|%s\n",r->requestID,r->customerID,r->requestDate.d,r->requestDate.m,r->requestDate.y,r->description,r->requestStatus);
+
+                            case 2: while(fscanf(fp,"%d|%d|%d-%d-%d|%s|%s\n",&r->requestID,&r->customerID,&r->requestDate.d,&r->requestDate.m,&r->requestDate.y,r->description,r->requestStatus)!=EOF)
+                                    {                            
+                                        if(r->requestID==reqID){
+                                            if(strcmp(r->description,"demo"))
+                                                demo(reqID);
+                                            else if(strcmp(r->description,"complaint"))
+                                                complaint(reqID);
+                                            else
+                                                service(reqID);        
+                                        }
+                                    }  
+                                break;
+                            default: printf("Invalid Choice");
+                                goto sel_opt;
+                         }
                     break;
-                case 2: 
-                    break;
-                case 3: return;
-                
+                case 2: while(fscanf(fp,"%d|%d|%d-%d-%d|%s|%s\n",&r->requestID,&r->customerID,&r->requestDate.d,&r->requestDate.m,&r->requestDate.y,r->description,r->requestStatus)!=EOF)
+                                    {                            
+                                        if(r->requestID==reqID){
+                                            if(strcp(r->requestStatus,"open"))
+                                                strcpy(r->requestStatus,"close");
+                                            else
+                                                strcpy(r->requestStatus,"open");
+
+                                        }                                            
+                                        fprintf(tp,"%d|%d|%d-%d-%d|%s|%s\n",r->requestID,r->customerID,r->requestDate.d,r->requestDate.m,r->requestDate.y,r->description,r->requestStatus);
+                                    }
+                                    rewind(fp);
+                                    rewind(tp);
+
+                                    while(fscanf(tp,"%d|%d|%d-%d-%d|%s|%s\n",&r->requestID,&r->customerID,&r->requestDate.d,&r->requestDate.m,&r->requestDate.y,r->description,r->requestStatus)!=EOF)
+                                        fprintf(fp,"%d|%d|%d-%d-%d|%s|%s\n",r->requestID,r->customerID,r->requestDate.d,r->requestDate.m,r->requestDate.y,r->description,r->requestStatus);
+                    break;               
+                case 3: return;                
                 default: printf("\nInvalid Choice...");
-                    goto enter_choice;  
-            }
+                    goto enter_choice;
+            }      
+            
         }
         else
             printf("No request with this Request ID in database...");
 
         printf("\nWant to update more requests...(y/n)");
         getchar();
-        ch=getchar();            
+        ch=getchar();
+
+        fclose(fp);
+        fclose(tp);
+        remove("../data/temp.txt");             
     }while(ch=='y'||ch=='Y');  
 
 }
-    

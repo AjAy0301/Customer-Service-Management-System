@@ -49,17 +49,17 @@ int generate_custID()
 
 void add_customer()
 {
-	customer c;
+	customer *c = (customer *)calloc(1, sizeof(customer));
 	printf("\nEnter Customer Details : ");
 
-	// c.custID = generate_custID;
+	// c->custID = generate_custID;
 	printf("\nCustomer Id: ");
-	scanf("%d", &c.custID);
+	scanf("%d", &c->custID);
 
 phone_num:
 	printf("\nPhone Number: ");
-	scanf("%s", c.phoneNum);
-	if (!isNameValid(c.phoneNum))
+	scanf("%s", c->phoneNum);
+	if (!isNameValid(c->phoneNum))
 	{
 		printf("\nInvalid name format enter again");
 		goto phone_num;
@@ -68,8 +68,8 @@ phone_num:
 
 first_name:
 	printf("\nFirst Name : ");
-	scanf("%s", c.firstName);
-	if (!isNameValid(c.firstName))
+	scanf("%s", c->firstName);
+	if (!isNameValid(c->firstName))
 	{
 		printf("\nInvalid name format enter again");
 		goto first_name;
@@ -78,8 +78,8 @@ first_name:
 
 second_name:
 	printf("\nLast Lame : ");
-	scanf("%s", c.firstName);
-	if (!isNameValid(c.firstName))
+	scanf("%s", c->firstName);
+	if (!isNameValid(c->firstName))
 	{
 		printf("\nInvalid name format enter again");
 		goto second_name;
@@ -87,8 +87,8 @@ second_name:
 	getchar();
 
 	printf("\nPermanent Address :");
-	fgets(c.address, SIZE, stdin);
-	c.address[strlen(c.address) - 1] = '\0';
+	fgets(c->address, SIZE, stdin);
+	c->address[strlen(c->address) - 1] = '\0';
 	getchar();
 
 	int cust_type;
@@ -96,126 +96,121 @@ choose_type:
 	printf("\nCustomer Type (1-New or 2-Existing): ");
 	scanf("%d", cust_type);
 	if (cust_type == 1)
-		strcpy(c.custType, "new");
+		strcpy(c->custType, "new");
 	else if (cust_type == 2)
-		strcpy(c.custType, "existing");
+		strcpy(c->custType, "existing");
 	else
 		printf("\nInvalid type");
 	goto choose_type;
 
 	FILE *fp;
-	fp = fopen("../data/Customer.txt", "a+");
-
-	fprintf(fp, "%d\t%ld\t%s\t%s\t%s\t%s\t|\n", c.custID, c.phoneNum, c.firstName, c.lastName, c.custType);
+	fp = fopen("../data/Customers.txt", "a");
+	fprintf(fp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 	fclose(fp);
 }
 
 void delete_customer()
 {
+	customer *c = (customer *)calloc(1, sizeof(customer));
 	int custIDToDelete;
 	printf("\nEnter Customer ID to delete the customer : ");
 	scanf(" %d", &custIDToDelete);
-	customer cust;
-	FILE *tempFile = fopen("../data/TempCust.txt", "w+");
-	FILE *fp = fopen("../data/Customer.txt", "w+");
-	while (fscanf(fp, "%d\t%d\t%s\t%s\t%s\t%s", &cust.custID, &cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType) == 4)
+	FILE *fp = fopen("../data/customers.txt", "r");
+	FILE *tp = fopen("../data/temp.txt", "a");
+
+	while (fscanf(fp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType))
 	{
-		if (!(cust.custID == custIDToDelete))
+		if (!(c->custID == custIDToDelete))
 		{
-			fprintf(tempFile, "%d\t%d\t%s\t%s\t%s\t%s|\n", cust.custID, cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType);
+			fprintf(tp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 		}
 	}
 	rewind(fp);
-	rewind(tempFile);
-	while (fscanf(tempFile, "%d\t%d\t%s\t%s\t%s\t%s", &cust.custID, &cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType) == 4)
+	rewind(tp);
+	while (fscanf(tp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType))
 	{
-		fprintf(fp, "%d\t%d\t%s\t%s\t%s\t%s|\n", cust.custID, cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType);
+		fprintf(fp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 	}
 	fclose(fp);
-	fclose(tempFile);
-	remove("../data/tempCust.txt");
+	fclose(tp);
+	remove("../data/temp.txt");
 }
 
 void update_customer()
 {
-
+	customer *c = (customer *)calloc(1, sizeof(customer));
 	int custIDToUpdate;
-	printf("\nEnter Customer ID to delete the customer : ");
+	printf("\nEnter Customer ID to update the customer : ");
 	scanf(" %d", &custIDToUpdate);
-	printf("Which of the following data you want to change? :\n");
-	printf("1.Phone Number\n2.Name\n3.Address4.\nCustomer Type");
-	int opt;
-	switch (opt)
-	{
-	case 1:
-		char newNumber[SIZE];
-		printf("Please enter the new phone number:");
-		scanf(" %s", newNumber);
-		break;
-	case 2:
-		char firstName[SIZE], lastName[SIZE];
-		printf("Please enter your First Name and Last Name with space in between:");
-		scanf(" %s %s", firstName, lastName);
-		int changed1 = changeName(firstName, lastName);
-		if (changed1)
-		{
-			printf("Name updated successfully!\n");
-		}
-		else
-		{
-			printf("Name could not be updated ):\n");
-		}
-		break;
-	case 3:
-		char address[BIGSIZE];
-		printf("Please enter the new address:");
-		scanf(" %[^\n]s", address);
-		int changed2 = changeAddress(address);
-		if (changed2)
-		{
-			printf("Address updated successfully!\n");
-		}
-		else
-		{
-			printf("Address could not be updated ):\n");
-		}
-		break;
-	case 4:
-		char custType[SIZE];
-	tryAgain:
-		printf("Please enter the new custType:");
-		scanf(" %[^\n]s", custType);
-		int changed3 = changeCustType(custType);
-		if (changed3)
-		{
-			printf("Customer Type updated successfully!\n");
-		}
-		else
-		{
-			printf("Customer Type could not be updated ):\n");
-		}
-		break;
-	default:
-		printf("You entered an invalid input. Would you like to try again? :\n");
-		printf("Press \"Y/y\" if you want to try again, and \"N/n\" if you don't want to do that.");
-		char choice;
-		scanf(" %c", &choice);
-		if (choice == 'y' || choice == 'Y')
-			goto tryAgain;
-		break;
-	}
+	FILE *fp = fopen("../data/customers.txt", "r");
+	FILE *tp = fopen("../data/temp.txt", "a");
 
-	// customer cust;
-	// FILE *tempFile = fopen("TempCust.txt", "w+");
-	// FILE *fp = fopen("Customer.txt", "w+");
-	// while(fscanf(fp, "%d\t%d\t%s\t%s\t%s\t%s", &cust.custID, &cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType)==4){
-	// 	if(!(cust.custID==custIDToUpdate)){
-	// 		fprintf(tempFile, "%d\t%d\t%s\t%s\t%s\t%s|\n", cust.custID,cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType);
-	// 	}
-	// }
-	// while (fscanf(tempFile, "%d\t%d\t%s\t%s\t%s\t%s", &cust.custID, &cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType)==4){
-	// 	fprintf(fp, "%d\t%d\t%s\t%s\t%s\t%s|\n", cust.custID, cust.phoneNum, cust.firstName, cust.lastName, cust.address, cust.custType);
-	// }
-	// fclose(fp);
-	// fclose(tempFile);
+	while (fscanf(fp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType))
+	{
+		if ((c->custID == custIDToUpdate))
+		{
+			char ch;
+			do
+			{
+				printf("\nselect what you want to update-");
+				printf("\n1.First Name");
+				printf("\n2.Last Name");
+				printf("\n3.Address");
+				printf("\n4.Mobile Number");
+				int opt;
+				scanf("%c", &opt);
+				switch (opt)
+				{
+				case 1:
+					printf("\nEnter the new first name:");
+					char *fname = (char *)calloc(SIZE, sizeof(char));
+					getchar();
+					scanf("%s", fname);
+					strcpy(c->firstName, fname);
+					break;
+				case 2:
+					printf("\nEnter the new last name:");
+					char *lname = (char *)calloc(SIZE, sizeof(char));
+					getchar();
+					scanf("%s", lname);
+					strcpy(c->lastName, lname);
+					break;
+				case 3:
+					printf("\nEnter the new address:");
+					char *address = (char *)calloc(SIZE, sizeof(char));
+					getchar();
+					scanf("%s", address);
+					strcpy(c->address, address);
+					break;
+				case 4:
+					printf("\nEnter the new address:");
+					char *phone = (char *)calloc(SIZE, sizeof(char));
+					getchar();
+					scanf("%s", phone);
+					strcpy(c->phoneNum, phone);
+					break;
+
+				default:
+					printf("\nInvalid Choice...");
+				}
+				getchar();
+				printf("\nDo you want to update more things? press y");
+				ch = getchar();
+			} while (ch == 'y' || ch == 'Y');
+			fprintf(tp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
+		}
+		else
+		{
+			fprintf(tp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
+		}
+	}
+	rewind(fp);
+	rewind(tp);
+	while (fscanf(tp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType))
+	{
+		fprintf(fp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
+	}
+	fclose(fp);
+	fclose(tp);
+	remove("../data/temp.txt");
 }

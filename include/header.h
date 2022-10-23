@@ -11,6 +11,17 @@
 #define INVALID 0
 
 /*------structures defination----------*/
+
+typedef struct Customer
+{
+    int custID;
+    char phoneNum[SIZE];
+    char firstName[SIZE];
+    char lastName[SIZE];
+    char address[BIGSIZE];
+    char custType[SIZE];
+} customer;
+
 typedef struct Date
 {
     int d;
@@ -27,15 +38,31 @@ typedef struct Requests
     char requestStatus[SIZE];
 } request;
 
-typedef struct Customer
+typedef struct Demo_requests
 {
-    int custID;
-    char phoneNum[SIZE];
-    char firstName[SIZE];
-    char lastName[SIZE];
-    char address[BIGSIZE];
-    char custType[SIZE];
-} customer;
+    int requestID;
+    date demoDate;
+    char address[SIZE];
+    char suitableTime[SIZE];
+} demo_req;
+
+typedef struct Service_requests
+{
+    int requestID;
+    int AMCduration;
+    date AMCdate;
+    date purchasedDate;
+    char productName[SIZE];
+} service_req;
+
+typedef struct Complaint_requests
+{
+    int requestID;
+    int AMCduration;
+    date AMCdate;
+    date purchasedDate;
+    char productName[SIZE];
+} complaint_req;
 
 /*-----funtions------*/
 
@@ -51,9 +78,9 @@ extern int generate_requestID();
 extern void add_request();
 extern void update_request();
 extern void delete_request();
-extern void service_request();
-extern void demo_request();
-extern void complaint_request();
+extern void service(int);
+extern void demo(int);
+extern void complaint(int);
 extern void report1();
 extern void report2();
 extern void report3();

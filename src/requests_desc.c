@@ -3,15 +3,16 @@
 #include <string.h>
 #include <header.h>
 
-void demo()
+void demo(int request_ID)
+{
+
+}
+
+void complaint(int request_ID)
 {
 }
 
-void complaint()
-{
-}
-
-void service()
+void service(int request_ID)
 {
 }
 

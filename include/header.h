@@ -13,31 +13,31 @@
 /*------structures defination----------*/
 typedef struct Date
 {
-    int d;        
-    int m;        
-    int y;        
-}date;
+    int d;
+    int m;
+    int y;
+} date;
 
 typedef struct Requests
 {
-	int requestID;
+    int requestID;
     int customerID;
     date requestDate;
     char description[SIZE];
-    char requestStatus[SIZE];                 
-}request;
+    char requestStatus[SIZE];
+} request;
 
-typedef struct Customer {
-	int custID;
-	char phoneNum[SIZE];
-	char firstName[SIZE];
+typedef struct Customer
+{
+    int custID;
+    char phoneNum[SIZE];
+    char firstName[SIZE];
     char lastName[SIZE];
     char address[BIGSIZE];
     char custType[SIZE];
-}customer;
+} customer;
 
 /*-----funtions------*/
-
 
 extern void CRM_login();
 extern void customer_login();
@@ -61,20 +61,18 @@ extern void report4();
 extern void totalreports();
 extern void view_reports();
 
-//funtions to validate
-extern int isValidDate(int,int,int);
-extern int isValidPass(char*);
+// funtions to validate
+extern int isValidDate(int, int, int);
+extern int isValidPass(char *);
 extern int isValidCustID(int);
 extern int isValidRequestID(int);
-extern int isPhoneValid(char*);
-extern int isNameValid(char*);
-
-
+extern int isPhoneValid(char *);
+extern int isNameValid(char *);
 
 // Functions to update Customer Details
 extern int changeNumber(int num);
-extern int changeName(char* firstName, char* lastName);
-extern int changeAddress(char* address);
-extern int changeCustType(char* custType);
+extern int changeName(char *firstName, char *lastName);
+extern int changeAddress(char *address);
+extern int changeCustType(char *custType);
 
 #endif

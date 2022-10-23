@@ -1,32 +1,28 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<header.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <header.h>
 
-
-void report1(){
-
+void report1()
+{
 }
 
-void report2(){
-    
+void report2()
+{
 }
 
-void report3(){
-    
+void report3()
+{
 }
 
-void report4(){
-    
+void report4()
+{
 }
 
-void total_reports(){
-
+void total_reports()
+{
 }
 
-void view_reports(){
-    
+void view_reports()
+{
 }
-
-
-

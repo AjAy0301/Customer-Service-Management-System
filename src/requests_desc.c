@@ -1,23 +1,22 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<header.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <header.h>
 
-void demo(){
-    
+void demo()
+{
 }
 
-
-void complaint(){
-    
+void complaint()
+{
 }
 
-void service(){
-    
+void service()
+{
 }
 
-del_req_desc(int request_ID, char* desc){
+del_req_desc(int request_ID, char *desc)
+{
 
-    //desc will match the name text file and from that respective request id entry needs to be deleted
-
+    // desc will match the name text file and from that respective request id entry needs to be deleted
 }

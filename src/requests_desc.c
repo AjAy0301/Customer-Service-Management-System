@@ -18,6 +18,16 @@ void service(int request_ID)
 
 del_req_desc(int request_ID, char *desc)
 {
+    switch (expression)
+    {
+    case /* constant-expression */:
+        /* code */
+        break;
+    
+    default:
+        break;
+    }
 
-    // desc will match the name text file and from that respective request id entry needs to be deleted
 }
+
+    

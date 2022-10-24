@@ -59,8 +59,13 @@ enter_choice:
 
 int generate_custID()
 {
-
-	return 111;
+	int customerID;
+	FILE *f= fopen("custIDgenerate.txt","r+");
+	fscanf(f,"%d",&customerID);
+	customerID=customerID+1;
+	fprintf(f,"%d",customerID);
+	fclose(f);
+	return customerID;
 }
 
 

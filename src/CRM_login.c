@@ -2,9 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <header.h>
-#include "customers.c"
-#include "validate.c"
-#include "reports.c"
+
 
 int CRM_login()
 {
@@ -46,7 +44,7 @@ int CRM_login()
                     view_reports();
                     break;
                 case 4:
-                    return;
+                    return EXIT_SUCCESS;;
                 case 5:
                     exit(0);
                 default:
@@ -66,7 +64,7 @@ int CRM_login()
             if (attempt > 3)
             {
                 printf("\n Max Attempts Reached !!!");
-                return;
+                return EXIT_SUCCESS;
             }
             continue;
         }

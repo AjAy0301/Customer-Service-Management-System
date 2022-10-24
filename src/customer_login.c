@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <header.h>
-#include "validate.c"
 
 int customer_login()
 {
@@ -15,15 +14,7 @@ int customer_login()
 
         if (isValidCustID(custID))
         {
-            printf("\nPlease select the type of Request you have -");
-            printf("\n1. Demo Request");
-            printf("\n2. Service Request");
-            printf("\n3. Complaint");
-
-            printf("\nEnter your choice: ");
-            getchar();
-            int choice;
-            scanf("%d", choice);
+            add_request();
         }
         else
         {
@@ -35,7 +26,7 @@ int customer_login()
             if (ch == 'Y' || ch == 'y')
                 continue;
             else
-                return;
+                return EXIT_SUCCESS;
         }
     }
     return EXIT_SUCCESS;

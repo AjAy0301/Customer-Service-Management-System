@@ -43,7 +43,7 @@ enter_choice:
 		delete_customer();
 		break;
 	case 4:
-		return;
+		return EXIT_SUCCESS;
 		break;
 	case 5:
 		exit(0);
@@ -77,9 +77,7 @@ int add_customer()
 	customer *c = (customer *)calloc(1, sizeof(customer));
 	printf("\nEnter Customer Details : ");
 
-	// c->custID = generate_custID();
-	printf("\nCustomer Id: ");
-	scanf("%d", &c->custID);
+	c->custID = generate_custID();	
 
 phone_num:
 	printf("\nPhone Number: ");
@@ -133,6 +131,8 @@ choose_type:
 	fprintf(fp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 	fclose(fp);
 
+	free(c);
+
 	return EXIT_SUCCESS;
 }
 
@@ -165,6 +165,8 @@ int delete_customer()
 	fclose(fp);
 	fclose(tp);
 	remove("../data/temp.txt");
+
+	free(c);
 
 	return EXIT_SUCCESS;
 }
@@ -250,6 +252,8 @@ int update_customer()
 	fclose(fp);
 	fclose(tp);
 	remove("../data/temp.txt");
+
+	free(c);
 
 	return EXIT_SUCCESS;
 }

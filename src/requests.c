@@ -15,6 +15,7 @@
 #include <string.h>
 #include <header.h>
 
+
 int manage_request()
 {
     system("clear");
@@ -41,7 +42,7 @@ enter_choice:
         delete_request();
         break;
     case 4:
-        crm_login();
+        CRM_login();
         break;
     case 5:
         exit(0);
@@ -177,6 +178,8 @@ int delete_request()
     fclose(tp);
     remove("../data/temp.txt");
 
+    free(r);
+
     return EXIT_SUCCESS;
 }
 
@@ -297,7 +300,7 @@ int update_request()
                 {
                     if (r->requestID == reqID)
                     {
-                        if (strcp(r->requestStatus, "open"))
+                        if (strcpy(r->requestStatus, "open"))
                             strcpy(r->requestStatus, "close");
                         else
                             strcpy(r->requestStatus, "open");
@@ -311,7 +314,7 @@ int update_request()
                     fprintf(fp, "%d|%d|%d-%d-%d|%s|%s\n", r->requestID, r->customerID, r->requestDate.d, r->requestDate.m, r->requestDate.y, r->description, r->requestStatus);
                 break;
             case 3:
-                return;
+                return EXIT_SUCCESS;
             default:
                 printf("\nInvalid Choice...");
                 goto enter_choice;
@@ -327,7 +330,12 @@ int update_request()
         fclose(fp);
         fclose(tp);
         remove("../data/temp.txt");
+
+        free(r);
+
     } while (ch == 'y' || ch == 'Y');
+
+    
 
     return EXIT_SUCCESS;
 }

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <header.h>
 
+
 int demo(int req_ID)
 {
     demo_req *d = (demo_req *)calloc(1, sizeof(demo_req));
@@ -13,7 +14,7 @@ int demo(int req_ID)
 
 enter_date:
     scanf("%d-%d-%d", &d->demoDate.d, &d->demoDate.m, &d->demoDate.y);
-    if (!isValidDate(d->demoDate.d, d->demoDate.m, &d->demoDate.y))
+    if (!isValidDate(d->demoDate.d, d->demoDate.m, d->demoDate.y))
     {
         printf("\nInvalid date enter again ");
         goto enter_date;
@@ -28,6 +29,8 @@ enter_date:
     FILE *fp = fopen("../data/demos.txt", "a");
     fprintf(fp, "%d|%d-%d-%d|%s|%s\n", d->requestID, d->demoDate.d, d->demoDate.m, d->demoDate.y, d->address, d->suitableTime);
     fclose(fp);
+
+    free(d);
 
     return EXIT_SUCCESS;
 }
@@ -50,6 +53,8 @@ int complaint(int req_ID)
     FILE *fp = fopen("../data/complaints.txt", "a");
     fprintf(fp, "%d|%s|%s|%s\n", c->requestID, c->category, c->sub_category, c->description);
     fclose(fp);
+
+    free(c);
 
     return EXIT_SUCCESS;
 }
@@ -90,10 +95,12 @@ enter_date:
     fprintf(fp, "%d|%d-%d-%d|%d|%d-%d-%d|%s\n", s->requestID, s->AMCdate.d, s->AMCdate.m, s->AMCdate.y, s->AMCduration, s->purchasedDate.m, s->purchasedDate.m, s->purchasedDate.y, s->productName);
     fclose(fp);
 
+    free(s);
+
     return EXIT_SUCCESS;
 }
 
-int del_req_desc(int req_ID, char desc)
+int del_req_desc(int req_ID, char* desc)
 {
     FILE *tp = fopen("../data/temp.txt", "a+");
     FILE *fp;
@@ -116,6 +123,8 @@ int del_req_desc(int req_ID, char desc)
 
         while (fscanf(fp, "%d|%d-%d-%d|%s|%s\n", &d->requestID, &d->demoDate.d, &d->demoDate.m, &d->demoDate.y, d->address, d->suitableTime) != EOF)
             fprintf(fp, "%d|%d-%d-%d|%s|%s\n", d->requestID, d->demoDate.d, d->demoDate.m, d->demoDate.y, d->address, d->suitableTime);
+    
+        free(d);
     }
     else if (strcmp(desc, "service"))
     {
@@ -135,6 +144,8 @@ int del_req_desc(int req_ID, char desc)
 
         while (fscanf(fp, "%d|%d-%d-%d|%d|%d-%d-%d|%s\n", &s->requestID, &s->AMCdate.d, &s->AMCdate.m, &s->AMCdate.y, &s->AMCduration, &s->purchasedDate.m, &s->purchasedDate.m, &s->purchasedDate.y, s->productName) != EOF)
             fprintf(fp, "%d|%d-%d-%d|%d|%d-%d-%d|%s\n", s->requestID, s->AMCdate.d, s->AMCdate.m, s->AMCdate.y, s->AMCduration, s->purchasedDate.m, s->purchasedDate.m, s->purchasedDate.y, s->productName);
+   
+        free(s);
     }
     else
     {
@@ -154,6 +165,8 @@ int del_req_desc(int req_ID, char desc)
 
         while (fscanf(fp, "%d|%s|%s|%s\n", &c->requestID, c->category, c->sub_category, c->description) != EOF)
             fprintf(fp, "%d|%s|%s|%s\n", c->requestID, c->category, c->sub_category, c->description);
+    
+        free(c);
     }
     fclose(fp);
     fclose(tp);

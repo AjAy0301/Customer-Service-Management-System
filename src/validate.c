@@ -1,6 +1,6 @@
-#pragma once
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
 #include <header.h>
 
@@ -91,18 +91,43 @@ int isPhoneValid(char *pnum)
 
 /***********************Customer ID validation function**************************/
 
-int isValidCustID(int custID)
+int isValidCustID(int customerID)
 {
-    // code for validating custID.
-    return VALID;
+     FILE *fp = fopen("../data/customers.txt", "r");
+
+    customer *c = (customer *)calloc(1, sizeof(customer));    
+
+    while (fscanf(fp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType))
+	{
+		if ((c->custID == customerID))
+            return VALID;
+	}
+
+    fclose(fp);
+
+    free(c);   
+            
+    return INVALID;
 }
 
 
 /***********************Request ID validation function**************************/
 
-extern int isValidRequestID(int requestID)
+int isValidRequestID(int requestID)
 {
-    // code for validating requestID
-    return VALID;
+    FILE *fp = fopen("../data/requests.txt", "r");
+
+    request *r = (request *)calloc(1, sizeof(request));    
+
+    while (fscanf(fp, "%d|%d|%d-%d-%d|%s|%s\n", &r->requestID, &r->customerID, &r->requestDate.d, &r->requestDate.m, &r->requestDate.y, r->description, r->requestStatus) != EOF)
+    {
+        if (r->requestID == requestID)
+            return VALID;
+    } 
+    fclose(fp);  
+
+    free(r); 
+            
+    return INVALID;
 }
 

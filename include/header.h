@@ -86,7 +86,7 @@ extern int delete_request();
 extern int service(int);
 extern int demo(int);
 extern int complaint(int);
-extern int del_req_desc(int, char);
+extern int del_req_desc(int, char*);
 
 // funtions to view and generate reports
 extern int totalreports();

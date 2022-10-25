@@ -80,7 +80,7 @@ int add_request()
     request *r = (request *)calloc(1, sizeof(request));
 
 enter_id:
-    printf("\nEnter Customer ID:");
+    printf("\nEnter Customer ID: ");
     scanf("%d", &r->customerID);
     if (!isValidCustID(r->customerID))
     {
@@ -155,7 +155,7 @@ int delete_request()
         scanf("%d", &reqID);
         if (!isValidRequestID(reqID))
             printf("\nNo request in the database with this request ID");
-        printf("\ndo you want to enter request ID again?....(y/n)");
+        printf("\ndo you want to enter request ID again?....(y/n): ");
         getchar();
         scanf("%c", ch);
     } while (ch == 'y' || ch == 'Y');

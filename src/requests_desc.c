@@ -10,7 +10,7 @@ int demo(int req_ID)
 
     d->requestID = req_ID;
 
-    printf("\nEnter the date for the demo in dd-mm-yyy format");
+    printf("\nEnter the date for the demo in dd-mm-yyyy format: ");
 
 enter_date:
     scanf("%d-%d-%d", &d->demoDate.d, &d->demoDate.m, &d->demoDate.y);
@@ -20,11 +20,11 @@ enter_date:
         goto enter_date;
     }
 
-    printf("\nEnter the address:");
+    printf("\nEnter the address: ");
     fgets(d->address, SIZE, stdin);
     d->address[strlen(d->address)-1] = '\0';
 
-    printf("\nEnter a suitable time(HH:MM) ");
+    printf("\nEnter a suitable time(HH:MM): ");
     scanf(" %s", d->suitableTime);
 
     FILE *fp = fopen("../data/demos.txt", "a");
@@ -69,9 +69,9 @@ int service(int req_ID)
 
     s->requestID = req_ID;
 
-    printf("\nEnter the details of your service request ");
+    printf("\nEnter the details of your service request: ");
 
-    printf("\nAMC Date (in dd-mm-yyy): ");
+    printf("\nAMC Date (in dd-mm-yyyy): ");
 amc_date:
     scanf("%d-%d-%d", &s->AMCdate.d, &s->AMCdate.m, &s->AMCdate.y);
     if (!isValidDate(s->AMCdate.d, s->AMCdate.m, s->AMCdate.y))
@@ -80,7 +80,7 @@ amc_date:
         goto amc_date;
     }
 
-    printf("\nAMC Duration (in months):");
+    printf("\nAMC Duration (in months): ");
     scanf("%d", &s->AMCduration);
 
     printf("\nProduct purchased date (in dd-mm-yyy): ");
@@ -92,7 +92,7 @@ enter_date:
         goto enter_date;
     }
 
-    printf("\nProduct Name:");
+    printf("\nProduct Name: ");
     fgets(s->productName, SIZE, stdin);
     s->productName[strlen(s->productName)-1] = '\0';
 

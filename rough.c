@@ -1,13 +1,20 @@
 #include<stdio.h>
 #include"include/header.h"
 
+int generate_requestID()
+{
+    int requestID;
+	FILE *f= fopen("data/requestIDgenerate.txt","r+");
+    FILE *t = fopen("data/temp.txt", "a+");
+	fscanf(f,"%d",&requestID);
+	requestID=requestID+1;
+    rewind(f);
+	fprintf(f,"%d",requestID);
+	fclose(f);
+	return requestID;
+}
+
 int main(){
-    customer C;
-    FILE * fp = fopen("data/customers.txt", "a+");
-    printf("Working \t");
-    while(!feof(fp)){
-        fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &C.custID, C.firstName, C.lastName, C.phoneNum, C.custType, C.address);
-        printf("Working \t");
-        printf("%d | %s | %s | %s | %s | %s\n", C.custID, C.firstName, C.lastName, C.phoneNum, C.custType, C.address);
-    }
+    generate_requestID();
+    return 0;
 }

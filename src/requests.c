@@ -63,6 +63,7 @@ int generate_requestID()
 	FILE *f= fopen("requestIDgenerate.txt","r+");
 	fscanf(f,"%d",&requestID);
 	requestID=requestID+1;
+    rewind(f);
 	fprintf(f,"%d",requestID);
 	fclose(f);
 	return requestID;

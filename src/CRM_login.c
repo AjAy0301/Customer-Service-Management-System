@@ -7,7 +7,7 @@
 int CRM_login()
 {
     system("clear");
-    printf("------CRM Login------");
+    printf("\t\t\t\t\t------CRM Login------\t\t\t\t\t");
 
     int attempt = 1;
 
@@ -51,7 +51,7 @@ int CRM_login()
                     printf("\nInvalid choice\n");
                     continue;
                 }
-                printf("\nwant to continue...(Y/N");
+                printf("\ndo you want to continue...(Y/N)");
                 getchar();
                 ch = getchar();
             } while (ch == 'Y' || ch == 'y');

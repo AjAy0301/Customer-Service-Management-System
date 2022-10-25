@@ -20,13 +20,13 @@ int main()
     do
     {
         system("clear");
-        printf("----CUSTOMER SERVICE MANAGEMENT SYSTEM----");
+        printf("\t\t\t\t-----CUSTOMER SERVICE MANAGEMENT SYSTEM-----\t\t\t\t");
         printf("\n\nSelect Login Mode");
-        printf("\n1. CRM Login");
+        printf("\n\n1. CRM Login");
         printf("\n2. Customer Login");
         printf("\n3. Exit Application");
 
-        printf("\nEnter yout choice- ");
+        printf("\n\nEnter yout choice- ");
         int choice;
         scanf("%d", &choice);
 

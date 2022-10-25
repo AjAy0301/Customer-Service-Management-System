@@ -215,7 +215,7 @@ int update_customer()
 	printf("\nEnter Customer ID to update the customer : ");
 	scanf(" %d", &custIDToUpdate);
 
-	FILE *fp = fopen("../data/customers.txt", "w+");
+	FILE *fp = fopen("../data/customers.txt", "r");
 	FILE *tp = fopen("../data/temp.txt", "a+");
 
 	while (!feof(fp))
@@ -251,7 +251,7 @@ int update_customer()
 					break;
 				case 3:
 					printf("\nEnter the new address:");
-					char *address = (char *)calloc(SIZE, sizeof(char));
+					char *address = (char *)calloc(BIGSIZE, sizeof(char));
 					getchar();
 					scanf("%s", address);
 					strcpy(c->address, address);
@@ -273,22 +273,14 @@ int update_customer()
 			} while (ch == 'y' || ch == 'Y');
 		}
 
-		fprintf(tp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
+		fprintf(tp, "%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 	}
 
 	rewind(fp);
 	rewind(tp);
 
-	while (!feof(tp))
-	{
-		fscanf(tp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
-		fprintf(fp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
-	}
-
-	fclose(fp);
-	fclose(tp);
-
-	remove("../data/temp.txt");
+	remove("../data/customers.txt");
+	rename("../data/temp.txt", "../data/customers.txt");
 
 	free(c);
 

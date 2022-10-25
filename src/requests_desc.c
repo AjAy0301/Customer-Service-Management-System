@@ -22,12 +22,13 @@ enter_date:
 
     printf("\nEnter the address:");
     fgets(d->address, SIZE, stdin);
+    d->address[strlen(d->address)-1] = '\0';
 
     printf("\nEnter a suitable time(HH:MM) ");
-    fgets(d->suitableTime, SIZE, stdin);
+    scanf(" %s", d->suitableTime);
 
     FILE *fp = fopen("../data/demos.txt", "a");
-    fprintf(fp, "%d|%d-%d-%d|%s|%s\n", d->requestID, d->demoDate.d, d->demoDate.m, d->demoDate.y, d->address, d->suitableTime);
+    fprintf(fp, "%d | %d-%d-%d | %s | %s\n", d->requestID, d->demoDate.d, d->demoDate.m, d->demoDate.y, d->suitableTime, d->address);
     fclose(fp);
 
     free(d);
@@ -43,15 +44,18 @@ int complaint(int req_ID)
 
     printf("\nEnter category: ");
     fgets(c->category, SIZE, stdin);
+    c->category[strlen(c->category)-1] = '\0';
 
     printf("\nEnter sub-category: ");
     fgets(c->sub_category, SIZE, stdin);
+    c->sub_category[strlen(c->sub_category)-1] = '\0';
 
     printf("\nEnter description: ");
     fgets(c->description, SIZE, stdin);
+    c->description[strlen(c->description)-1] = '\0';
 
     FILE *fp = fopen("../data/complaints.txt", "a");
-    fprintf(fp, "%d|%s|%s|%s\n", c->requestID, c->category, c->sub_category, c->description);
+    fprintf(fp, "%d | %s | %s | %s\n", c->requestID, c->category, c->sub_category, c->description);
     fclose(fp);
 
     free(c);
@@ -90,9 +94,10 @@ enter_date:
 
     printf("\nProduct Name:");
     fgets(s->productName, SIZE, stdin);
+    s->productName[strlen(s->productName)-1] = '\0';
 
-    FILE *fp = fopen("../data/services.txt", "a");
-    fprintf(fp, "%d|%d-%d-%d|%d|%d-%d-%d|%s\n", s->requestID, s->AMCdate.d, s->AMCdate.m, s->AMCdate.y, s->AMCduration, s->purchasedDate.m, s->purchasedDate.m, s->purchasedDate.y, s->productName);
+    FILE *fp = fopen("../data/services.txt", "a+");
+    fprintf(fp, "%d | %d-%d-%d | %d | %d-%d-%d | %s\n", s->requestID, s->AMCdate.d, s->AMCdate.m, s->AMCdate.y, s->AMCduration, s->purchasedDate.m, s->purchasedDate.m, s->purchasedDate.y, s->productName);
     fclose(fp);
 
     free(s);
@@ -112,18 +117,15 @@ int del_req_desc(int req_ID, char* desc)
 
         demo_req *d = (demo_req *)calloc(1, sizeof(demo_req));
 
-        while (fscanf(fp, "%d|%d-%d-%d|%s|%s\n", &d->requestID, &d->demoDate.d, &d->demoDate.m, &d->demoDate.y, d->address, d->suitableTime) != EOF)
+        while (!feof(fp))
         {
-            if (!d->requestID == req_ID)
-                fprintf(fp, "%d|%d-%d-%d|%s|%s\n", d->requestID, d->demoDate.d, d->demoDate.m, d->demoDate.y, d->address, d->suitableTime);
+            fscanf(fp, "%d | %d-%d-%d | %s | %[^\n]s", &d->requestID, &d->demoDate.d, &d->demoDate.m, &d->demoDate.y, d->suitableTime, d->address);
+            if (d->requestID != req_ID)
+                fprintf(tp, "%d | %d-%d-%d | %s | %s\n", d->requestID, d->demoDate.d, d->demoDate.m, d->demoDate.y, d->suitableTime, d->address);
         }
 
-        rewind(fp);
-        rewind(tp);
-
-        while (fscanf(fp, "%d|%d-%d-%d|%s|%s\n", &d->requestID, &d->demoDate.d, &d->demoDate.m, &d->demoDate.y, d->address, d->suitableTime) != EOF)
-            fprintf(fp, "%d|%d-%d-%d|%s|%s\n", d->requestID, d->demoDate.d, d->demoDate.m, d->demoDate.y, d->address, d->suitableTime);
-    
+        remove("..data/demos.txt");
+        rename("../data/temp.txt", "../data/demos.txt");
         free(d);
     }
     else if (strcmp(desc, "service"))
@@ -133,18 +135,15 @@ int del_req_desc(int req_ID, char* desc)
 
         service_req *s = (service_req *)calloc(1, sizeof(service_req));
 
-        while (fscanf(fp, "%d|%d-%d-%d|%d|%d-%d-%d|%s\n", &s->requestID, &s->AMCdate.d, &s->AMCdate.m, &s->AMCdate.y, &s->AMCduration, &s->purchasedDate.m, &s->purchasedDate.m, &s->purchasedDate.y, s->productName) != EOF)
+        while (!feof(fp))
         {
-            if (!s->requestID == req_ID)
-                fprintf(fp, "%d|%d-%d-%d|%d|%d-%d-%d|%s\n", s->requestID, s->AMCdate.d, s->AMCdate.m, s->AMCdate.y, s->AMCduration, s->purchasedDate.m, s->purchasedDate.m, s->purchasedDate.y, s->productName);
+            fscanf(fp, "%d | %d-%d-%d | %d | %d-%d-%d | %[^\n]s", &s->requestID, &s->AMCdate.d, &s->AMCdate.m, &s->AMCdate.y, &s->AMCduration, &s->purchasedDate.m, &s->purchasedDate.m, &s->purchasedDate.y, s->productName);
+            if (s->requestID != req_ID)
+                fprintf(fp, "%d | %d-%d-%d | %d | %d-%d-%d | %s\n", s->requestID, s->AMCdate.d, s->AMCdate.m, s->AMCdate.y, s->AMCduration, s->purchasedDate.m, s->purchasedDate.m, s->purchasedDate.y, s->productName);
         }
 
-        rewind(fp);
-        rewind(tp);
-
-        while (fscanf(fp, "%d|%d-%d-%d|%d|%d-%d-%d|%s\n", &s->requestID, &s->AMCdate.d, &s->AMCdate.m, &s->AMCdate.y, &s->AMCduration, &s->purchasedDate.m, &s->purchasedDate.m, &s->purchasedDate.y, s->productName) != EOF)
-            fprintf(fp, "%d|%d-%d-%d|%d|%d-%d-%d|%s\n", s->requestID, s->AMCdate.d, s->AMCdate.m, s->AMCdate.y, s->AMCduration, s->purchasedDate.m, s->purchasedDate.m, s->purchasedDate.y, s->productName);
-   
+        remove("../data/services.txt");
+        rename("../data/temp.txt", "../data/services.txt");
         free(s);
     }
     else
@@ -154,23 +153,19 @@ int del_req_desc(int req_ID, char* desc)
 
         complaint_req *c = (complaint_req *)calloc(1, sizeof(complaint_req));
 
-        while (fscanf(fp, "%d|%s|%s|%s\n", &c->requestID, c->category, c->sub_category, c->description) != EOF)
+        while (!feof(fp))
         {
-            if (!c->requestID == req_ID)
+            fscanf(fp, "%d | %s | %s | %[^\n]s", &c->requestID, c->category, c->sub_category, c->description);
+            if (c->requestID != req_ID)
                 fprintf(fp, "%d|%s|%s|%s\n", c->requestID, c->category, c->sub_category, c->description);
         }
 
-        rewind(fp);
-        rewind(tp);
-
-        while (fscanf(fp, "%d|%s|%s|%s\n", &c->requestID, c->category, c->sub_category, c->description) != EOF)
-            fprintf(fp, "%d|%s|%s|%s\n", c->requestID, c->category, c->sub_category, c->description);
-    
+        remove("../data/complaints.txt");
+        rename("../data/temp.txt", "../data/complaints.txt");
         free(c);
     }
     fclose(fp);
     fclose(tp);
-    remove("../data/temp.txt");
 
     return EXIT_SUCCESS;
 }

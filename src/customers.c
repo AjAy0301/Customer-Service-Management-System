@@ -66,14 +66,19 @@ int manage_customer()
 int generate_custID()
 {
 	int customerID;
-	FILE *f = fopen("custIDgenerate.txt", "r");
+	FILE *f = fopen("../data/custIDgenerate.txt", "r");
+	FILE *t = fopen("../data/temp.txt", "a");
+
 	fscanf(f, "%d", &customerID);
-	printf("\n%d", customerID);
+	//printf("\n%d", customerID);
 	customerID = customerID + 1;
-	rewind(f);
-	fprintf(f, "%d", customerID);
+	
+	fprintf(t, "%d", customerID);
 	fclose(f);
-	printf("\n%d", customerID);
+	fclose(t);
+	remove("../data/custIDgenerate.txt");
+	rename("../data/temp.txt","../data/custIDgenerate.txt");
+	
 	return customerID;
 }
 
@@ -87,11 +92,10 @@ int add_customer()
 	printf("\nEnter Customer Details : ");
 
 	customer *c = (customer *)calloc(1, sizeof(customer));
+	
+	c->custID = generate_custID();
 
-	// some issue in generate id function
-	// int id = generate_custID();
-
-	c->custID = 101;
+	
 
 	// first name input
 first_name:
@@ -150,7 +154,7 @@ choose_type:
 
 	fp = fopen("../data/customers.txt", "a");
 
-	fprintf(fp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
+	fprintf(fp, "%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 
 	fclose(fp);
 
@@ -174,37 +178,27 @@ int delete_customer()
 	printf("\nEnter Customer ID to delete the customer: ");
 	scanf("%d", &custIDToDelete);
 
-	FILE *fp = fopen("../data/customers.txt", "w+"); //changed append to write
+	FILE *fp = fopen("../data/customers.txt", "r"); //changed append to write
 	FILE *tp = fopen("../data/temp.txt", "a+");
 
-	int i=3;
+	
 	while (!feof(fp))	//checking if fp has reached end of file.
 	{
 		fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &(c->custID), c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
-		printf("%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
+		//printf("%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
 		if (c->custID != custIDToDelete)
 		{
 			fprintf(tp, "%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
-		}
+		}	
 	}
-
-	rewind(fp);
-	rewind(tp);
-
-	while (!feof(tp))	//checking if tp has reached end of file.
-	{
-		fscanf(tp, "%d | %s | %s | %s | %s | %[^\n]s\n", &(c->custID), c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
-		fprintf(fp, "%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
-	}
-
 	fclose(fp);
 	fclose(tp);
-	remove("../data/temp.txt");
+	remove("../data/customers.txt");
+	rename("../data/temp.txt","../data/customers.txt");
 
 	printf("\nCustomer with customer ID %d is deleted successfully",custIDToDelete);
 
 	free(c);
-
 	return EXIT_SUCCESS;
 }
 
@@ -226,7 +220,7 @@ int update_customer()
 
 	while (!feof(fp))
 	{
-		fscanf(fp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
+		fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &(c->custID), c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
 		if ((c->custID == custIDToUpdate))
 		{
 			char ch;

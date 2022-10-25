@@ -1,10 +1,10 @@
-101|Ajay|Kumar|east kidwai nagar|8826603675|existing
-102|dfg|ghjy|6yrhfg@|8826603675|existing
-103|asdf|qwert|rg56@ecg|1234567890|new
-104|ahay|gyhrd|#45rg ghjjgb|1234567899|new
-101|ajay|kumar|hello nothing 123|9717475345|new
-101|Ajay|Kumar|east kidwai nagar|8826603675|existing
-102|dfg|ghjy|6yrhfg@|8826603675|existing
-103|asdf|qwert|rg56@ecg|1234567890|new
-104|ahay|gyhrd|#45rg ghjjgb|1234567899|new
-101|ajay|kumar|hello nothing 123|9717475345|new
+101 | Ajay | Kumar | 8826603675 | existing | east kidwai nagar
+102 | dfg | ghjy |8826603675 | existing | 6yrhfg @
+103 | asdf | qwert | 1234567890 | new | rg56@ecg
+104 | ahay | gyhrd | 1234567899 | new | #45rg ghjjgb
+101 | ajay | kumar | 9717475345 | new | hello nothing 123
+101 | Ajay | Kumar | 8826603675 | existing | east kidwai nagar
+102 | dfg | ghjy | 8826603675 | existing | 6yrhfg@
+103 | asdf | qwert | 1234567890 | new | rg56@ecg
+104 | ahay | gyhrd | 1234567899 | new | #45rg ghjjgb
+101 | ajay | kumar | 9717475345 | new | hello nothing 123

@@ -178,23 +178,23 @@ int delete_customer()
 	FILE *tp = fopen("../data/temp.txt", "a+");
 
 	int i=3;
-	while (feof(fp))	//checking if fp has reached end of file.
+	while (!feof(fp))	//checking if fp has reached end of file.
 	{
-		fscanf(fp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
-		printf("%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
+		fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &(c->custID), c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
+		printf("%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
 		if (c->custID != custIDToDelete)
 		{
-			fprintf(tp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
+			fprintf(tp, "%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
 		}
 	}
 
 	rewind(fp);
 	rewind(tp);
 
-	while (feof(tp))	//checking if tp has reached end of file.
+	while (!feof(tp))	//checking if tp has reached end of file.
 	{
-		fscanf(tp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
-		fprintf(fp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
+		fscanf(tp, "%d | %s | %s | %s | %s | %[^\n]s\n", &(c->custID), c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
+		fprintf(fp, "%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
 	}
 
 	fclose(fp);
@@ -224,7 +224,7 @@ int update_customer()
 	FILE *fp = fopen("../data/customers.txt", "w+");
 	FILE *tp = fopen("../data/temp.txt", "a+");
 
-	while (feof(fp))
+	while (!feof(fp))
 	{
 		fscanf(fp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 		if ((c->custID == custIDToUpdate))
@@ -285,7 +285,7 @@ int update_customer()
 	rewind(fp);
 	rewind(tp);
 
-	while (feof(tp))
+	while (!feof(tp))
 	{
 		fscanf(tp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 		fprintf(fp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);

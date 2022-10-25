@@ -174,12 +174,13 @@ int delete_customer()
 	printf("\nEnter Customer ID to delete the customer: ");
 	scanf("%d", &custIDToDelete);
 
-	FILE *fp = fopen("../data/customers.txt", "a+");
+	FILE *fp = fopen("../data/customers.txt", "w+"); //changed append to write
 	FILE *tp = fopen("../data/temp.txt", "a+");
 
 	int i=3;
-	while (fscanf(fp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType)!=EOF)
+	while (feof(fp))	//checking if fp has reached end of file.
 	{
+		fscanf(fp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 		printf("%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 		if (c->custID != custIDToDelete)
 		{
@@ -190,7 +191,7 @@ int delete_customer()
 	rewind(fp);
 	rewind(tp);
 
-	while (tp!=NULL)
+	while (feof(tp))	//checking if tp has reached end of file.
 	{
 		fscanf(tp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 		fprintf(fp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
@@ -220,11 +221,12 @@ int update_customer()
 	printf("\nEnter Customer ID to update the customer : ");
 	scanf(" %d", &custIDToUpdate);
 
-	FILE *fp = fopen("../data/customers.txt", "a+");
+	FILE *fp = fopen("../data/customers.txt", "w+");
 	FILE *tp = fopen("../data/temp.txt", "a+");
 
-	while (fscanf(fp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType) != EOF)
+	while (feof(fp))
 	{
+		fscanf(fp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 		if ((c->custID == custIDToUpdate))
 		{
 			char ch;
@@ -275,19 +277,17 @@ int update_customer()
 				printf("\nDo you want to update more things? press y");
 				ch = getchar();
 			} while (ch == 'y' || ch == 'Y');
-			fprintf(tp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 		}
-		else
-		{
-			fprintf(tp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
-		}
+
+		fprintf(tp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 	}
 
 	rewind(fp);
 	rewind(tp);
 
-	while (fscanf(tp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType) != EOF)
+	while (feof(tp))
 	{
+		fscanf(tp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 		fprintf(fp, "%d|%s|%s|%s|%s|%s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 	}
 

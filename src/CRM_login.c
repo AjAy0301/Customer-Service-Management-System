@@ -51,7 +51,7 @@ int CRM_login()
                     printf("\nInvalid choice\n");
                     continue;
                 }
-                printf("\ndo you want to continue...(Y/N)");
+                printf("\ndo you want to continue to CRM menu...(Y/N): ");
                 getchar();
                 ch = getchar();
             } while (ch == 'Y' || ch == 'y');

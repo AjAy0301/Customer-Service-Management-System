@@ -3,6 +3,10 @@
 
 #pragma once
 
+int demo_count = 0;
+int complaint_count = 0;
+int service_count = 0;
+
 /*-----Macros-----*/
 
 #define SIZE 30
@@ -86,7 +90,7 @@ extern int delete_request();
 extern int service(int);
 extern int demo(int);
 extern int complaint(int);
-extern int del_req_desc(int, char*);
+extern int del_req_desc(int, char *);
 
 // funtions to view and generate reports
 extern int totalreports();

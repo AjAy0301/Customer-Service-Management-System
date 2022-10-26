@@ -10,14 +10,14 @@ int manage_customer()
 	do
 	{
 		system("clear");
-		printf("\t\t\t\t-----Customer Database-----\t\t\t\t");
-		printf("\n1. Add New Customer");
-		printf("\n2. Update Customer Details");
-		printf("\n3. Remove Customer");
-		printf("\n4. Go Back");
-		printf("\n5. Exit Application");
+		printf("\t\t\t\t-----Customer Database-----\t\t\t\t\n\n\n");
+		printf("\n\n1. Add New Customer");
+		printf("\n\n2. Update Customer Details");
+		printf("\n\n3. Remove Customer");
+		printf("\n\n4. Go Back");
+		printf("\n\n5. Exit Application");
 
-		printf("\nChoice- ");
+		printf("\n\n\nChoice- ");
 		int choice;
 		scanf("%d", &choice);
 
@@ -40,7 +40,7 @@ int manage_customer()
 		default:
 			printf("Invalid Choice...");
 		}
-		printf("\ndo you want to continue...(Y/N)");
+		printf("\nDo you want to continue to Manage Customer...(Y/N): ");
 		getchar();
 		ch = getchar();
 	} while (ch == 'Y' || ch == 'y');
@@ -166,13 +166,13 @@ int delete_customer()
 	printf("\nEnter Customer ID to delete the customer: ");
 	scanf("%d", &custIDToDelete);
 
-	FILE *fp = fopen("../data/customers.txt", "r"); //changed append to write
+	FILE *fp = fopen("../data/customers.txt", "r"); 
 	FILE *tp = fopen("../data/temp.txt", "a+");
 
 	
 	while (!feof(fp))	//checking if fp has reached end of file.
 	{
-		fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &(c->custID), c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
+		fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
 		//printf("%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
 		if (c->custID != custIDToDelete)
 		{

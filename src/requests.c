@@ -9,8 +9,10 @@ int manage_request()
     do
     {
         system("clear");
+
+        printf("\t\t\t\t-----Ruquest Database-----\t\t\t\t");
         
-        printf("\n1. Add Request");
+        printf("\n\n1. Add Request");
         printf("\n2. Update Request");
         printf("\n3. Delete request");
         printf("\n4. Back to Main Menu");
@@ -43,7 +45,7 @@ int manage_request()
         }
         printf("\ndo you want to continue manage request...(Y/N): ");
         getchar();
-        ch = getchar();
+        scanf("%c",&ch);
     } while (ch == 'Y' || ch == 'y');
 
     return EXIT_SUCCESS;
@@ -251,14 +253,14 @@ int update_request()
                         goto enter_choice;
                     }
 
-                    //del_req_desc(r->requestID, r->description);
+                    del_req_desc(r->requestID, r->description);
                     strcpy(r->description, desc);
 
                     break;
 
                 case 2:
 
-                    if (strcmp(r->requestStatus, "open"))
+                    if (strcmp(r->requestStatus, "open")==0)
                         strcpy(r->requestStatus, "close");
                     else
                         strcpy(r->requestStatus, "open");

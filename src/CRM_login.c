@@ -3,16 +3,16 @@
 #include <string.h>
 #include <header.h>
 
-
 int CRM_login()
 {
-    system("clear");
-    printf("\t\t\t\t\t------CRM Login------\t\t\t\t\t");
-
-    int attempt = 1;
 
     while (1)
     {
+        system("clear");
+        printf("*************************************CRM Login*************************************");
+
+        int attempt = 1;
+
         printf("\n\nEnter Password: ");
         char *pass = (char *)calloc(sizeof(char), SIZE);
         scanf("%s", pass);
@@ -22,6 +22,7 @@ int CRM_login()
             char ch;
             do
             {
+                printf("\n\t\t\t\t\t------CRM Menu------\t\t\t\t\t\n\n");
                 printf("\n1. Manage Customer");
                 printf("\n2. Manage Requests");
                 printf("\n3. Requests Report");
@@ -44,7 +45,8 @@ int CRM_login()
                     view_reports();
                     break;
                 case 4:
-                    return EXIT_SUCCESS;;
+                    return EXIT_SUCCESS;
+                    ;
                 case 5:
                     exit(0);
                 default:

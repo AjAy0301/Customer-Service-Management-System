@@ -1,9 +1,5 @@
-101 | Ajay | Kumar | 8826603675 | existing | east kidwai nagar
-105 | dfg | ghjy | 8826603675 | existing | 6yrhfg @
-103 | asdf | qwert | 1234567890 | new | rg56@ecg
-107 | ajay | kumar | 9717475345 | new | hello nothing 123
-108 | Ajay | Kumar | 8826603675 | existing | east kidwai nagar
-109 | dfg | ghjy | 8826603675 | existing | 6yrhfg@
-103 | asdf | qwert | 1234567890 | new | rg56@ecg
-106 | ajay | kumar | 9717475345 | new | hello nothing 123
-1001 | aja | sfnjs | skfks sfhs13 | 1211332222 | new
+1001 | hrishikesh | none | bihar | 8287377123 | new
+1002 | hrishikesh | none | bihar | 8287377123 | new
+1003 | hrishikesh | none | bihar | 8287377123 | new
+1004 | hrishikesh | none | bihar | 8287377123 | new
+1005 | hrishikesh | none | bihar | 8287377123 | new

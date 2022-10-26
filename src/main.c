@@ -1,15 +1,3 @@
-/*******************************************************************************************************************
- * * FILE NAME : main.c
- *
- * * DESCRIPTION : This is the main menu file which through which different login mode can be accessed.
- *
- * * Revision History:
- * 	DATE				NAME 				REASON
- *-----------------------------------------------------------------------------------------------------------------
- *  23/10/2022			Ajay Kumar		Creation of file
- * 
-*******************************************************************************************************************/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <header.h>
@@ -22,11 +10,11 @@ int main()
         system("clear");
         printf("\t\t\t\t-----CUSTOMER SERVICE MANAGEMENT SYSTEM-----\t\t\t\t");
         printf("\n\nSelect Login Mode");
-        printf("\n\n1. CRM Login");
-        printf("\n2. Customer Login");
-        printf("\n3. Exit Application");
+        printf("\n\n\n1. CRM Login");
+        printf("\n\n2. Customer Login");
+        printf("\n\n3. Exit Application");
 
-        printf("\n\nEnter yout choice- ");
+        printf("\n\n\nEnter yout choice- ");
         int choice;
         scanf("%d", &choice);
 

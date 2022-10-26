@@ -3,9 +3,7 @@
 
 #pragma once
 
-int demo_count = 0;
-int complaint_count = 0;
-int service_count = 0;
+
 
 /*-----Macros-----*/
 

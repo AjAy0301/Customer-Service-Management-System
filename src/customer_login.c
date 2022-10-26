@@ -7,8 +7,8 @@ int customer_login()
     while (1)
     {
         system("clear");
-        printf("------welcome to Request Portal------");
-        printf("\nEnter your customer ID: ");
+        printf("------welcome to Customer Request Portal------");
+        printf("\n\n\nEnter your customer ID: ");
         int custID;
         scanf("%d", &custID);
 
@@ -18,8 +18,8 @@ int customer_login()
         }
         else
         {
-            printf("\nCustomer NOT FOUND!!!");
-            printf("\nWant to try again?...(Y/N)");
+            printf("\n\nCustomer ID NOT FOUND!!!");
+            printf("\n\n do you want to try again?...(Y/N): ");
             char ch;
             getchar();
             ch = getchar();

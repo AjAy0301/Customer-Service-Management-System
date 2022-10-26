@@ -114,7 +114,7 @@ int del_req_desc(int req_ID, char* desc)
     FILE *tp = fopen("../data/temp.txt", "a+");
     FILE *fp;
 
-    if (strcmp(desc, "demo"))
+    if (strcmp(desc, "demo")==0)
     {
         //deleting demo for the request ID
         fp = fopen("../data/demos.txt", "r");
@@ -134,7 +134,7 @@ int del_req_desc(int req_ID, char* desc)
         rename("../data/temp.txt", "../data/demos.txt");
         free(d);
     }
-    else if (strcmp(desc, "service"))
+    else if (strcmp(desc, "service")==0)
     {
         //deleting service for the request ID
         fp = fopen("../data/services.txt", "r");

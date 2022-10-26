@@ -5,6 +5,10 @@
 
 int total_reports()
 {
+    int demo_count = 0;
+    int complaint_count = 0;
+    int service_count = 0;
+
     FILE *fd = fopen("../data/demos.txt", "r");
     FILE *fc = fopen("../data/complaints.txt", "r");
     FILE *fs = fopen("../data/services.txt", "r");
@@ -55,9 +59,15 @@ int view_reports()
     scanf("%d", &choice);
     getchar();
 
+    int dd, mm, yy;
+    int service_call_closed = 0;
+
+    request *r = (request *)calloc(1, sizeof(request));
+
     FILE *fd = fopen("../data/demos.txt", "r");
     FILE *fc = fopen("../data/complaints.txt", "r");
     FILE *fs = fopen("../data/services.txt", "r");
+    FILE *fp = fopen("../data/requests.txt", "r");
 
     demo_req *d = (demo_req *)calloc(1, sizeof(demo_req));
     complaint_req *c = (complaint_req *)calloc(1, sizeof(complaint_req));
@@ -66,7 +76,7 @@ int view_reports()
     switch (choice)
     {
     case 1:
-        int dd, mm, yy;
+
         printf("\nEnter Date (dd-mm-yyyy): ");
         scanf("%d-%d-%d", &dd, &mm, &yy);
 
@@ -76,18 +86,16 @@ int view_reports()
         {
             fscanf(fd, "%d | %d-%d-%d | %s | %[^\n]s", &d->requestID, &d->demoDate.d, &d->demoDate.m, &d->demoDate.y, d->suitableTime, d->address);
             if (dd == d->demoDate.d && mm == d->demoDate.m && yy == d->demoDate.y)
-                printf("%d | %d-%d-%d | %s | %s", &d->requestID, &d->demoDate.d, &d->demoDate.m, &d->demoDate.y, d->suitableTime, d->address);
+                printf("%d | %d-%d-%d | %s | %s\n", d->requestID, d->demoDate.d, d->demoDate.m, d->demoDate.y, d->suitableTime, d->address);
         }
 
         fclose(fd);
         break;
 
     case 2:
-        int dd, mm, yy;
+
         printf("\nEnter Date (dd-mm-yyyy): ");
         scanf("%d-%d-%d", &dd, &mm, &yy);
-
-        FILE *fp = fopen("../data/requests.txt", "r");
 
         request *r = (request *)calloc(1, sizeof(request));
 
@@ -96,7 +104,7 @@ int view_reports()
         while (!feof(fp))
         {
             fscanf(fp, "%d | %d | %d-%d-%d | %s | %s", &r->requestID, &r->customerID, &r->requestDate.d, &r->requestDate.m, &r->requestDate.y, r->requestStatus, r->description);
-            if ((dd == r->requestDate.d && mm == r->requestDate.m && yy == r->requestDate.y) && strcmp(r->requestStatus, "open")) // reeor can be while strcmp need check it again
+            if ((dd == r->requestDate.d && mm == r->requestDate.m && yy == r->requestDate.y) && strcmp(r->requestStatus, "open") == 0 && strcmp(r->description, "complaint") == 0)
                 not_addressed_complaints++;
         }
 
@@ -110,16 +118,10 @@ int view_reports()
         printf("Enter Customer ID of the customer:");
         scanf("%d", &customerID);
 
-        FILE *fp = fopen("../data/requests.txt", "r");
-
-        request *r = (request *)calloc(1, sizeof(request));
-
-        int service_call_closed = 0;
-
         while (!feof(fp))
         {
             fscanf(fp, "%d | %d | %d-%d-%d | %s | %s", &r->requestID, &r->customerID, &r->requestDate.d, &r->requestDate.m, &r->requestDate.y, r->requestStatus, r->description);
-            if (r->customerID == customerID && strcmp(r->description, "service") && strcmp(r->requestStatus, "closed")) // reeor can be while strcmp need check it again
+            if (r->customerID == customerID && strcmp(r->description, "service") == 0 && strcmp(r->requestStatus, "closed") == 0) // reeor can be while strcmp need check it again
                 service_call_closed++;
         }
 
@@ -128,21 +130,15 @@ int view_reports()
         break;
 
     case 4:
-        int month,year;
+        int month, year;
 
         printf("Enter current month and year in mm-yyyy format: ");
         scanf("%d-%d", &month);
 
-        FILE *fp = fopen("../data/requests.txt", "r");
-
-        request *r = (request *)calloc(1, sizeof(request));
-
-        int service_call_closed = 0;
-
         while (!feof(fp))
         {
             fscanf(fp, "%d | %d | %d-%d-%d | %s | %s", &r->requestID, &r->customerID, &r->requestDate.d, &r->requestDate.m, &r->requestDate.y, r->requestStatus, r->description);
-            if ((r->requestDate.y<year&&r->requestDate.m<month) && strcmp(r->requestStatus, "closed")) // reeor can be while strcmp need check it again
+            if (r->requestDate.y == year && r->requestDate.m ==month-1 && strcmp(r->requestStatus, "closed")==0) // reeor can be while strcmp need check it again
                 service_call_closed++;
         }
 

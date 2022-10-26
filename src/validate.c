@@ -30,7 +30,6 @@ int isValidDate(int dd, int mm, int yy)
         return INVALID;
 }
 
-
 /***********************Password validation function**************************/
 
 int isValidPass(char *str)
@@ -54,7 +53,6 @@ int isValidPass(char *str)
     }
 }
 
-
 /***********************Name validation function**************************/
 
 int isNameValid(char *name)
@@ -69,7 +67,6 @@ int isNameValid(char *name)
 
     return VALID;
 }
-
 
 /***********************Phone Number validation funtion**************************/
 
@@ -88,28 +85,26 @@ int isPhoneValid(char *pnum)
     return VALID;
 }
 
-
 /***********************Customer ID validation function**************************/
 
 int isValidCustID(int customerID)
 {
-     FILE *fp = fopen("../data/customers.txt", "r");
+    FILE *fp = fopen("../data/customers.txt", "r");
 
-    customer *c = (customer *)calloc(1, sizeof(customer));    
+    customer *c = (customer *)calloc(1, sizeof(customer));
 
-    while (fscanf(fp, "%d|%s|%s|%s|%s|%s\n", &c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType))
-	{
-		if ((c->custID == customerID))
+    while (!feof(fp))
+    {
+        fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
+        if (c->custID == customerID)
             return VALID;
-	}
-
+    }
     fclose(fp);
 
-    free(c);   
-            
+    free(c);
+
     return INVALID;
 }
-
 
 /***********************Request ID validation function**************************/
 
@@ -117,17 +112,17 @@ int isValidRequestID(int requestID)
 {
     FILE *fp = fopen("../data/requests.txt", "r");
 
-    request *r = (request *)calloc(1, sizeof(request));    
+    request *r = (request *)calloc(1, sizeof(request));
 
-    while (fscanf(fp, "%d|%d|%d-%d-%d|%s|%s\n", &r->requestID, &r->customerID, &r->requestDate.d, &r->requestDate.m, &r->requestDate.y, r->description, r->requestStatus) != EOF)
+    while (!feof(fp))
     {
+        fscanf(fp, "%d | %d | %d-%d-%d | %s | %s", &r->requestID, &r->customerID, &r->requestDate.d, &r->requestDate.m, &r->requestDate.y, r->requestStatus, r->description);
         if (r->requestID == requestID)
             return VALID;
-    } 
-    fclose(fp);  
+    }
+    fclose(fp);
 
-    free(r); 
-            
+    free(r);
+
     return INVALID;
 }
-

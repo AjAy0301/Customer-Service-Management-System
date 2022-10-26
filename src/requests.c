@@ -15,7 +15,7 @@ int manage_request()
         printf("\n\n1. Add Request");
         printf("\n\n2. Update Request");
         printf("\n\n3. Delete request");
-        printf("\n\n4. Back to Main Menu");
+        printf("\n\n4. Back to previous Menu");
         printf("\n\n5. Exit Application");
 
     enter_choice:

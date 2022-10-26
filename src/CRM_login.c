@@ -27,7 +27,7 @@ int CRM_login()
                 printf("\n\t\t\t\t\t------CRM Menu------\t\t\t\t\t\n\n");
                 printf("\n\n1. Manage Customer");
                 printf("\n\n2. Manage Requests");
-                printf("\n\n3. Requests Report");
+                printf("\n\n3. View Requests Report");
                 printf("\n\n4. Logout");
                 printf("\n\n5. Exit");
 

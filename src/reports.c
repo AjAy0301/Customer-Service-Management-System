@@ -133,7 +133,7 @@ int view_reports()
         int month, year;
 
         printf("Enter current month and year in mm-yyyy format: ");
-        scanf("%d-%d", &month);
+        scanf("%d-%d", &month,&year);
 
         while (!feof(fp))
         {

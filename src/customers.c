@@ -200,15 +200,15 @@ int update_customer()
 
 	int custIDToUpdate;
 
-	printf("\n\nEnter Customer ID to update the customer : ");
+	printf("\nEnter Customer ID to update the customer : ");
 	scanf(" %d", &custIDToUpdate);
-
 	FILE *fp = fopen("../data/customers.txt", "r");
 	FILE *tp = fopen("../data/temp.txt", "a+");
 
 	while (!feof(fp))
 	{
 		fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &(c->custID), c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
+		
 		if ((c->custID == custIDToUpdate))
 		{
 			
@@ -217,35 +217,35 @@ int update_customer()
 				printf("\n2.Last Name");
 				printf("\n3.Address");
 				printf("\n4.Mobile Number");
-				printf("\nenter choice- ");
+				printf("\n\nEnter choice- ");
 				int opt;
 				scanf("%d", &opt);
 				getchar();
 				switch (opt)
 				{
 				case 1:
-					printf("\nEnter the new first name:");
+					printf("\nEnter the new first name: ");
 					char *fname = (char *)calloc(SIZE, sizeof(char));
 					
 					scanf("%s", fname);
 					strcpy(c->firstName, fname);
 					break;
 				case 2:
-					printf("\nEnter the new last name:");
+					printf("\nEnter the new last name: ");
 					char *lname = (char *)calloc(SIZE, sizeof(char));
 					
 					scanf("%s", lname);
 					strcpy(c->lastName, lname);
 					break;
 				case 3:
-					printf("\nEnter the new address:");
+					printf("\nEnter the new address: ");
 					char *address = (char *)calloc(BIGSIZE, sizeof(char));
 					
 					scanf("%s", address);
 					strcpy(c->address, address);
 					break;
 				case 4:
-					printf("\nEnter the mobile number:");
+					printf("\nEnter the mobile number: ");
 					char *phone = (char *)calloc(SIZE, sizeof(char));
 					
 					scanf("%s", phone);
@@ -255,18 +255,19 @@ int update_customer()
 				default:
 					printf("\nInvalid Choice...");
 				}
-		}	
-		fprintf(tp, "%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
+		}
+		
+
+		fprintf(tp, "%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
 
 		
 	}
+
+	fclose(fp);
+	fclose(tp);
 	
-
-	rewind(fp);
-	rewind(tp);
-
 	remove("../data/customers.txt");
-	rename("../data/temp.txt", "../data/customers.txt");
+	rename("../data/temp.txt","../data/customers.txt");
 
 	free(c);
 

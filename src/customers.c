@@ -223,43 +223,43 @@ int update_customer()
 		fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &(c->custID), c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
 		if ((c->custID == custIDToUpdate))
 		{
-			char ch;
-			do
-			{
+			
 				printf("\nselect what you want to update-");
 				printf("\n1.First Name");
 				printf("\n2.Last Name");
 				printf("\n3.Address");
 				printf("\n4.Mobile Number");
+				printf("\nenter choice- ");
 				int opt;
-				scanf("%c", &opt);
+				scanf("%d", &opt);
+				getchar();
 				switch (opt)
 				{
 				case 1:
 					printf("\nEnter the new first name:");
 					char *fname = (char *)calloc(SIZE, sizeof(char));
-					getchar();
+					
 					scanf("%s", fname);
 					strcpy(c->firstName, fname);
 					break;
 				case 2:
 					printf("\nEnter the new last name:");
 					char *lname = (char *)calloc(SIZE, sizeof(char));
-					getchar();
+					
 					scanf("%s", lname);
 					strcpy(c->lastName, lname);
 					break;
 				case 3:
 					printf("\nEnter the new address:");
 					char *address = (char *)calloc(BIGSIZE, sizeof(char));
-					getchar();
+					
 					scanf("%s", address);
 					strcpy(c->address, address);
 					break;
 				case 4:
 					printf("\nEnter the mobile number:");
 					char *phone = (char *)calloc(SIZE, sizeof(char));
-					getchar();
+					
 					scanf("%s", phone);
 					strcpy(c->phoneNum, phone);
 					break;
@@ -267,14 +267,12 @@ int update_customer()
 				default:
 					printf("\nInvalid Choice...");
 				}
-				getchar();
-				printf("\nDo you want to update more things? press y");
-				ch = getchar();
-			} while (ch == 'y' || ch == 'Y');
-		}
-
+		}	
 		fprintf(tp, "%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
+
+		
 	}
+	
 
 	rewind(fp);
 	rewind(tp);

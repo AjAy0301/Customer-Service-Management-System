@@ -107,7 +107,7 @@ last_name:
 
 	// phone number input
 phone_num:
-	printf("\nPhone Number: ");
+	printf("\n\nPhone Number: ");
 	getchar();
 	scanf("%s", c->phoneNum);
 	if (!isPhoneValid(c->phoneNum))
@@ -118,14 +118,14 @@ phone_num:
 
 	// address input
 	getchar();
-	printf("\nPermanent Address :");
+	printf("\n\nPermanent Address :");
 	fgets(c->address, BIGSIZE, stdin);
 	c->address[strlen(c->address) - 1] = '\0';
 
 	// customer type
 	int cust_type;
 choose_type:
-	printf("\nCustomer Type (1-New or 2-Existing): ");
+	printf("\n\nCustomer Type (1-New or 2-Existing): ");
 	scanf("%d", &cust_type);
 	if (cust_type == 1)
 		strcpy(c->custType, "new");
@@ -163,7 +163,7 @@ int delete_customer()
 
 	int custIDToDelete;
 
-	printf("\nEnter Customer ID to delete the customer: ");
+	printf("\n\nEnter Customer ID to delete the customer: ");
 	scanf("%d", &custIDToDelete);
 
 	FILE *fp = fopen("../data/customers.txt", "r"); 
@@ -200,7 +200,7 @@ int update_customer()
 
 	int custIDToUpdate;
 
-	printf("\nEnter Customer ID to update the customer : ");
+	printf("\n\nEnter Customer ID to update the customer : ");
 	scanf(" %d", &custIDToUpdate);
 
 	FILE *fp = fopen("../data/customers.txt", "r");

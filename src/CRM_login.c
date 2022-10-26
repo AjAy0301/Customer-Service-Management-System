@@ -9,7 +9,7 @@ int CRM_login()
     while (1)
     {
         system("clear");
-        printf("*************************************CRM Login*************************************");
+        printf("************************************CRM Login************************************");
 
         int attempt = 1;
 
@@ -19,17 +19,19 @@ int CRM_login()
 
         if (isValidPass(pass))
         {
+            printf("Login Successfull.....");
             char ch;
             do
             {
+                system("clear");
                 printf("\n\t\t\t\t\t------CRM Menu------\t\t\t\t\t\n\n");
-                printf("\n1. Manage Customer");
-                printf("\n2. Manage Requests");
-                printf("\n3. Requests Report");
-                printf("\n4. Logout");
-                printf("\n5. Exit");
+                printf("\n\n1. Manage Customer");
+                printf("\n\n2. Manage Requests");
+                printf("\n\n3. Requests Report");
+                printf("\n\n4. Logout");
+                printf("\n\n5. Exit");
 
-                printf("\nEnter your choice- ");
+                printf("\n\n\nEnter your choice- ");
                 int choice;
                 scanf("%d", &choice);
 
@@ -61,7 +63,7 @@ int CRM_login()
 
         else
         {
-            printf("Incorrect Password....\nTry Again");
+            printf("n\nIncorrect Password....\nTry Again");
             attempt++;
             if (attempt > 3)
             {

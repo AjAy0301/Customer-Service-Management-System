@@ -10,16 +10,16 @@ int manage_request()
     {
         system("clear");
 
-        printf("\t\t\t\t-----Ruquest Database-----\t\t\t\t");
+        printf("\t\t\t\t-----Ruquest Database-----\t\t\t\t\n\n");
         
         printf("\n\n1. Add Request");
-        printf("\n2. Update Request");
-        printf("\n3. Delete request");
-        printf("\n4. Back to Main Menu");
-        printf("\n5. Exit Application");
+        printf("\n\n2. Update Request");
+        printf("\n\n3. Delete request");
+        printf("\n\n4. Back to Main Menu");
+        printf("\n\n5. Exit Application");
 
     enter_choice:
-        printf("\nChoice- ");
+        printf("\n\n\nChoice- ");
         int choice;
         scanf("%d", &choice);
 
@@ -35,7 +35,7 @@ int manage_request()
             delete_request();
             break;
         case 4:
-            CRM_login();
+            return EXIT_SUCCESS;
             break;
         case 5:
             exit(0);
@@ -45,7 +45,7 @@ int manage_request()
         }
         printf("\ndo you want to continue manage request...(Y/N): ");
         getchar();
-        scanf("%c",&ch);
+        ch=getchar();
     } while (ch == 'Y' || ch == 'y');
 
     return EXIT_SUCCESS;
@@ -83,7 +83,7 @@ int add_request()
     r->requestID = generate_requestID();
 
 enter_id:
-    printf("\nEnter Customer ID: ");
+    printf("\n\n\nEnter Customer ID: ");
     scanf("%d", &r->customerID);
     if (!isValidCustID(r->customerID))
     {
@@ -92,7 +92,7 @@ enter_id:
     }
 
 enter_date:
-    printf("\nRequest Date (DD-MM-YY): ");
+    printf("\n\nRequest Date (DD-MM-YY): ");
     scanf("%d-%d-%d", &r->requestDate.d, &r->requestDate.m, &r->requestDate.y);
     if (!isValidDate(r->requestDate.d, r->requestDate.m, r->requestDate.y))
     {
@@ -102,13 +102,13 @@ enter_date:
 
     char *req_type = (char *)calloc(sizeof(char), SIZE);
 
-    printf("\nPlease select the type of Request you have -");
+    printf("\n\nPlease select the type of Request you have -");
     printf("\n1. Demo Request");
     printf("\n2. Service Request");
     printf("\n3. Complaint");
 
 enter_choice:
-    printf("\nEnter your choice: ");
+    printf("\n\nEnter your choice: ");
     getchar();
     int choice;
     scanf("%d", &choice);
@@ -128,7 +128,7 @@ enter_choice:
         break;
 
     default:
-        printf("\nInvalid Choice..");
+        printf("\n\nInvalid Choice..");
         goto enter_choice;
     }
 
@@ -155,7 +155,7 @@ int delete_request()
 
     if (!isValidRequestID(reqID))
     {
-        printf("\nNo request in the database with this request ID");
+        printf("\n\nNo request in the database with this request ID");
         return EXIT_SUCCESS;
     }
 
@@ -178,7 +178,7 @@ int delete_request()
     remove("../data/requests.txt");
     rename("../data/temp.txt", "../data/requests.txt");
 
-    printf("\nrequest with request ID %d is deleted successfully", reqID);
+    printf("\n\nrequest with request ID %d is deleted successfully", reqID);
 
     free(r);
     return EXIT_SUCCESS;

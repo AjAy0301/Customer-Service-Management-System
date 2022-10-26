@@ -109,6 +109,7 @@ enter_date:
     return EXIT_SUCCESS;
 }
 
+
 int del_req_desc(int req_ID, char* desc)
 {
     FILE *tp = fopen("../data/temp.txt", "a+");
@@ -121,16 +122,15 @@ int del_req_desc(int req_ID, char* desc)
 
         demo_req *d = (demo_req *)calloc(1, sizeof(demo_req));
 
-        while (!feof(fp))
+        while (fscanf(fp, "%d | %d-%d-%d | %s | %[^\n]s", &d->requestID, &d->demoDate.d, &d->demoDate.m, &d->demoDate.y, d->suitableTime, d->address)==6)
         {
-            fscanf(fp, "%d | %d-%d-%d | %s | %[^\n]s", &d->requestID, &d->demoDate.d, &d->demoDate.m, &d->demoDate.y, d->suitableTime, d->address);
             if (d->requestID != req_ID)
                 fprintf(tp, "%d | %d-%d-%d | %s | %s\n", d->requestID, d->demoDate.d, d->demoDate.m, d->demoDate.y, d->suitableTime, d->address);
         }
 
         fclose(fp);
         fclose(tp);
-        remove("..data/demos.txt");
+        remove("../data/demos.txt");
         rename("../data/temp.txt", "../data/demos.txt");
         free(d);
     }
@@ -141,9 +141,8 @@ int del_req_desc(int req_ID, char* desc)
 
         service_req *s = (service_req *)calloc(1, sizeof(service_req));
 
-        while (!feof(fp))
+        while (fscanf(fp, "%d | %d-%d-%d | %d | %d-%d-%d | %[^\n]s", &s->requestID, &s->AMCdate.d, &s->AMCdate.m, &s->AMCdate.y, &s->AMCduration, &s->purchasedDate.m, &s->purchasedDate.m, &s->purchasedDate.y, s->productName)==9)
         {
-            fscanf(fp, "%d | %d-%d-%d | %d | %d-%d-%d | %[^\n]s", &s->requestID, &s->AMCdate.d, &s->AMCdate.m, &s->AMCdate.y, &s->AMCduration, &s->purchasedDate.m, &s->purchasedDate.m, &s->purchasedDate.y, s->productName);
             if (s->requestID != req_ID)
                 fprintf(tp, "%d | %d-%d-%d | %d | %d-%d-%d | %s\n", s->requestID, s->AMCdate.d, s->AMCdate.m, s->AMCdate.y, s->AMCduration, s->purchasedDate.m, s->purchasedDate.m, s->purchasedDate.y, s->productName);
         }
@@ -158,15 +157,14 @@ int del_req_desc(int req_ID, char* desc)
     else
     {
         //deleting complaint for the request ID
-        fp = fopen("../data/complaints.txt", "r");
+        fp = fopen("data/complaints.txt", "r");
 
         complaint_req *c = (complaint_req *)calloc(1, sizeof(complaint_req));
 
-        while (!feof(fp))
+        while (fscanf(fp, "%d | %s | %s | %[^\n]s", &c->requestID, c->category, c->sub_category, c->description)==4)
         {
-            fscanf(fp, "%d | %s | %s | %[^\n]s", &c->requestID, c->category, c->sub_category, c->description);
             if (c->requestID != req_ID)
-                fprintf(tp, "%d|%s|%s|%s\n", c->requestID, c->category, c->sub_category, c->description);
+                fprintf(tp, "%d | %s | %s | %s\n", c->requestID, c->category, c->sub_category, c->description);
         }
 
         fclose(fp);
@@ -174,6 +172,7 @@ int del_req_desc(int req_ID, char* desc)
         remove("../data/complaints.txt");
         rename("../data/temp.txt", "../data/complaints.txt");
         free(c);
+		
     }
    
     return EXIT_SUCCESS;

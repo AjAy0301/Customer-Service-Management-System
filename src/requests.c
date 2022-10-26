@@ -9,8 +9,9 @@ int manage_request()
     do
     {
         system("clear");
-
-        printf("\t\t\t\t-----Ruquest Database-----\t\t\t\t\n\n");
+		printf("\n*******************************************************\n");
+        printf("*                  Request Database                       *");
+        printf("\n*******************************************************\n");	
         
         printf("\n\n1. Add Request");
         printf("\n\n2. Update Request");

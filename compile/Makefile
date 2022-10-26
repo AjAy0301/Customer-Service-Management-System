@@ -4,14 +4,14 @@ BINDIR = ../bin
 OBJDIR = ../obj
 CFLAGS = gcc -c -g -I${INCDIR}
 
-all:	main.o validate.o CRM_login.o customer_login.o customers.o requests.o reports.o requests_desc.o
+all:	main.o validate.o crm_menu.o customer_menu.o customers.o requests.o reports.o requests_desc.o
 
 main.o:
 	${CFLAGS} ${SRCDIR}/main.c -o ${OBJDIR}/main.o
-CRM_login.o:
-	${CFLAGS} ${SRCDIR}/CRM_login.c -o ${OBJDIR}/CRM_login.o
-customer_login.o:
-	${CFLAGS} ${SRCDIR}/customer_login.c -o ${OBJDIR}/customer_login.o	
+crm_menu.o:
+	${CFLAGS} ${SRCDIR}/crm_menu.c -o ${OBJDIR}/crm_menu.o
+customer_menu.o:
+	${CFLAGS} ${SRCDIR}/customer_menu.c -o ${OBJDIR}/customer_menu.o	
 validate.o:
 	${CFLAGS} ${SRCDIR}/validate.c -o ${OBJDIR}/validate.o
 customers.o:	
@@ -24,7 +24,7 @@ requests_desc.o:
 	${CFLAGS} ${SRCDIR}/requests_desc.c -o ${OBJDIR}/requests_desc.o
 
 finalexe: 
-	gcc ${OBJDIR}/main.o ${OBJDIR}/CRM_login.o ${OBJDIR}/customer_login.o ${OBJDIR}/customers.o ${OBJDIR}/requests.o ${OBJDIR}/reports.o ${OBJDIR}/requests_desc.o ${OBJDIR}/validate.o -o ${BINDIR}/application.exe
+	gcc ${OBJDIR}/main.o ${OBJDIR}/crm_menu.o ${OBJDIR}/customer_menu.o ${OBJDIR}/customers.o ${OBJDIR}/requests.o ${OBJDIR}/reports.o ${OBJDIR}/requests_desc.o ${OBJDIR}/validate.o -o ${BINDIR}/application.exe
 
 clean:
-	${OBJDIR}/main.o ${OBJDIR}/CRM_login.o ${OBJDIR}/customer_login.o ${OBJDIR}/customers.o ${OBJDIR}/requests.o ${OBJDIR}/reports.o ${OBJDIR}/requests_desc.o ${OBJDIR}/validate.o
+	${OBJDIR}/main.o ${OBJDIR}/crm_menu.o ${OBJDIR}/customer_menu.o ${OBJDIR}/customers.o ${OBJDIR}/requests.o ${OBJDIR}/reports.o ${OBJDIR}/requests_desc.o ${OBJDIR}/validate.o

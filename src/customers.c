@@ -10,8 +10,11 @@ int manage_customer()
 	do
 	{
 		system("clear");
-		printf("\t\t\t\t-----Customer Database-----\t\t\t\t\n\n\n");
-		printf("\n\n1. Add New Customer");
+		printf("\n*******************************************************\n");
+        printf("*                  Customer Database                      *");
+        printf("\n*******************************************************\n");		
+		
+		printf("\n\n\n1. Add New Customer");
 		printf("\n\n2. Update Customer Details");
 		printf("\n\n3. Remove Customer");
 		printf("\n\n4. Go Back");

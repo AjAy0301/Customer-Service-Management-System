@@ -8,8 +8,18 @@ int main()
     do
     {
         system("clear");
-        printf("\t\t\t\t-----CUSTOMER SERVICE MANAGEMENT SYSTEM-----\t\t\t\t");
-        printf("\n\nSelect Login Mode");
+
+        printf("\n\t\t\t  **-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**\n");
+        printf("\n\t\t\t        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+        printf("\n\t\t\t        =                  WELCOME                  =");
+        printf("\n\t\t\t        =                     TO                    =");
+        printf("\n\t\t\t        =               CUSTOMER SERVICE            =");
+        printf("\n\t\t\t        =               MANAGEMENT SYSTEM           =");
+        printf("\n\t\t\t        =                                           =");
+        printf("\n\t\t\t        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+        printf("\n\t\t\t  **-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**\n");
+      
+        printf("\n\n\nSelect Login Mode");
         printf("\n\n\n1. CRM Login");
         printf("\n\n2. Customer Login");
         printf("\n\n3. Exit Application");

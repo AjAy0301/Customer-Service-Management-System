@@ -7,7 +7,10 @@ int customer_login()
     while (1)
     {
         system("clear");
-        printf("------welcome to Customer Request Portal------");
+        printf("\n*******************************************************\n");
+        printf("*       Welcome to Customer Request Portal                *");
+        printf("\n*******************************************************\n");
+      
         printf("\n\n\nEnter your customer ID: ");
         int custID;
         scanf("%d", &custID);

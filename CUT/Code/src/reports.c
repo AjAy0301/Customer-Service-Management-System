@@ -141,9 +141,9 @@ int view_reports()
         break;
 
     case '3':
-        int customerID;
-
         printf("Enter Customer ID of the customer:");
+            
+        int customerID;
         scanf("%d", &customerID);
 
         while (!feof(fp))
@@ -158,9 +158,9 @@ int view_reports()
         break;
 
     case '4':
-        int month, year;
-
         printf("Enter current month and year in mm-yyyy format: ");
+            
+        int month, year;    
         scanf("%d-%d", &month, &year);
 
         while (!feof(fp))

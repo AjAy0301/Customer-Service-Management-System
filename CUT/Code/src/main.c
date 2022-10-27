@@ -1,3 +1,15 @@
+/*****************************************************************************************************************************************
+ ** FILENAME  :  main.c
+ **
+ ** DESCRIPTION : This File defines the function which send external message for Refer.
+ ** 
+ ** Revision History :
+ ** DATE                         NAME                                         REASON
+ ** ---------------------------------------------------------------------------------------
+ ** 21 October 2022               Ajay Kumar                                To make main.c file
+ ** 25 October 2022               Hrishikesh                                To make changes in file header
+ ****************************************************************************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <header.h>
@@ -17,7 +29,7 @@ int main()
         printf("\n\t\t\t        =               MANAGEMENT SYSTEM           =");
         printf("\n\t\t\t        =                                           =");
         printf("\n\t\t\t        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-        printf("\n\t\t\t  **-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**\n");
+        printf("\n\n\t\t\t  **-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**\n");
       
         printf("\n\n\nSelect Login Mode");
         printf("\n\n\n1. CRM Login");

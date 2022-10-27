@@ -1,3 +1,16 @@
+/*****************************************************************************************************************************************
+ ** FILENAME  :  crm_menu.c
+ **
+ ** DESCRIPTION : 
+ ** 
+ ** Revision History :
+ ** DATE                         NAME                                         REASON
+ ** ---------------------------------------------------------------------------------------
+ ** 21 October 2022               Ajay Kumar                                To make main.c file
+ ** 25 October 2022               Hrishikesh                                To make changes in file header
+ ****************************************************************************************************************************************/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,7 +32,7 @@ int CRM_login()
 
         if (isValidPass(pass))
         {
-            printf("\nLogin Successfull.....");
+            printf("\nLogin Successfull.....\n\n");
             char ch;
             do
             {
@@ -65,11 +78,11 @@ int CRM_login()
 
         else
         {
-            printf("n\nIncorrect Password....\nTry Again");
+            printf("n\nIncorrect Password....\nTry Again\n\n");
             attempt++;
             if (attempt > 3)
             {
-                printf("\n\n Max Attempts Reached !!!");
+                printf("\n\n Max Attempts Reached !!!\n\n");
                 return EXIT_SUCCESS;
             }
             continue;

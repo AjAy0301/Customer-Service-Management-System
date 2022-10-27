@@ -4,5 +4,3 @@
 1006 | rahul | singh | mumbai | 9717452634 | existing
 1006 | rahul | singh | mumbai | 9717452634 | existing
 1007 | faran | khan | gujrat | 1234567899 | new
-1007 | faran | khan | gujrat | 1234567899 | new
-1007 | faran | khan | gujrat | 1234567899 | new

@@ -292,3 +292,6 @@ int update_request()
 
     return EXIT_SUCCESS;
 }
+
+/***********************Funtion to display requests*************************/
+

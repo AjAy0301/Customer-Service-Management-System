@@ -1,3 +1,15 @@
+/*****************************************************************************************************************************************
+ ** FILENAME  :  customers.c
+ **
+ ** DESCRIPTION : This File defines the function which send external message for Refer.
+ **
+ ** Revision History :
+ ** DATE                         NAME                                         REASON
+ ** ---------------------------------------------------------------------------------------
+ ** 21 October 2022               Ajay Kumar                                To make main.c file
+ ** 25 October 2022               Hrishikesh                                To make changes in file header
+ ****************************************************************************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,14 +23,15 @@ int manage_customer()
 	{
 		system("clear");
 		printf("\n*******************************************************\n");
-        printf("*                  Customer Database                      *");
-        printf("\n*******************************************************\n");		
-		
+		printf("*                  Customer Database                      *");
+		printf("\n*******************************************************\n");
+
 		printf("\n\n\n1. Add New Customer");
 		printf("\n\n2. Update Customer Details");
 		printf("\n\n3. Remove Customer");
-		printf("\n\n4. Go Back");
-		printf("\n\n5. Exit Application");
+		printf("\n\n4. Display CUstomer");
+		printf("\n\n5. Go Back");
+		printf("\n\n6. Exit Application");
 
 		printf("\n\n\nChoice- ");
 		int choice;
@@ -36,9 +49,11 @@ int manage_customer()
 			delete_customer();
 			break;
 		case 4:
-			return EXIT_SUCCESS;
+			display_customer();
 			break;
 		case 5:
+			return EXIT_SUCCESS;
+		case 6:
 			exit(0);
 		default:
 			printf("Invalid Choice...");
@@ -50,30 +65,28 @@ int manage_customer()
 	return EXIT_SUCCESS;
 }
 
-
-
 /***********************Funtion to auto generate Customer ID*************************/
 
 int generate_custID()
 {
 	int customerID;
+
 	FILE *f = fopen("../data/custIDgenerate.txt", "r");
 	FILE *t = fopen("../data/temp.txt", "a");
 
 	fscanf(f, "%d", &customerID);
-	//printf("\n%d", customerID);
+
 	customerID = customerID + 1;
-	
+
 	fprintf(t, "%d", customerID);
 	fclose(f);
 	fclose(t);
+
 	remove("../data/custIDgenerate.txt");
-	rename("../data/temp.txt","../data/custIDgenerate.txt");
-	
+	rename("../data/temp.txt", "../data/custIDgenerate.txt");
+
 	return customerID;
 }
-
-
 
 /***********************Funtion for adding a customer to the database*************************/
 
@@ -83,10 +96,8 @@ int add_customer()
 	printf("\nEnter Customer Details : ");
 
 	customer *c = (customer *)calloc(1, sizeof(customer));
-	
-	c->custID = generate_custID();
 
-	
+	c->custID = generate_custID();
 
 	// first name input
 first_name:
@@ -154,8 +165,6 @@ choose_type:
 	return EXIT_SUCCESS;
 }
 
-
-
 /***********************Funtion for deleting a customer from the database*************************/
 
 int delete_customer()
@@ -169,31 +178,28 @@ int delete_customer()
 	printf("\n\nEnter Customer ID to delete the customer: ");
 	scanf("%d", &custIDToDelete);
 
-	FILE *fp = fopen("../data/customers.txt", "r"); 
+	FILE *fp = fopen("../data/customers.txt", "r");
 	FILE *tp = fopen("../data/temp.txt", "a+");
 
-	
-	while (!feof(fp))	//checking if fp has reached end of file.
+	while (!feof(fp)) // checking if fp has reached end of file.
 	{
 		fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
-		//printf("%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
+		// printf("%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
 		if (c->custID != custIDToDelete)
 		{
 			fprintf(tp, "%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
-		}	
+		}
 	}
 	fclose(fp);
 	fclose(tp);
 	remove("../data/customers.txt");
-	rename("../data/temp.txt","../data/customers.txt");
+	rename("../data/temp.txt", "../data/customers.txt");
 
-	printf("\nCustomer with customer ID %d is deleted successfully",custIDToDelete);
+	printf("\nCustomer with customer ID %d is deleted successfully", custIDToDelete);
 
 	free(c);
 	return EXIT_SUCCESS;
 }
-
-
 
 /***********************Funtion for updating the details of existing customer in the database*************************/
 
@@ -211,68 +217,88 @@ int update_customer()
 	while (!feof(fp))
 	{
 		fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &(c->custID), c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
-		
+
 		if ((c->custID == custIDToUpdate))
 		{
-			
-				printf("\nselect what you want to update-");
-				printf("\n1.First Name");
-				printf("\n2.Last Name");
-				printf("\n3.Address");
-				printf("\n4.Mobile Number");
-				printf("\n\nEnter choice- ");
-				int opt;
-				scanf("%d", &opt);
-				getchar();
-				switch (opt)
-				{
-				case 1:
-					printf("\nEnter the new first name: ");
-					char *fname = (char *)calloc(SIZE, sizeof(char));
-					
-					scanf("%s", fname);
-					strcpy(c->firstName, fname);
-					break;
-				case 2:
-					printf("\nEnter the new last name: ");
-					char *lname = (char *)calloc(SIZE, sizeof(char));
-					
-					scanf("%s", lname);
-					strcpy(c->lastName, lname);
-					break;
-				case 3:
-					printf("\nEnter the new address: ");
-					char *address = (char *)calloc(BIGSIZE, sizeof(char));
-					
-					scanf("%s", address);
-					strcpy(c->address, address);
-					break;
-				case 4:
-					printf("\nEnter the mobile number: ");
-					char *phone = (char *)calloc(SIZE, sizeof(char));
-					
-					scanf("%s", phone);
-					strcpy(c->phoneNum, phone);
-					break;
 
-				default:
-					printf("\nInvalid Choice...");
-				}
+			printf("\nselect what you want to update-");
+			printf("\n1.First Name");
+			printf("\n2.Last Name");
+			printf("\n3.Address");
+			printf("\n4.Mobile Number");
+			printf("\n\nEnter choice- ");
+			int opt;
+			scanf("%d", &opt);
+			getchar();
+			switch (opt)
+			{
+			case 1:
+				printf("\nEnter the new first name: ");
+				char *fname = (char *)calloc(SIZE, sizeof(char));
+
+				scanf("%s", fname);
+				strcpy(c->firstName, fname);
+				break;
+			case 2:
+				printf("\nEnter the new last name: ");
+				char *lname = (char *)calloc(SIZE, sizeof(char));
+
+				scanf("%s", lname);
+				strcpy(c->lastName, lname);
+				break;
+			case 3:
+				printf("\nEnter the new address: ");
+				char *address = (char *)calloc(BIGSIZE, sizeof(char));
+
+				scanf("%s", address);
+				strcpy(c->address, address);
+				break;
+			case 4:
+				printf("\nEnter the mobile number: ");
+				char *phone = (char *)calloc(SIZE, sizeof(char));
+
+				scanf("%s", phone);
+				strcpy(c->phoneNum, phone);
+				break;
+
+			default:
+				printf("\nInvalid Choice...");
+			}
 		}
-		
 
 		fprintf(tp, "%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
-
-		
 	}
 
 	fclose(fp);
 	fclose(tp);
-	
+
 	remove("../data/customers.txt");
-	rename("../data/temp.txt","../data/customers.txt");
+	rename("../data/temp.txt", "../data/customers.txt");
 
 	free(c);
 
 	return EXIT_SUCCESS;
+}
+
+/***********************Funtion for Displaying all customers from the database*************************/
+
+int display_customer()
+{
+	customer *c = (customer *)calloc(1, sizeof(customer));
+
+	FILE *fp = fopen("../data/customers.txt", "r");
+
+	printf("%-10s%-20s%-20s%-20s%-20s%s\n\n", "CustID", "Fisrt Name", "Last Name", "Phone Number", "Customer Type","Address");
+
+	
+	while (!feof(fp)) 
+	{
+		fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
+		printf("%-10d%-20s%-20s%-20s%-20s%s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
+	}
+	
+	fclose(fp);
+
+
+    return EXIT_SUCCESS;
 }

@@ -1,3 +1,16 @@
+/*****************************************************************************************************************************************
+ ** FILENAME  :  customer_menu.c
+ **
+ ** DESCRIPTION : 
+ ** 
+ ** Revision History :
+ ** DATE                         NAME                                         REASON
+ ** ---------------------------------------------------------------------------------------
+ ** 21 October 2022               Ajay Kumar                                To make main.c file
+ ** 25 October 2022               Hrishikesh                                To make changes in file header
+ ****************************************************************************************************************************************/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <header.h>
@@ -21,7 +34,7 @@ int customer_login()
         }
         else
         {
-            printf("\n\nCustomer ID NOT FOUND!!!");
+            printf("\n\nCustomer ID NOT FOUND!!!\n");
             printf("\n\n do you want to try again?...(Y/N): ");
             char ch;
             getchar();

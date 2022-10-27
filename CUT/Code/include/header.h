@@ -76,6 +76,7 @@ extern int generate_custID();
 extern int add_customer();
 extern int update_customer();
 extern int delete_customer();
+extern int display_customer();
 
 // funtions to manage requests
 extern int manage_request();
@@ -83,11 +84,13 @@ extern int generate_requestID();
 extern int add_request();
 extern int update_request();
 extern int delete_request();
+extern int display_request();
 
 // funtions for managing demo, service and complaints
 extern int service(int);
 extern int demo(int);
 extern int complaint(int);
+extern int display_req_desc();
 extern int del_req_desc(int, char *);
 
 // funtions to view and generate reports

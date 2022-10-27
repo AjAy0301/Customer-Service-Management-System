@@ -1,7 +1,7 @@
 /*****************************************************************************************************************************************
  ** FILENAME  :  customers.c
  **
- ** DESCRIPTION : This File defines the function which send external message for Refer.
+ ** DESCRIPTION : This File defines the function which are used to manage the customer deatils in database
  **
  ** Revision History :
  ** DATE                         NAME                                         REASON
@@ -29,7 +29,7 @@ int manage_customer()
 		printf("\n\n\n1. Add New Customer");
 		printf("\n\n2. Update Customer Details");
 		printf("\n\n3. Remove Customer");
-		printf("\n\n4. Display CUstomer");
+		printf("\n\n4. Display Customer");
 		printf("\n\n5. Go Back");
 		printf("\n\n6. Exit Application");
 
@@ -52,7 +52,7 @@ int manage_customer()
 			display_customer();
 			break;
 		case 5:
-			return EXIT_SUCCESS;
+			crm_menu();
 		case 6:
 			exit(0);
 		default:
@@ -65,11 +65,22 @@ int manage_customer()
 	return EXIT_SUCCESS;
 }
 
-/***********************Funtion to auto generate Customer ID*************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    generate_custID
+ **
+ **DESCRIPTION     :    This function is used to auto generate Customer ID.
+
+ ***************************************************************************************************************************************/
 
 int generate_custID()
 {
 	int customerID;
+
+	if (!isFileExists("../data/custIDgenerate.txt"))
+	{
+		printf("\n\nData File missing....");
+		return EXIT_SUCCESS;
+	}
 
 	FILE *f = fopen("../data/custIDgenerate.txt", "r");
 	FILE *t = fopen("../data/temp.txt", "a");
@@ -88,7 +99,12 @@ int generate_custID()
 	return customerID;
 }
 
-/***********************Funtion for adding a customer to the database*************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    add_customer
+ **
+ **DESCRIPTION     :    This function is used for adding customer to database.
+
+ ***************************************************************************************************************************************/
 
 int add_customer()
 {
@@ -152,9 +168,14 @@ choose_type:
 	}
 
 	// Storing the inputted data to customers.txt file
-	FILE *fp;
 
-	fp = fopen("../data/customers.txt", "a");
+	if (!isFileExists("../data/customers.txt"))
+	{
+		printf("\n\nData File missing....");
+		return EXIT_SUCCESS;
+	}
+
+	FILE *fp = fopen("../data/customers.txt", "a");
 
 	fprintf(fp, "%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->address, c->phoneNum, c->custType);
 
@@ -165,7 +186,12 @@ choose_type:
 	return EXIT_SUCCESS;
 }
 
-/***********************Funtion for deleting a customer from the database*************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    delete_customer
+ **
+ **DESCRIPTION     :    This function is used for deleting customer from database.
+
+ ***************************************************************************************************************************************/
 
 int delete_customer()
 {
@@ -178,13 +204,19 @@ int delete_customer()
 	printf("\n\nEnter Customer ID to delete the customer: ");
 	scanf("%d", &custIDToDelete);
 
+	if (!isFileExists("../data/customers.txt"))
+	{
+		printf("\n\nData File missing....");
+		return EXIT_SUCCESS;
+	}
+
 	FILE *fp = fopen("../data/customers.txt", "r");
 	FILE *tp = fopen("../data/temp.txt", "a+");
 
 	while (!feof(fp)) // checking if fp has reached end of file.
 	{
 		fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
-		// printf("%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
+
 		if (c->custID != custIDToDelete)
 		{
 			fprintf(tp, "%d | %s | %s | %s | %s | %s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
@@ -201,7 +233,12 @@ int delete_customer()
 	return EXIT_SUCCESS;
 }
 
-/***********************Funtion for updating the details of existing customer in the database*************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    update_customer
+ **
+ **DESCRIPTION     :    This function is used for updating existing customer deatils in database.
+
+ ***************************************************************************************************************************************/
 
 int update_customer()
 {
@@ -211,6 +248,12 @@ int update_customer()
 
 	printf("\nEnter Customer ID to update the customer : ");
 	scanf(" %d", &custIDToUpdate);
+
+	if (!isFileExists("../data/customers.txt"))
+	{
+		printf("\n\nData File missing....");
+		return EXIT_SUCCESS;
+	}
 	FILE *fp = fopen("../data/customers.txt", "r");
 	FILE *tp = fopen("../data/temp.txt", "a+");
 
@@ -218,7 +261,7 @@ int update_customer()
 	{
 		fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &(c->custID), c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
 
-		if ((c->custID == custIDToUpdate))
+		if (c->custID == custIDToUpdate)
 		{
 
 			printf("\nselect what you want to update-");
@@ -227,33 +270,33 @@ int update_customer()
 			printf("\n3.Address");
 			printf("\n4.Mobile Number");
 			printf("\n\nEnter choice- ");
-			int opt;
-			scanf("%d", &opt);
-			getchar();
+			char opt;
+			scanf("%s", &opt);
+
 			switch (opt)
 			{
-			case 1:
+			case '1':
 				printf("\nEnter the new first name: ");
 				char *fname = (char *)calloc(SIZE, sizeof(char));
 
 				scanf("%s", fname);
 				strcpy(c->firstName, fname);
 				break;
-			case 2:
+			case '2':
 				printf("\nEnter the new last name: ");
 				char *lname = (char *)calloc(SIZE, sizeof(char));
 
 				scanf("%s", lname);
 				strcpy(c->lastName, lname);
 				break;
-			case 3:
+			case '3':
 				printf("\nEnter the new address: ");
 				char *address = (char *)calloc(BIGSIZE, sizeof(char));
 
 				scanf("%s", address);
 				strcpy(c->address, address);
 				break;
-			case 4:
+			case '4':
 				printf("\nEnter the mobile number: ");
 				char *phone = (char *)calloc(SIZE, sizeof(char));
 
@@ -280,25 +323,34 @@ int update_customer()
 	return EXIT_SUCCESS;
 }
 
-/***********************Funtion for Displaying all customers from the database*************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    display_customer
+ **
+ **DESCRIPTION     :    This function is used for displaying all the customer in the database.
+
+ ***************************************************************************************************************************************/
 
 int display_customer()
 {
 	customer *c = (customer *)calloc(1, sizeof(customer));
 
+	if (!isFileExists("../data/customers.txt"))
+	{
+		printf("\n\nData File missing....");
+		return EXIT_SUCCESS;
+	}
+
 	FILE *fp = fopen("../data/customers.txt", "r");
 
-	printf("%-10s%-20s%-20s%-20s%-20s%s\n\n", "CustID", "Fisrt Name", "Last Name", "Phone Number", "Customer Type","Address");
+	printf("%-10s%-20s%-20s%-20s%-20s%s\n\n", "CustID", "Fisrt Name", "Last Name", "Phone Number", "Customer Type", "Address");
 
-	
-	while (!feof(fp)) 
+	while (!feof(fp))
 	{
 		fscanf(fp, "%d | %s | %s | %s | %s | %[^\n]s", &c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
 		printf("%-10d%-20s%-20s%-20s%-20s%s\n", c->custID, c->firstName, c->lastName, c->phoneNum, c->custType, c->address);
 	}
-	
+
 	fclose(fp);
 
-
-    return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }

@@ -67,8 +67,8 @@ typedef struct Complaint_requests
 
 /*-----Funtions Declaration-----*/
 
-extern int CRM_login();
-extern int customer_login();
+extern int crm_menu();
+extern int customer_menu();
 
 // funtions to manage customers
 extern int manage_customer();
@@ -104,5 +104,6 @@ extern int isValidCustID(int);
 extern int isValidRequestID(int);
 extern int isPhoneValid(char *);
 extern int isNameValid(char *);
+int isFileExists(const char *);
 
 #endif

@@ -1,8 +1,9 @@
 /*****************************************************************************************************************************************
  ** FILENAME  :  crm_menu.c
  **
- ** DESCRIPTION : 
- ** 
+ ** DESCRIPTION : This File defines the CRM menu funtion through which manage customer manage requests and view reports funtion can be called
+ **
+ **
  ** Revision History :
  ** DATE                         NAME                                         REASON
  ** ---------------------------------------------------------------------------------------
@@ -10,19 +11,18 @@
  ** 25 October 2022               Hrishikesh                                To make changes in file header
  ****************************************************************************************************************************************/
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <header.h>
 
-int CRM_login()
+int crm_menu()
 {
 
     while (1)
     {
         system("clear");
-        printf("\n************************************CRM Login************************************\n");
+        printf("\n************************************CRM LOGIN************************************\n");
 
         int attempt = 1;
 
@@ -38,33 +38,32 @@ int CRM_login()
             {
                 system("clear");
                 printf("\n*******************************************************\n");
-                printf("*                      CRM Menu                          *");
+                printf("*                      CRM MENU                          *");
                 printf("\n*******************************************************\n");
-                printf("\n\n1. Manage Customer");
+                printf("\n\n1. Manage Customers");
                 printf("\n\n2. Manage Requests");
-                printf("\n\n3. View Requests Report");
+                printf("\n\n3. View Request Reports");
                 printf("\n\n4. Logout");
                 printf("\n\n5. Exit");
 
                 printf("\n\n\nEnter your choice- ");
-                int choice;
-                scanf("%d", &choice);
+                char choice;
+                scanf("%s", &choice);
 
                 switch (choice)
                 {
-                case 1:
+                case '1':
                     manage_customer();
                     break;
-                case 2:
+                case '2':
                     manage_request();
                     break;
-                case 3:
+                case '3':
                     view_reports();
                     break;
-                case 4:
+                case '4':
                     return EXIT_SUCCESS;
-                    ;
-                case 5:
+                case '5':
                     exit(0);
                 default:
                     printf("\n\nInvalid choice\n");
@@ -82,7 +81,7 @@ int CRM_login()
             attempt++;
             if (attempt > 3)
             {
-                printf("\n\n Max Attempts Reached !!!\n\n");
+                printf("\n\n Maximum Attempts Reached !!!\n\n");
                 return EXIT_SUCCESS;
             }
             continue;

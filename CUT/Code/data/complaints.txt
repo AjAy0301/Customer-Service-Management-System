@@ -1,6 +1,3 @@
-205|defect|broken|broken ball was dlivered
-212|damaged|broken|sdbsbdsm
-206 | 1001 | 12-10-2001 | open | demo
-209 | 1001 | 12-10-2000 | open | service
-211 | 1002 | 23-3-2009 | close | demo
-212 | 1003 | 10-12-2006 | open | complaint
+205 | defect | broken | broken
+212 | damaged | broken | sdbsbdsm
+217 | sjfj | akfk | ggggg

@@ -1,10 +1,26 @@
+/*****************************************************************************************************************************************
+ ** FILENAME  :  customers.c
+ **
+ ** DESCRIPTION : This File defines all the validation functions used in the project
+ **
+ ** Revision History :
+ ** DATE                         NAME                                         REASON
+ ** ---------------------------------------------------------------------------------------
+ ** 21 October 2022               Ajay Kumar                                To make main.c file
+ ** 25 October 2022               Hrishikesh                                To make changes in file header
+ ****************************************************************************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <header.h>
 
-/***********************Date validation funtion**************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    isValidDate
+ **
+ **DESCRIPTION     :    This function is used to validate the date.
+ ***************************************************************************************************************************************/
 
 int isValidDate(int dd, int mm, int yy)
 {
@@ -30,7 +46,11 @@ int isValidDate(int dd, int mm, int yy)
         return INVALID;
 }
 
-/***********************Password validation function**************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    isValidDate
+ **
+ **DESCRIPTION     :    This function is used to validate the password.
+ ***************************************************************************************************************************************/
 
 int isValidPass(char *str)
 {
@@ -39,7 +59,7 @@ int isValidPass(char *str)
     if (fp == NULL)
     {
         printf("\nPASSWORD FILE MISSING...");
-        exit(0);
+        return EXIT_SUCCESS;
     }
     else
     {
@@ -53,7 +73,11 @@ int isValidPass(char *str)
     }
 }
 
-/***********************Name validation function**************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    isValidDate
+ **
+ **DESCRIPTION     :    This function is used to validate the name.
+ ***************************************************************************************************************************************/
 
 int isNameValid(char *name)
 {
@@ -68,7 +92,11 @@ int isNameValid(char *name)
     return VALID;
 }
 
-/***********************Phone Number validation funtion**************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    isValidDate
+ **
+ **DESCRIPTION     :    This function is used to validate the phone number.
+ ***************************************************************************************************************************************/
 
 int isPhoneValid(char *pnum)
 {
@@ -85,7 +113,11 @@ int isPhoneValid(char *pnum)
     return VALID;
 }
 
-/***********************Customer ID validation function**************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    isValidDate
+ **
+ **DESCRIPTION     :    This function is used to validate the caustomer ID.
+ ***************************************************************************************************************************************/
 
 int isValidCustID(int customerID)
 {
@@ -106,7 +138,11 @@ int isValidCustID(int customerID)
     return INVALID;
 }
 
-/***********************Request ID validation function**************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    isValidDate
+ **
+ **DESCRIPTION     :    This function is used to validate the Request ID.
+ ***************************************************************************************************************************************/
 
 int isValidRequestID(int requestID)
 {
@@ -125,4 +161,23 @@ int isValidRequestID(int requestID)
     free(r);
 
     return INVALID;
+}
+
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    isValidDate
+ **
+ **DESCRIPTION     :    This function is used to validate the presence of file.
+ ***************************************************************************************************************************************/
+
+int isFileExists(const char *path)
+{
+    // Try to open file
+    FILE *fp = fopen(path, "rb");
+    int status = 0; // If file does not exists
+    if (fp != NULL)
+    {
+        status = 1; // File exists hence close file
+        fclose(fp);
+    }
+    return status;
 }

@@ -1,3 +1,15 @@
+/*****************************************************************************************************************************************
+ ** FILENAME  :  customers.c
+ **
+ ** DESCRIPTION : This File defines the function which are used to manage all the requests in database
+ **
+ ** Revision History :
+ ** DATE                         NAME                                         REASON
+ ** ---------------------------------------------------------------------------------------
+ ** 21 October 2022               Ajay Kumar                                To make main.c file
+ ** 25 October 2022               Hrishikesh                                To make changes in file header
+ ****************************************************************************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,15 +21,16 @@ int manage_request()
     do
     {
         system("clear");
-		printf("\n*******************************************************\n");
+        printf("\n*******************************************************\n");
         printf("*                  Request Database                       *");
-        printf("\n*******************************************************\n");	
-        
+        printf("\n*******************************************************\n");
+
         printf("\n\n1. Add Request");
         printf("\n\n2. Update Request");
         printf("\n\n3. Delete request");
-        printf("\n\n4. Back to previous Menu");
-        printf("\n\n5. Exit Application");
+        printf("\n\n4. View all Requests");
+        printf("\n\n5. Back to previous Menu");
+        printf("\n\n6. Exit Application");
 
     enter_choice:
         printf("\n\n\nChoice- ");
@@ -36,9 +49,11 @@ int manage_request()
             delete_request();
             break;
         case 4:
-            return EXIT_SUCCESS;
+            display_request();
             break;
         case 5:
+            crm_menu();
+        case 6:
             exit(0);
         default:
             printf("Invalid Choice...");
@@ -46,18 +61,29 @@ int manage_request()
         }
         printf("\ndo you want to continue manage request...(Y/N): ");
         getchar();
-        ch=getchar();
+        ch = getchar();
     } while (ch == 'Y' || ch == 'y');
 
     return EXIT_SUCCESS;
 }
 
-/***********************Funtion to generate Request ID*************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    generate_requestID
+ **
+ **DESCRIPTION     :    This function is used to auto generate the Request ID.
+ ***************************************************************************************************************************************/
 
 int generate_requestID()
 {
 
     int requestID;
+
+    if (!isFileExists("../data/requestIDgenerate.txt"))
+    {
+        printf("\n\nData File missing....");
+        return EXIT_SUCCESS;
+    }
+
     FILE *f = fopen("../data/requestIDgenerate.txt", "r");
     FILE *t = fopen("../data/temp.txt", "a");
 
@@ -73,7 +99,11 @@ int generate_requestID()
     return requestID;
 }
 
-/***********************Funtion to add a request*************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    add_request
+ **
+ **DESCRIPTION     :    This function is used to add a request in the database.
+ ***************************************************************************************************************************************/
 
 int add_request()
 {
@@ -135,19 +165,35 @@ enter_choice:
 
     strcpy(r->requestStatus, "open");
 
+    if (!isFileExists("../data/requests.txt"))
+    {
+        printf("\n\nData File missing....");
+        return EXIT_SUCCESS;
+    }
+
     FILE *fp = fopen("../data/requests.txt", "a");
     fprintf(fp, "%d | %d | %d-%d-%d | %s | %s\n", r->requestID, r->customerID, r->requestDate.d, r->requestDate.m, r->requestDate.y, r->requestStatus, r->description);
     fclose(fp);
     return EXIT_SUCCESS;
 }
 
-/***********************Funtion to delete a request*************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    delete_request
+ **
+ **DESCRIPTION     :    This function is used to delete requests from database.
+ ***************************************************************************************************************************************/
 
 int delete_request()
 {
     system("clear");
 
     request *r = (request *)calloc(1, sizeof(request));
+
+    if (!isFileExists("../data/requests.txt"))
+    {
+        printf("\n\nData File missing....");
+        return EXIT_SUCCESS;
+    }
 
     int reqID;
 
@@ -170,12 +216,13 @@ int delete_request()
         {
             fprintf(tp, "%d | %d | %d-%d-%d | %s | %s\n", r->requestID, r->customerID, r->requestDate.d, r->requestDate.m, r->requestDate.y, r->requestStatus, r->description);
         }
-        
+        else
+            del_req_desc(reqID, r->description);
     }
 
     fclose(fp);
     fclose(tp);
-    
+
     remove("../data/requests.txt");
     rename("../data/temp.txt", "../data/requests.txt");
 
@@ -185,7 +232,11 @@ int delete_request()
     return EXIT_SUCCESS;
 }
 
-/***********************Funtion to update details of existing request*************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    update_request
+ **
+ **DESCRIPTION     :    This function is used to update an existing request details in the databse
+ ***************************************************************************************************************************************/
 
 int update_request()
 {
@@ -199,6 +250,12 @@ int update_request()
     if (isValidRequestID(reqID))
     {
         request *r = (request *)calloc(1, sizeof(request));
+
+        if (!isFileExists("../data/requests.txt"))
+        {
+            printf("\n\nData File missing....");
+            return EXIT_SUCCESS;
+        }
 
         FILE *fp = fopen("../data/requests.txt", "r");
         FILE *tp = fopen("../data/temp.txt", "a+");
@@ -216,12 +273,12 @@ int update_request()
 
             enter_choice:
                 printf("\nEnter your choice: ");
-                int opt;
-                scanf("%d", &opt);
+                char opt;
+                scanf("%s", &opt);
 
                 switch (opt)
                 {
-                case 1:
+                case '1':
                     printf("\nPlease select the type of Request you have -");
                     printf("\n1. Demo Request");
                     printf("\n2. Service Request");
@@ -229,23 +286,23 @@ int update_request()
 
                 entr_choice:
                     printf("\nEnter your choice: ");
-                    getchar();
-                    int choice;
-                    scanf("%d", &choice);
+
+                    char choice;
+                    scanf("%s", &choice);
 
                     char *desc = (char *)calloc(sizeof(char), SIZE);
 
                     switch (choice)
                     {
-                    case 1:
+                    case '1':
                         strcpy(desc, "demo");
                         demo(reqID);
                         break;
-                    case 2:
+                    case '2':
                         strcpy(desc, "service");
                         service(reqID);
                         break;
-                    case 3:
+                    case '3':
                         strcpy(desc, "complaint");
                         complaint(reqID);
                         break;
@@ -259,9 +316,9 @@ int update_request()
 
                     break;
 
-                case 2:
+                case '2':
 
-                    if (strcmp(r->requestStatus, "open")==0)
+                    if (strcmp(r->requestStatus, "open") == 0)
                         strcpy(r->requestStatus, "close");
                     else
                         strcpy(r->requestStatus, "open");
@@ -293,5 +350,33 @@ int update_request()
     return EXIT_SUCCESS;
 }
 
-/***********************Funtion to display requests*************************/
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    display_request
+ **
+ **DESCRIPTION     :    This function is used to for displaying all the customer in database.
+ ***************************************************************************************************************************************/
 
+int display_request()
+{
+    request *r = (request *)calloc(1, sizeof(request));
+
+    if (!isFileExists("../data/requests.txt"))
+    {
+        printf("\n\nData File missing....");
+        return EXIT_SUCCESS;
+    }
+
+    FILE *fp = fopen("../data/requests.txt", "r");
+
+    printf("%-10s%-20s%-20s%-20s%s\n\n", "Request_ID", "Customer_ID", "Request_Date", "Request_Status", "Request_Description");
+
+    while (!feof(fp))
+    {
+        fscanf(fp, "%d | %d | %d-%d-%d | %s | %s\n", &r->requestID, &r->customerID, &r->requestDate.d, &r->requestDate.m, &r->requestDate.y, r->requestStatus, r->description);
+        printf("%-20d%-20d%d/%d/%-20d%-20s%s\n", r->requestID, r->customerID, r->requestDate.d, r->requestDate.m, r->requestDate.y, r->requestStatus, r->description);
+    }
+
+    fclose(fp);
+
+    return EXIT_SUCCESS;
+}

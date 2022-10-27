@@ -1,8 +1,8 @@
 /*****************************************************************************************************************************************
  ** FILENAME  :  main.c
  **
- ** DESCRIPTION : This File defines the function which send external message for Refer.
- ** 
+ ** DESCRIPTION : This File defines the main funtion which will call respective user mode funtion based on user choice.
+ **
  ** Revision History :
  ** DATE                         NAME                                         REASON
  ** ---------------------------------------------------------------------------------------
@@ -30,25 +30,25 @@ int main()
         printf("\n\t\t\t        =                                           =");
         printf("\n\t\t\t        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
         printf("\n\n\t\t\t  **-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**\n");
-      
+
         printf("\n\n\nSelect Login Mode");
         printf("\n\n\n1. CRM Login");
         printf("\n\n2. Customer Login");
         printf("\n\n3. Exit Application");
 
         printf("\n\n\nEnter yout choice- ");
-        int choice;
-        scanf("%d", &choice);
+        char choice;
+        scanf("%s", &choice);
 
         switch (choice)
         {
-        case 1:
-            CRM_login();
+        case '1':
+            crm_menu();
             break;
-        case 2:
-            customer_login();
+        case '2':
+            customer_menu();
             break;
-        case 3:
+        case '3':
             return EXIT_SUCCESS;
         default:
             printf("\nInvalid Choice...\n");

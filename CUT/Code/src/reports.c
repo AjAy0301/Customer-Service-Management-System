@@ -1,13 +1,33 @@
+/*****************************************************************************************************************************************
+ ** FILENAME  :  reports.c
+ **
+ ** DESCRIPTION : This File defines the function which are used to manage the customer deatils in database
+ **
+ ** Revision History :
+ ** DATE                         NAME                                         REASON
+ ** ---------------------------------------------------------------------------------------
+ ** 21 October 2022               Ajay Kumar                                To make main.c file
+ ** 25 October 2022               Hrishikesh                                To make changes in file header
+ ****************************************************************************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <header.h>
 
+// variables for storing the count of demo, service and complaints
+int demo_count = 0;
+int complaint_count = 0;
+int service_count = 0;
+
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    total_reports
+ **
+ **DESCRIPTION     :    This function is used to count the total number demo requests, services requests and complaints
+ ***************************************************************************************************************************************/
+
 int total_reports()
 {
-    int demo_count = 0;
-    int complaint_count = 0;
-    int service_count = 0;
 
     FILE *fd = fopen("../data/demos.txt", "r");
     FILE *fc = fopen("../data/complaints.txt", "r");
@@ -27,7 +47,7 @@ int total_reports()
     // counting number of services
     while (!feof(fs))
     {
-        fscanf(fs, "%d | %d-%d-%d | %d | %d-%d-%d | %[^\n]s", &s->requestID, &s->AMCdate.d, &s->AMCdate.m, &s->AMCdate.y, &s->AMCduration, &s->purchasedDate.m, &s->purchasedDate.m, &s->purchasedDate.y, s->productName);
+        fscanf(fs, "%d | %d-%d-%d | %d | %d-%d-%d | %[^\n]s", &s->requestID, &s->AMCdate.d, &s->AMCdate.m, &s->AMCdate.y, &s->AMCduration, &s->purchasedDate.d, &s->purchasedDate.m, &s->purchasedDate.y, s->productName);
         service_count++;
     }
 
@@ -45,20 +65,28 @@ int total_reports()
     return EXIT_SUCCESS;
 }
 
+/****************************************************************************************************************************************
+ **FUNCTION NAME   :    view_report
+ **
+ **DESCRIPTION     :    This function is used to view the specific report for the given date
+ ***************************************************************************************************************************************/
+
 int view_reports()
 {
+
     system("clear");
-    printf("\nSelect which report you want view: ");
-    printf("\n\n1. Demos scheduled ");
-    printf("\n2. No of complaints not addressed");
-    printf("\n3. How many service calls are closed for given customer");
-    printf("\n4. List of service calls closed last month");
-    printf("\n\nenter your choice: ");
 
-    int choice;
-    scanf("%d", &choice);
-    getchar();
+    printf("\nTotal Demo Requests: %d\t\tTotal Service Requests: %d\t\tTotal Complaints: %d\n\n", demo_count, service_count, complaint_count);
+    printf("\n\nSelect which report you want view: ");
+    printf("\n\n\n1. Demos scheduled ");
+    printf("\n\n2. No of complaints not addressed");
+    printf("\n\n3. How many service calls are closed for given customer");
+    printf("\n\n4. List of service calls closed last month");
+    printf("\n\n\nenter your choice: ");
 
+    char choice;
+    scanf("%s", &choice);
+   
     int dd, mm, yy;
     int service_call_closed = 0;
 
@@ -75,7 +103,7 @@ int view_reports()
 
     switch (choice)
     {
-    case 1:
+    case '1':
 
         printf("\nEnter Date (dd-mm-yyyy): ");
         scanf("%d-%d-%d", &dd, &mm, &yy);
@@ -92,7 +120,7 @@ int view_reports()
         fclose(fd);
         break;
 
-    case 2:
+    case '2':
 
         printf("\nEnter Date (dd-mm-yyyy): ");
         scanf("%d-%d-%d", &dd, &mm, &yy);
@@ -112,7 +140,7 @@ int view_reports()
         fclose(fp);
         break;
 
-    case 3:
+    case '3':
         int customerID;
 
         printf("Enter Customer ID of the customer:");
@@ -129,16 +157,16 @@ int view_reports()
         fclose(fp);
         break;
 
-    case 4:
+    case '4':
         int month, year;
 
         printf("Enter current month and year in mm-yyyy format: ");
-        scanf("%d-%d", &month,&year);
+        scanf("%d-%d", &month, &year);
 
         while (!feof(fp))
         {
             fscanf(fp, "%d | %d | %d-%d-%d | %s | %s", &r->requestID, &r->customerID, &r->requestDate.d, &r->requestDate.m, &r->requestDate.y, r->requestStatus, r->description);
-            if (r->requestDate.y == year && r->requestDate.m ==month-1 && strcmp(r->requestStatus, "closed")==0) // reeor can be while strcmp need check it again
+            if (r->requestDate.y == year && r->requestDate.m == month - 1 && strcmp(r->requestStatus, "closed") == 0) // reeor can be while strcmp need check it again
                 service_call_closed++;
         }
 
